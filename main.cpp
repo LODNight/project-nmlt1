@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <string.h>
-#include "DocGia/docgia.h"
-#include "DocGia/docgia.cpp"
+#include "menu.h"
+#include "menu.cpp"
 
 int main(){
+    printf(">> Chao mung ban da quay tro lai Thu Vien Sach <<\n");
+    printf(">> Vui long lua chon tinh nang ban muon su dung <<\n");
 
-    themThongTinDocGia();
-    inThongTinToanBoDocGia();
-    themThongTinDocGia();
-    inThongTinToanBoDocGia();
-
+    menuChucNang();
     return 0;
 }

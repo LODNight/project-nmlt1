@@ -1,4 +1,4 @@
 #pragma once
 
 void themThongTinDocGia();
-void inThongTinToanBoDocGia();
+void xemThongTinToanBoDocGia();

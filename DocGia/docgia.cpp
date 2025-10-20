@@ -46,10 +46,13 @@ void themThongTinDocGia(){
     tongSoDG++;
 }
 
+// ===========================
+// Kiểm tra trùng Đọc Giả
+
 
 // ===========================
 // In tất cả Đọc Giả
-void inThongTinToanBoDocGia(){
+void xemThongTinToanBoDocGia(){
     printf("\n====== DANH SACH DOC GIA ======\n");
     if(tongSoDG == 0){
         printf("Chua co doc gia");
@@ -59,3 +62,6 @@ void inThongTinToanBoDocGia(){
         printf("%s | %s\n",maDG[i], tenDG[i]);
     }
 }
+
+// ===========================
+// Tìm Đọc Giả theo CMND
