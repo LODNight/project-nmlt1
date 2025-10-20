@@ -55,31 +55,36 @@ void menuChucNang(){
 // Menu lựa chọn Đọc Giả
 void chucNangDocGia(){
     int choice;
-    printf("\n===== MENU QUAN LY DOC GIA =====\n");
-    printf("1: Xem danh sach Doc Gia\n");
-    printf("2: Them Doc Gia\n");
-    printf("3: Chinh sua thong tin Doc Gia\n");
-    printf("4: Xoa thong tin Doc Gia\n");
-    printf("5: Tim kiem Doc Gia theo CMND\n");
-    printf("6: Tim kiem Doc Gia theo ho ten\n");
-    printf("0: Thoat\n");
-    printf("=================================\n");
-    printf("Chon chuc nang: ");
-    scanf("%d",&choice);
+    while(choice != 0){
+        printf("\n===== MENU QUAN LY DOC GIA =====\n");
+        printf("1: Xem danh sach Doc Gia\n");
+        printf("2: Them Doc Gia\n");
+        printf("3: Chinh sua thong tin Doc Gia\n");
+        printf("4: Xoa thong tin Doc Gia\n");
+        printf("5: Tim kiem Doc Gia theo CMND\n");
+        printf("6: Tim kiem Doc Gia theo ho ten\n");
+        printf("0: Thoat\n");
+        printf("=================================\n");
+        printf("Chon chuc nang: ");
+        scanf("%d",&choice);
 
-    switch (choice)
-    {
-    case 1:
-        xemThongTinToanBoDocGia(); break;
-    case 2: 
-        themThongTinDocGia(); break;
-    case 0:
-        printf("\n>> Quay ve Menu Chinh <<\n");
-        menuChucNang();
-        break;
-    default:
-        printf("\n>> Vui long chon lai <<\n"); break;
-    }
+        switch (choice)
+        {
+        case 1:
+            xemThongTinToanBoDocGia(); break;
+        case 2: 
+            themThongTinDocGia(); break;
+        case 3: 
+            kiemTraNgayLapThe();
+            break;
+        case 0:
+            printf("\n>> Quay ve Menu Chinh <<\n");
+            menuChucNang();
+            break;
+        default:
+            printf("\n>> Vui long chon lai <<\n"); break;
+        }
+    }    
 }
 
 // Menu lựa chọn Đọc Giả

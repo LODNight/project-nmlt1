@@ -7,6 +7,7 @@ int main(){
     printf(">> Chao mung ban da quay tro lai Thu Vien Sach <<\n");
     printf(">> Vui long lua chon tinh nang ban muon su dung <<\n");
 
+    napDuLieuMau();
     menuChucNang();
     return 0;
 }
