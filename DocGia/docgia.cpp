@@ -96,10 +96,10 @@ void themThongTinDocGia(){
     printf("Them Dia Chi: ");
     getchar();
     fgets(diachi[tongSoDG],100,stdin);
-    diachi[tongSoDG][strcspn(diachi[tongSoDG], "\n")] == '\0';
+    diachi[tongSoDG][strcspn(diachi[tongSoDG], "\n")] = '\0';
 
     // Them Ngay Lap The
-    kiemTraNgayLapThe(&d,&m,&y);
+    kiemTraNgayLapThe();
 
 
     // Them Ngay Het Han The
@@ -188,7 +188,8 @@ int timSoNgayTrongThang(int m, int y){
 }
 
 // Hợp lệ khi năm từ 2003 trở đi
-void kiemTraNgayLapThe(int &d,int &m, int &y){
+void kiemTraNgayLapThe(){
+    int d,m,y;
     bool hopLe = false;
 
     do{
@@ -211,33 +212,6 @@ void kiemTraNgayLapThe(int &d,int &m, int &y){
 
 }
 
-void kiemTraNgayHetHanThe(int dLap, int mLap, int yLap){
-    int d,m,y;
-    bool hopLe = true;
-    
-    printf("%d / %d / %d",dLap,mLap,yLap);
-
-    printf("Them Ngay Tra The (dd/mm/yyyy): ");
-    scanf("%d/%d/%d",&d,&m,&y);
-
-    // Kiểm tra ngày hợp lệ
-    if(d <=0 || m <=0 || y <= 2003){
-        hopLe = false;
-    }
-    if(d > timSoNgayTrongThang(m,y)){
-        hopLe = false;
-    }
-
-    // Kiểm tra nếu ngày Trả trước ngày lập => KO hợp lệ
-
-
-    if(!hopLe){
-        printf("\n>> Ngay ko hop le <<\n");
-        return;
-    } else {
-        printf("\n>> Them Ngay Tra The Thanh Cong <<\n");
-    }
-}
 // ===========================
 
 // ===========================
