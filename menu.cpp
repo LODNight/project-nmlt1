@@ -21,30 +21,30 @@ void menuChucNang(){
         switch (choice)
         {
         case 1: 
-            printf("Ban da chon: Quan li Doc Gia\n"); 
+            printf("\n>> Ban da chon: Quan li Doc Gia <<\n"); 
             chucNangDocGia();
             break;
         case 2: 
-            printf("Ban da chon: Quan li Sach\n"); 
+            printf("\n>> Ban da chon: Quan li Sach <<\n"); 
             chucNangSach();
             break;
         case 3: 
-            printf("Ban da chon: Lap phieu muon sach\n"); 
+            printf("\n>> Ban da chon: Lap phieu muon sach <<\n"); 
             chucNangPhieuMuon();
             break;
         case 4: 
-            printf("Ban da chon: Lap phieu tra sach\n"); 
+            printf("\n>> Ban da chon: Lap phieu tra sach <<\n"); 
             chucNangPhieuTra();
             break;
         case 5: 
-            printf("Ban da chon: Thong ke co ban\n"); 
+            printf("\n>> Ban da chon: Thong ke co ban <<\n"); 
             chucNangThongKe();
             break;
         case 0:
-            printf("Ban da chon thoat chuong trinh\n");
+            printf("\n>> Ban da chon thoat chuong trinh <<\n");
             break;
         default:
-            printf("Lua chon khong hop le. Vui long nhap lai\n");
+            printf("\n>> Lua chon khong hop le. Vui long nhap lai <<\n");
             break;
         }
     }
@@ -74,11 +74,11 @@ void chucNangDocGia(){
     case 2: 
         themThongTinDocGia(); break;
     case 0:
-        printf(">> Quay ve Menu Chinh <<\n");
+        printf("\n>> Quay ve Menu Chinh <<\n");
         menuChucNang();
         break;
     default:
-        printf(">> Vui long chon lai <<\n"); break;
+        printf("\n>> Vui long chon lai <<\n"); break;
     }
 }
 
