@@ -177,6 +177,7 @@ void suaThongTinDocGia(char timCMND[]){
                 scanf("%d",cmnd[vitriDG]);
                 break;
             case 3:
+                // Gioi Tinh
                 printf("Gioi Tinh: %s", gioiTinh[vitriDG]);
                 printf("Them Gioi tinh Moi(Male/Female/Other):  ");
                 scanf("%s",gioiTinh[tongSoDG]);
@@ -223,10 +224,41 @@ void suaThongTinDocGia(char timCMND[]){
     // Chọn nội dung cần sửa
 
     
-    // Sửa ĐỌc giả
+    // Sửa Đọc giả
 
 }
 
+// Xóa Thông tin Đọc Giả
+void xoaDGTheoCMND(char timCMND[]){
+    int vitriDG = timDocGiaTheoCMND(timCMND);
+    printf("\n >>>> Ban co muon xoa Doc Gia  [%s - %s] khong <<<<\n",maDG[vitriDG],tenDG[vitriDG]);
+    char xacNhan;
+    getchar();
+    printf("Xac nhan (y/n): ");
+    scanf("%c",&xacNhan);
+
+    if(xacNhan == 'y' || xacNhan == 'Y'){
+        for(int i = vitriDG; i < tongSoDG - 1; i++){
+            strcpy(maDG[i],maDG[i+1]);
+            strcpy(tenDG[i],tenDG[i+1]);
+            strcpy(gioiTinh[i],gioiTinh[i+1]);
+            strcpy(email[i],email[i+1]);
+            strcpy(diachi[i],diachi[i+1]);
+            strcpy(ngayLapThe[i],ngayLapThe[i+1]);
+            strcpy(ngayHetHanThe[i],ngayHetHanThe[i+1]);
+        }
+        tongSoDG--;
+        printf("\n >>> Da xoa thanh cong <<<\n");
+    } 
+    else if(xacNhan == 'n' || xacNhan == 'N'){
+        printf("\n >>> Huy xoa doc gia <<<\n");
+    }
+    else{
+        printf("\n >>> Sai cu phap <<<\n");
+    }
+
+    
+}
 
 
 // Nhóm xử lý bắt lỗi

@@ -72,19 +72,31 @@ void chucNangDocGia(){
         switch (choice)
         {
         case 1:
+            // Xem Toàn bộ thông tin Đọc Giả
             xemThongTinToanBoDocGia(); break;
         case 2: 
+            // Thêm Thông tin Đọc Giả
             themThongTinDocGia(); break;
         case 3: 
+            // Sửa Thông tin Đọc Giả
             printf("Nhap So CMND: ");
             scanf("%s", timCMND);
             suaThongTinDocGia(timCMND);
             break;
+        
+        case 4:
+            // Xóa Đọc Giả
+            printf("Nhap So CMND: ");
+            scanf("%s", timCMND);
+            xoaDGTheoCMND(timCMND);
+            break;
         case 5:
+            // Tìm Kiếm Đọc Giả theo CMND
             printf("Nhap So CMND: ");
             scanf("%s", timCMND);
             timDocGiaTheoCMND(timCMND);
             break;
+        case 6:
         case 0:
             printf("\n>> Quay ve Menu Chinh <<\n");
             menuChucNang();
