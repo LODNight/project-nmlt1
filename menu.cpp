@@ -55,6 +55,7 @@ void menuChucNang(){
 // Menu lựa chọn Đọc Giả
 void chucNangDocGia(){
     int choice;
+    char timCMND[20];
     while(choice != 0){
         printf("\n===== MENU QUAN LY DOC GIA =====\n");
         printf("1: Xem danh sach Doc Gia\n");
@@ -75,7 +76,14 @@ void chucNangDocGia(){
         case 2: 
             themThongTinDocGia(); break;
         case 3: 
-            kiemTraNgayLapThe();
+            printf("Nhap So CMND: ");
+            scanf("%s", timCMND);
+            suaThongTinDocGia(timCMND);
+            break;
+        case 5:
+            printf("Nhap So CMND: ");
+            scanf("%s", timCMND);
+            timDocGiaTheoCMND(timCMND);
             break;
         case 0:
             printf("\n>> Quay ve Menu Chinh <<\n");

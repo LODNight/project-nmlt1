@@ -53,9 +53,8 @@ void napDuLieuMau() {
     strncpy(ngayHetHanThe[2], "20/05/2028", sizeof(ngayHetHanThe[2]) - 1);
 }
 
-
 // ===========================
-// In tất cả Đọc Giả
+// In thông tin tất cả Đọc Giả
 void xemThongTinToanBoDocGia(){
     printf("\n====== DANH SACH DOC GIA ======\n");
     if(tongSoDG == 0){
@@ -63,7 +62,7 @@ void xemThongTinToanBoDocGia(){
         return;
     }
     for(int i=0; i < tongSoDG; i++){
-        printf("%05s | %20s | %12s | %20s | \n",maDG[i], tenDG[i],cmnd[i],email[i]);
+        printf("%05s | %20s | %12s | %20s | %10s | %10s \n",maDG[i], tenDG[i],cmnd[i],email[i],ngayLapThe[i],ngayHetHanThe[i]);
     }
 }
 
@@ -98,12 +97,8 @@ void themThongTinDocGia(){
     fgets(diachi[tongSoDG],100,stdin);
     diachi[tongSoDG][strcspn(diachi[tongSoDG], "\n")] = '\0';
 
-    // Them Ngay Lap The
+    // Them Ngay Lap The va Het Han The
     kiemTraNgayLapThe();
-
-
-    // Them Ngay Het Han The
-    printf("Them Ngay Het Han: ");
 
     // Them MaDG tang tu dong
     sprintf(maDG[tongSoDG],"DG%03d",tongSoDG+1);
@@ -113,8 +108,70 @@ void themThongTinDocGia(){
     tongSoDG++;
 }
 
-#pragma region Validation
 // ===========================
+// Tìm Đọc Giả theo CMND
+bool timDocGiaTheoCMND(char timCMND[]){
+    bool tontaiDG = false;
+    printf("\n====== TIM DOC GIA THEO TEN ======\n");
+    for(int i=0; i<tongSoDG; i++){
+        if(strcmp(cmnd[i], timCMND) ==0){
+            tontaiDG = true;
+            printf("\n>> Tim Thay Doc Gia <<\n");
+            printf("--------------------------------\n");
+            printf("Ma DG:      %s\n", maDG[i]);
+            printf("Ten DG:     %s\n", tenDG[i]);
+            printf("CMND:       %s\n", cmnd[i]);
+            printf("Gioi tinh:  %s\n", gioiTinh[i]);
+            printf("Email:      %s\n", email[i]);
+            printf("Dia chi:    %s\n", diachi[i]);
+            printf("Ngay Lap The:   %s\n", ngayLapThe[i]);
+            printf("Ngay Het Han:   %s\n", ngayHetHanThe[i]);
+            printf("--------------------------------\n");
+            break;
+        }
+    }
+    if(!tontaiDG) printf("\n>> Khong tim thay doc gia <<\n");
+    return tontaiDG;
+}
+
+// ===========================
+// Chỉnh sửa thông tin Đọc Giả
+void suaThongTinDocGia(char timCMND[]){
+    // Tìm Đọc Giả
+    if(!timDocGiaTheoCMND(timCMND)) return;
+    else{
+        printf("\n>> Bat dau sua thong tin Doc Gia <<\n");
+        int choice;
+        do{
+            printf("\n>> Nhap lua chon de chinh sua <<\n");
+            scanf("%d",choice);
+            
+            switch (choice)
+            {
+            case 1:
+                /* code */
+                break;
+            
+            default:
+                break;
+            }
+
+
+        }while(choice != 0);
+    }
+    // Chọn nội dung cần sửa
+
+    
+    // Sửa ĐỌc giả
+
+}
+
+
+
+// Nhóm xử lý bắt lỗi
+// ===========================
+#pragma region Validation
+
 // Kiểm tra CMND Đọc Giả
 void kiemTraCMNDDocGia(){
     char cmndNew[20]; // cmnd[kí tự]
@@ -176,6 +233,7 @@ int timNamNhuan(int y){
     }
 }
 
+// Tìm số ngày trong 1 tháng
 int timSoNgayTrongThang(int m, int y){
     if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
         return 31;
@@ -208,17 +266,26 @@ void kiemTraNgayLapThe(){
             printf("\n>> Ngay ko hop le. Vui long nhap lai <<\n");
     } while(!hopLe);
 
-    printf("\n>> Them Ngay Lap The Thanh Cong <<\n");
+    // Lưu chuỗi ngày hợp lệ
+    sprintf(ngayLapThe[tongSoDG], "%02d/%02d/%04d", d, m, y);
+
+    themNgayHetHanThe(d, m, y);
 
 }
 
-// ===========================
+// Het han sau 48 thang kể từ ngày lập thẻ
+void themNgayHetHanThe(int d, int m, int y){
+    m += 48;
+    y += (m-1)/12;
+    m = ((m-1) % 12) + 1;
 
-// ===========================
-// Kiểm tra Ngày
+    int dayMax = timSoNgayTrongThang(m,y);
+    if(d > dayMax) d = dayMax;
+
+    sprintf(ngayHetHanThe[tongSoDG],"%01d/%02d/%04d",d,m,y);
+}
 
 #pragma endregion
 
 
-// ===========================
-// Tìm Đọc Giả theo CMND
+
