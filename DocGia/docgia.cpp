@@ -14,6 +14,7 @@ char diachi[MAX][100];
 char ngayLapThe[MAX][20];
 char ngayHetHanThe[MAX][20];
 int tongSoDG = 0;
+int d, m, y;
 
 // ===========================
 // Thêm mẫu Đọc Giả vào Thư viện
@@ -110,12 +111,12 @@ void themThongTinDocGia(){
 
 // ===========================
 // Tìm Đọc Giả theo CMND
-bool timDocGiaTheoCMND(char timCMND[]){
-    bool tontaiDG = false;
+int timDocGiaTheoCMND(char timCMND[]){
+    int vitriDocGia;
     printf("\n====== TIM DOC GIA THEO TEN ======\n");
     for(int i=0; i<tongSoDG; i++){
         if(strcmp(cmnd[i], timCMND) ==0){
-            tontaiDG = true;
+            vitriDocGia = i;
             printf("\n>> Tim Thay Doc Gia <<\n");
             printf("--------------------------------\n");
             printf("Ma DG:      %s\n", maDG[i]);
@@ -130,32 +131,92 @@ bool timDocGiaTheoCMND(char timCMND[]){
             break;
         }
     }
-    if(!tontaiDG) printf("\n>> Khong tim thay doc gia <<\n");
-    return tontaiDG;
+    if(vitriDocGia == 0) printf("\n>> Khong tim thay doc gia <<\n");
+    return vitriDocGia;
 }
 
 // ===========================
 // Chỉnh sửa thông tin Đọc Giả
 void suaThongTinDocGia(char timCMND[]){
     // Tìm Đọc Giả
-    if(!timDocGiaTheoCMND(timCMND)) return;
+    int vitriDG = timDocGiaTheoCMND(timCMND);
+    if(vitriDG == 0) return;
     else{
         printf("\n>> Bat dau sua thong tin Doc Gia <<\n");
         int choice;
         do{
-            printf("\n>> Nhap lua chon de chinh sua <<\n");
-            scanf("%d",choice);
+            printf("---------------------------------------");
+            printf("\n+++ CHINH SUA CAC THONG TIN SAU +++\n");
+            printf("\t1. Ten DG\n");
+            printf("\t2. CMND\n");
+            printf("\t3. Gioi Tinh\n");
+            printf("\t4. Email\n");
+            printf("\t5. Dia chi\n");
+            printf("\t6. Ngay Lap The\n");
+            printf("\t7. Ngay Het Han The\n");
+            printf("\t0. Thoat\n");
+            printf("---------------------------------------\n");
+            printf("Lua chon cua bạn: ");
+            scanf("%d",&choice);
+            getchar();
             
             switch (choice)
             {
             case 1:
-                /* code */
+                // Ten
+                printf("Ten: %s", tenDG[vitriDG]);
+                printf("Nhap ho ten moi: ");
+                fgets(tenDG[vitriDG],sizeof(tenDG[vitriDG]), stdin);
+                // Xóa kí tự "\n"
+                tenDG[vitriDG][strcspn(tenDG[vitriDG],"\n")] = '\0';
                 break;
-            
+            case 2:
+                // CMND
+                printf("CMND: %s", cmnd[vitriDG]);
+                printf("Nhap ho ten moi: ");
+                scanf("%d",cmnd[vitriDG]);
+                break;
+            case 3:
+                printf("Gioi Tinh: %s", gioiTinh[vitriDG]);
+                printf("Them Gioi tinh Moi(Male/Female/Other):  ");
+                scanf("%s",gioiTinh[tongSoDG]);
+                break;
+            case 4:
+                // Email
+                printf("Emai: %s", email[vitriDG]);
+                printf("Nhap email moi: ");
+                fgets(email[vitriDG],sizeof(email[vitriDG]), stdin);
+                // Xóa kí tự "\n"
+                email[vitriDG][strcspn(email[vitriDG],"\n")] = '\0';
+                break;
+            case 5:
+                // Dia chi
+                printf("Dia chi: %s", diachi[vitriDG]);
+                printf("Nhap dia chi moi: ");
+                fgets(diachi[vitriDG],sizeof(diachi[vitriDG]), stdin);
+                // Xóa kí tự "\n"
+                diachi[vitriDG][strcspn(diachi[vitriDG],"\n")] = '\0';
+                break;
+            case 6:
+                // Ngay lap the
+                printf("Ngay lap the: %s", ngayLapThe[vitriDG]);
+                printf("Nhap Ngay Lap The Moi (dd/mm/yyyy): ");
+                scanf("%d/%d/%d",&d,&m,&y);
+                kiemTraNgayHopLe(d, m, y);
+                break;
+            case 7:
+                // Ngay het han the
+                printf("Ngay het han the: %s", ngayHetHanThe[vitriDG]);
+                printf("Nhap Ngay het han the moi (dd/mm/yyyy): ");
+                scanf("%d/%d/%d",&d,&m,&y);
+                kiemTraNgayHopLe(d, m, y);
+                break;
+            case 0:
+                printf("\n>> Thoat Chinh Sua <<\n");
+                break;
             default:
                 break;
             }
-
 
         }while(choice != 0);
     }
@@ -245,22 +306,25 @@ int timSoNgayTrongThang(int m, int y){
     }
 }
 
+// Kiểm tra ngày hợp lệ
+bool kiemTraNgayHopLe(int d, int m, int y){
+    if(d <=0 || m <=0 || m > 12 || y <= 2003)
+        return false;
+    else if(d > timSoNgayTrongThang(m,y))
+        return  false;
+    else return true;
+}
+
 // Hợp lệ khi năm từ 2003 trở đi
 void kiemTraNgayLapThe(){
     int d,m,y;
     bool hopLe = false;
 
     do{
-        hopLe = true;
-
         printf("Them Ngay Lap The (dd/mm/yyyy): ");
         scanf("%d/%d/%d",&d,&m,&y);
-        
-        // Kiểm tra ngày hợp lệ
-        if(d <=0 || m <=0 || m > 12 || y <= 2003)
-            hopLe = false;
-        if(d > timSoNgayTrongThang(m,y))
-            hopLe = false;
+       
+        hopLe = kiemTraNgayHopLe(d,m,y);
         
         if(!hopLe) 
             printf("\n>> Ngay ko hop le. Vui long nhap lai <<\n");
@@ -286,6 +350,4 @@ void themNgayHetHanThe(int d, int m, int y){
 }
 
 #pragma endregion
-
-
 
