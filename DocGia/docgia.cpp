@@ -5,7 +5,7 @@
 // Khai báo biến toàn cục là MAX với kí tự tối đa là 200 đơn vị
 #define MAX 200
 
-char maDG[MAX][20];         // Không được trùng
+char maDG[MAX][7];         // Không được trùng
 char tenDG[MAX][40];        
 char cmnd[MAX][12];         // Không được trùng
 char gioiTinh[MAX][10];
@@ -133,6 +133,12 @@ int timDocGiaTheoCMND(char timCMND[]){
     }
     if(vitriDocGia == 0) printf("\n>> Khong tim thay doc gia <<\n");
     return vitriDocGia;
+}
+
+
+// Tìm Sách theo Tên Đọc Giả
+int timSachTheoTenDocGia(char tenDG[]){
+    return 0;
 }
 
 // ===========================
