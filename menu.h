@@ -6,3 +6,4 @@ void chucNangSach();
 void chucNangPhieuMuon();
 void chucNangPhieuTra();
 void chucNangThongKe();
+void napThongTin();

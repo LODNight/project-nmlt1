@@ -18,7 +18,7 @@ int d, m, y;
 
 // ===========================
 // Thêm mẫu Đọc Giả vào Thư viện
-void napDuLieuMau() {
+void napDuLieuDGMau() {
     tongSoDG = 3;
     // strncpy(): dùng để thêm chỉ định tối đa các ký tự vào danh sách và đảm bảo kết thúc bằng \0:
     strncpy(maDG[0], "DG001", sizeof(maDG[0]) - 1);
@@ -57,7 +57,7 @@ void napDuLieuMau() {
 // ===========================
 // In thông tin tất cả Đọc Giả
 void xemThongTinToanBoDocGia(){
-    printf("\n====== DANH SACH DOC GIA ======\n");
+    printf("\n====== DANH SACH [DOC GIA] ======\n");
     if(tongSoDG == 0){
         printf("Chua co doc gia");
         return;

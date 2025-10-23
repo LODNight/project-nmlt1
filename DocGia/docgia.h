@@ -1,5 +1,6 @@
 #pragma once
 
+void napDuLieuDGMau();
 void themThongTinDocGia();
 void xemThongTinToanBoDocGia();
 void kiemTraCMNDDocGia();
