@@ -120,16 +120,16 @@ int timDocGiaTheoCMND(char timCMND[]){
         if(strcmp(cmnd[i], timCMND) ==0){
             vitriDocGia = i;
             printf("\n>> Tim Thay Doc Gia <<\n");
-            printf("--------------------------------\n");
-            printf("Ma DG:      %s\n", maDG[i]);
-            printf("Ten DG:     %s\n", tenDG[i]);
-            printf("CMND:       %s\n", cmnd[i]);
-            printf("Gioi tinh:  %s\n", gioiTinh[i]);
-            printf("Email:      %s\n", email[i]);
-            printf("Dia chi:    %s\n", diachi[i]);
-            printf("Ngay Lap The:   %s\n", ngayLapThe[i]);
-            printf("Ngay Het Han:   %s\n", ngayHetHanThe[i]);
-            printf("--------------------------------\n");
+            printf("------------------------------------------\n");
+            printf("\tMa DG:         | %s\n", maDG[i]);
+            printf("\tTen DG:        | %s\n", tenDG[i]);
+            printf("\tCMND:          | %s\n", cmnd[i]);
+            printf("\tGioi tinh:     | %s\n", gioiTinh[i]);
+            printf("\tEmail:         | %s\n", email[i]);
+            printf("\tDia chi:       | %s\n", diachi[i]);
+            printf("\tNgay Lap The:  | %s\n", ngayLapThe[i]);
+            printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);
+            printf("------------------------------------------\n");
             break;
         }
     }
@@ -265,8 +265,6 @@ void xoaDGTheoCMND(char timCMND[]){
     else{
         printf("\n >>> Sai cu phap <<<\n");
     }
-
-    
 }
 
 

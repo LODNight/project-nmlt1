@@ -246,7 +246,32 @@ void chinhSuaSach(char timISBN[]){
 // ==========================
 // Xoa Sach
 void xoaSach(char timISBN[]){
+    int vitriSach = timSachTheoISBN(timISBN);
+    printf("\n >>>> Ban co muon xoa Sach  [%s - %s] khong <<<<\n",ISBN[vitriSach],tenSach[vitriSach]);
+    char xacNhan;
+    getchar();
+    printf("Xac nhan (y/n): ");
+    scanf("%c",&xacNhan);
 
+    if(xacNhan == 'y' || xacNhan == 'Y'){
+        for(int i = vitriSach; i < tongSach - 1; i++){
+            strcpy(ISBN[i],ISBN[i+1]);
+            strcpy(tenSach[i],tenSach[i+1]);
+            strcpy(tenTacGia[i],tenTacGia[i+1]);
+            strcpy(tenNhaXuatBan[i],tenNhaXuatBan[i+1]);
+            strcpy(namXuatBan[i],namXuatBan[i+1]);
+            strcpy(theLoai[i],theLoai[i+1]);
+            strcpy(giaSach[i],giaSach[i+1]);
+        }
+        tongSach--;
+        printf("\n >>> Da xoa Sach thanh cong <<<\n");
+    } 
+    else if(xacNhan == 'n' || xacNhan == 'N'){
+        printf("\n >>> Huy xoa Sach <<<\n");
+    }
+    else{
+        printf("\n >>> Sai cu phap <<<\n");
+    }
 }
 
 // ==========================
@@ -257,13 +282,15 @@ int timSachTheoISBN(char timISBN[]){
         if(strcmp(ISBN[i],timISBN) == 0){
             vitriSach = i;
             printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
-            printf("\tMa ISBN:    %s\n", ISBN[i]);
-            printf("\tTen sach:   %s\n", tenSach[i]);
-            printf("\tTac gia:    %s\n", tenTacGia[i]);
-            printf("\tNha xuat Ban: %s\n", tenNhaXuatBan[i]);
-            printf("\tNam xuat ban: %s\n", namXuatBan[i]);
-            printf("\tThe loai:   %s\n", theLoai[i]);
-            printf("\tGia sach:   %s\n", giaSach[i]);
+            printf("------------------------------------------\n");
+            printf("\tMa ISBN:      | %s\n", ISBN[i]);
+            printf("\tTen sach:     | %s\n", tenSach[i]);
+            printf("\tTac gia:      | %s\n", tenTacGia[i]);
+            printf("\tNha xuat Ban: | %s\n", tenNhaXuatBan[i]);
+            printf("\tNam xuat ban: | %s\n", namXuatBan[i]);
+            printf("\tThe loai:     | %s\n", theLoai[i]);
+            printf("\tGia sach:     | %s\n", giaSach[i]);
+            printf("------------------------------------------\n");
             break;
         }
     }

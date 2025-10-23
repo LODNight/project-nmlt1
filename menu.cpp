@@ -88,18 +88,24 @@ void chucNangDocGia(){
             xemThongTinToanBoDocGia(); break;
         case 2: 
             // Thêm Thông tin Đọc Giả
-            themThongTinDocGia(); break;
+            themThongTinDocGia(); 
+            xemThongTinToanBoDocGia();
+            break;
         case 3: 
             // Sửa Thông tin Đọc Giả
+            xemThongTinToanBoDocGia();
             printf("Nhap So CMND: ");
             scanf("%s", timCMND);
             suaThongTinDocGia(timCMND);
+            xemThongTinToanBoDocGia();
             break;
         case 4:
             // Xóa Đọc Giả
+            xemThongTinToanBoDocGia();
             printf("Nhap So CMND: ");
             scanf("%s", timCMND);
             xoaDGTheoCMND(timCMND);
+            xemThongTinToanBoDocGia();
             break;
         case 5:
             // Tìm Kiếm Đọc Giả theo CMND
@@ -145,21 +151,31 @@ void chucNangSach(){
             case 2: 
                 // Thêm Thông tin Sách
                 themThongTinSach();
+                inThongTinToanBoSach();;
                 break;
             case 3: 
                 // Sửa Thông tin Sách
                 getchar();
+                inThongTinToanBoSach();
                 printf("\nNhap ISBN can tim: ");
                 fgets(timISBN, 5, stdin);
                 timISBN[strcspn(timISBN,"\n")] = '\0';
 
                 chinhSuaSach(timISBN);
+                inThongTinToanBoSach();
                 choice = -1;
                 break;
             case 4:
                 // Xóa Sách
-                printf("Nhap ISBN: ");
-                
+                getchar();
+                inThongTinToanBoSach();
+                printf("\nNhap ISBN can tim: ");
+                fgets(timISBN, 5, stdin);
+                timISBN[strcspn(timISBN,"\n")] = '\0';
+
+                xoaSach(timISBN);
+                inThongTinToanBoSach();
+                choice = -1;
                 break;
             case 5:
                 // Tìm Kiếm Sách theo ISBN
