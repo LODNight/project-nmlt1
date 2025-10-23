@@ -5,11 +5,11 @@
 // Khai báo biến toàn cục là MAX với kí tự tối đa là 200 đơn vị
 #define MAX 200
 
-char ISBN[MAX][7];
+char ISBN[MAX][5];
 char tenSach[MAX][100];
 char tenTacGia[MAX][50];
 char tenNhaXuatBan[MAX][100];
-char namXuatBan[MAX][4];
+char namXuatBan[MAX][5];
 char theLoai[MAX][50];
 char giaSach[MAX][9];
 int tongSach;
@@ -51,7 +51,8 @@ void napDuLieuSachMau(){
 // ==========================
 // In Thông tin toàn bộ Sách
 void inThongTinToanBoSach(){
-printf("\n====== DANH SACH [SACH] ======\n");
+    printf("\n----------------------------------\n");
+    printf("\n====== DANH SACH [SACH] ======\n");
     if(tongSach == 0){
         printf("Chua co Sach");
         return;
@@ -60,6 +61,7 @@ printf("\n====== DANH SACH [SACH] ======\n");
         printf("%04s | %20s | %20s | %20s | %5s | %10s | %9s \n",
         ISBN[i], tenSach[i], tenTacGia[i], tenNhaXuatBan[i], namXuatBan[i], theLoai[i], giaSach[i]);
     }
+    printf("\n----------------------------------\n");
 }
 
 
@@ -72,22 +74,22 @@ void themThongTinSach(){
     printf("\n===== Them thong tin Sach ===== \n");
     
     // Tên Sách
-    themTenSach();
+    themTenSach(tongSach);
 
     // Tên Tác Giả
-    themTenTacGia();
+    themTenTacGia(tongSach);
 
     // Tên nhà xuất bản
-    themNhaXuatBan();
+    themNhaXuatBan(tongSach);
     
     // Năm Xuất bản
-    themNamXuatBan();
+    themNamXuatBan(tongSach);
 
     // The Loại
-    themTheLoai();
+    themTheLoai(tongSach);
 
     // Giá Sách
-    themGiaSach();
+    themGiaSach(tongSach);
     
     // Them Ma ISBN tang tu dong
     sprintf(ISBN[tongSach],"S%03d",tongSach+1);
@@ -97,33 +99,33 @@ void themThongTinSach(){
     tongSach++;
 }
 
-
+#pragma region Them Sach
 // Tên Sách
-void themTenSach(){
+void themTenSach(int vitri){
     printf("Nhap ten Sach: ");
     getchar();
-    fgets(tenSach[tongSach],100,stdin);
-    tenSach[tongSach][strcspn(tenSach[tongSach],"\n")] = '\0';
+    fgets(tenSach[vitri],100,stdin);
+    tenSach[vitri][strcspn(tenSach[vitri],"\n")] = '\0';
 }
 
 // Tên Tác Giả
-void themTenTacGia(){
+void themTenTacGia(int vitri){
     printf("Nhap ten Tac Gia: ");
     getchar();
-    fgets(tenTacGia[tongSach],50,stdin);
-    tenTacGia[tongSach][strcspn(tenTacGia[tongSach],"\n")] = '\0';
+    fgets(tenTacGia[vitri],50,stdin);
+    tenTacGia[vitri][strcspn(tenTacGia[vitri],"\n")] = '\0';
 }
 
 // Tên nhà xuất bản
-void themNhaXuatBan(){
+void themNhaXuatBan(int vitri){
     printf("Nhap ten nha xuat ban: ");
     getchar();
-    fgets(tenNhaXuatBan[tongSach],100,stdin);
-    tenNhaXuatBan[tongSach][strcspn(tenNhaXuatBan[tongSach],"\n")] = '\0';
+    fgets(tenNhaXuatBan[vitri],100,stdin);
+    tenNhaXuatBan[vitri][strcspn(tenNhaXuatBan[vitri],"\n")] = '\0';
 }
 
 // Năm Xuất bản
-void themNamXuatBan(){
+void themNamXuatBan(int vitri){
     int y;
     bool hopLe = false;
 
@@ -135,7 +137,7 @@ void themNamXuatBan(){
         if(y < 1000 || y > 2025){
             printf("\n>>> Nam khong hop le. Vui long nhap lai (1000-2025) <<<\n");
         } else {
-            sprintf(namXuatBan[tongSach], "%d", y); 
+            sprintf(namXuatBan[vitri], "%d", y); 
             hopLe = true;
         }
     } while(!hopLe);
@@ -143,15 +145,15 @@ void themNamXuatBan(){
 }
 
 // The Loại
-void themTheLoai(){
+void themTheLoai(int vitri){
     printf("Nhap ten the loai: ");
     getchar();
-    fgets(theLoai[tongSach],50,stdin);
-    theLoai[tongSach][strcspn(theLoai[tongSach],"\n")] = '\0';
+    fgets(theLoai[vitri],50,stdin);
+    theLoai[vitri][strcspn(theLoai[vitri],"\n")] = '\0';
 }
 
 // Giá Sách
-void themGiaSach(){
+void themGiaSach(int vitri){
     int m;
     bool hopLe = false;
 
@@ -163,28 +165,129 @@ void themGiaSach(){
         if(m < 1000 || m > 999999999){
             printf("\n>>> Gia tien khong hop le. Vui long nhap lai <<<\n");
         } else {
-            sprintf(giaSach[tongSach], "%d", m); 
+            sprintf(giaSach[vitri], "%d", m); 
             hopLe = true;
         }
     } while(!hopLe);
 
 }
-
+#pragma endregion
 
 // ==========================
 // Chinh sua Sách
-void chinhSuaSach(){
+void chinhSuaSach(char timISBN[]){
+    int vitriSach = timSachTheoISBN(timISBN);
+    if(vitriSach == 0) return;
+    else {
+        printf("\n>> Bat dau sua thong tin Sach <<\n");
+        int choice = -1;
+        // nếu để khai báo int choice; thì sẽ có khả năng random là 0
+        do{
+            printf("---------------------------------------");
+            printf("\n+++ CHINH SUA CAC THONG TIN SAU +++\n");
+            printf("\t1. Ten Sach\n");
+            printf("\t2. Tac Gia\n");
+            printf("\t3. Nha xuat ban\n");
+            printf("\t4. Nam xuat ban\n");
+            printf("\t5. The loai\n");
+            printf("\t6. Gia sach\n");
+            printf("\t0. Thoat\n");
+            printf("---------------------------------------\n");
+            printf("Lua chon chinh sua: ");
+            scanf("%d",&choice);
+            getchar();
+            
+            // Kiểm tra case
+            switch (choice)
+            {
+            case 1:
+                // Ten Sach
+                printf("Ten Sach: %s\n", tenSach[vitriSach]);
+                themTenSach(vitriSach);
+                break;
+            case 2:
+                // Tác giả
+                printf("Tac gia: %s\n", tenTacGia[vitriSach]);
+                themTenTacGia(vitriSach);
+                break;
+            case 3:
+                // Nhà xuất bản
+                printf("Nha xuat ban: %s\n", tenNhaXuatBan[vitriSach]);
+                themNhaXuatBan(vitriSach);
+                break;
+            case 4:
+                // Năm xuất bản
+                printf("Nam xuat ban: %s\n", namXuatBan[vitriSach]);
+                themNamXuatBan(vitriSach);
+                break;
+            case 5:
+                // The loai
+                printf("The loai: %s\n", theLoai[vitriSach]);
+                themTheLoai(vitriSach);
+                break;
+            case 6:
+                // Giá sách
+                printf("Gia sach: %s\n", giaSach[vitriSach]);
+                themGiaSach(vitriSach);
+                break;
+            case 0:
+                printf("\n>> Thoat Chinh Sua <<\n");
+                break;
+            default:
+                break;
+            }
 
+        } while(choice != 0); 
+        
+    }
+    
 }
 
 // ==========================
 // Xoa Sach
+void xoaSach(char timISBN[]){
 
+}
 
 // ==========================
 // Tim sach theo ISBN
-
+int timSachTheoISBN(char timISBN[]){
+    int vitriSach = -1;
+    for(int i=0; i<tongSach; i++){
+        if(strcmp(ISBN[i],timISBN) == 0){
+            vitriSach = i;
+            printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
+            printf("\tMa ISBN:    %s\n", ISBN[i]);
+            printf("\tTen sach:   %s\n", tenSach[i]);
+            printf("\tTac gia:    %s\n", tenTacGia[i]);
+            printf("\tNha xuat Ban: %s\n", tenNhaXuatBan[i]);
+            printf("\tNam xuat ban: %s\n", namXuatBan[i]);
+            printf("\tThe loai:   %s\n", theLoai[i]);
+            printf("\tGia sach:   %s\n", giaSach[i]);
+            break;
+        }
+    }
+    if(vitriSach < 0)  printf("\n>>> Khong tim thay sach <<< \n");
+    return vitriSach;
+}
 
 // ==========================
 // Tim sach theo ten Sach
-
+int timSachTheoTen(char timSach[]){
+    int vitriSach = -1;
+    for(int i=0; i<tongSach; i++){
+        if(strstr(tenSach[i], timSach) != NULL){
+            vitriSach = i;
+            printf("\n>>> Tim thay Sach voi cac thong tin la <<<\n");
+            printf("Ma ISBN: %s\n", ISBN[i]);
+            printf("Ten sach: %s\n", tenSach[i]);
+            printf("Tac gia: %s\n", tenTacGia[i]);
+            printf("Nha xuat Ban: %s\n", tenNhaXuatBan[i]);
+            printf("Nam xuat ban: %s\n", namXuatBan[i]);
+            printf("The loai: %s\n", theLoai[i]);
+            printf("Gia sach: %s\n", giaSach[i]);
+        }
+    }
+    if(vitriSach < 0 )  printf("\n>>> Khong tim thay sach <<< \n");
+    return vitriSach;
+}

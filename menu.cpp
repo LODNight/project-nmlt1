@@ -63,13 +63,13 @@ void napThongTin(){
 
 // Menu lựa chọn Đọc Giả
 void chucNangDocGia(){
-    int choice;
+    int choice = -1;
     char timCMND[20];
 
     napDuLieuDGMau();
 
-    while(choice != 0){
-        printf("\n===== MENU QUAN LY DOC GIA =====\n");
+    do{
+        printf("\n\n===== MENU QUAN LY DOC GIA =====\n");
         printf("1: Xem danh sach Doc Gia\n");
         printf("2: Them Doc Gia\n");
         printf("3: Chinh sua thong tin Doc Gia\n");
@@ -115,15 +115,16 @@ void chucNangDocGia(){
         default:
             printf("\n>> Vui long chon lai <<\n"); break;
         }
-    }    
+    } while(choice != 0);
 }
 
 
 // Menu lựa chọn Đọc Giả
 void chucNangSach(){
-    int choice;
-    while(choice != 0){
-        printf("\n===== MENU QUAN LY SACH =====\n");
+    int choice = -1;
+    char timISBN[5];
+    do{
+        printf("\n\n===== MENU QUAN LY SACH =====\n");
         printf("1: Xem danh sach Sach\n");
         printf("2: Them Sach\n");
         printf("3: Chinh sua thong tin Sach\n");
@@ -134,6 +135,7 @@ void chucNangSach(){
         printf("=================================\n");
         printf("Chon chuc nang: ");
         scanf("%d",&choice);
+        
         switch (choice)
         {
             case 1:
@@ -146,8 +148,13 @@ void chucNangSach(){
                 break;
             case 3: 
                 // Sửa Thông tin Sách
-                printf("Nhap ISBN: ");
-                
+                getchar();
+                printf("\nNhap ISBN can tim: ");
+                fgets(timISBN, 5, stdin);
+                timISBN[strcspn(timISBN,"\n")] = '\0';
+
+                chinhSuaSach(timISBN);
+                choice = -1;
                 break;
             case 4:
                 // Xóa Sách
@@ -156,22 +163,37 @@ void chucNangSach(){
                 break;
             case 5:
                 // Tìm Kiếm Sách theo ISBN
-                printf("Nhap ISBN: ");
+                printf("\n>>> Tim sach theo ISBN <<<\n");
+                getchar();
+                printf("Nhap ISBN can tim: ");
+                fgets(timISBN, 5, stdin);
+                timISBN[strcspn(timISBN,"\n")] = '\0';
                 
+                timSachTheoISBN(timISBN);
+                choice = -1;
                 break;
             case 6:
-                // Tìm kiếm theo tên Sách
-                printf("Nhap ISBN");
+                char timTenSach[100];
 
+                // Tìm kiếm Sách theo tên Sách
+                printf("\n>>> Tim sach theo Ten <<<\n");
+                getchar();
+                printf("Nhap ten Sach can tim: ");
+                fgets(timTenSach, 100, stdin);
+                timTenSach[strcspn(timTenSach,"\n")] = '\0';
+                
+                timSachTheoTen(timTenSach);
+                choice = -1;
                 break;
             case 0:
                 printf("\n>> Quay ve Menu Chinh <<\n");
+                menuChucNang();
                 break;
             default:
                 printf("\n>> Vui long chon lai <<\n"); 
                 break;
         }
-    }
+    }while(choice!=0);
 }
 
 // Menu Xu ly chuc nang Phieu Muon Sach

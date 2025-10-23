@@ -57,6 +57,7 @@ void napDuLieuDGMau() {
 // ===========================
 // In thông tin tất cả Đọc Giả
 void xemThongTinToanBoDocGia(){
+    printf("\n----------------------------------\n");
     printf("\n====== DANH SACH [DOC GIA] ======\n");
     if(tongSoDG == 0){
         printf("Chua co doc gia");
@@ -65,6 +66,7 @@ void xemThongTinToanBoDocGia(){
     for(int i=0; i < tongSoDG; i++){
         printf("%05s | %20s | %12s | %20s | %10s | %10s \n",maDG[i], tenDG[i],cmnd[i],email[i],ngayLapThe[i],ngayHetHanThe[i]);
     }
+    printf("\n----------------------------------\n");
 }
 
 // ===========================
@@ -112,7 +114,7 @@ void themThongTinDocGia(){
 // ===========================
 // Tìm Đọc Giả theo CMND
 int timDocGiaTheoCMND(char timCMND[]){
-    int vitriDocGia;
+    int vitriDocGia = -1;
     printf("\n====== TIM DOC GIA THEO TEN ======\n");
     for(int i=0; i<tongSoDG; i++){
         if(strcmp(cmnd[i], timCMND) ==0){
@@ -149,7 +151,8 @@ void suaThongTinDocGia(char timCMND[]){
     if(vitriDG == 0) return;
     else{
         printf("\n>> Bat dau sua thong tin Doc Gia <<\n");
-        int choice;
+        // nếu để khai báo int choice; thì sẽ có khả năng random là 0
+        int choice = -1;
         do{
             printf("---------------------------------------");
             printf("\n+++ CHINH SUA CAC THONG TIN SAU +++\n");
@@ -162,7 +165,7 @@ void suaThongTinDocGia(char timCMND[]){
             printf("\t7. Ngay Het Han The\n");
             printf("\t0. Thoat\n");
             printf("---------------------------------------\n");
-            printf("Lua chon cua bạn: ");
+            printf("Lua chon chinh sua: ");
             scanf("%d",&choice);
             getchar();
             
