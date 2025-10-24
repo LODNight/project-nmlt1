@@ -67,12 +67,14 @@ void inThongTinSachTheoDocGia(char maDGCanTim[]){
     // In thong tin Sach
     int slSach = 0;
     printf("\n+++ SACH +++\n");
+    printf("\n----------------------------------\n");
     for(int i=0; i<tongPhieuMuon; i++){
         if(strstr(maDGMuon[i],maDGCanTim) != NULL){
             slSach++;
             inThongTinSachv2(i);
         }
     } 
+    printf("\n----------------------------------\n");
     if(slSach <= 0){
         printf("\n>>> Khong tim thay sach <<<\n");
     }
@@ -80,6 +82,25 @@ void inThongTinSachTheoDocGia(char maDGCanTim[]){
 }
 
 // In thong tin toan bo nguoi muon dua theo ISBN
+void inThongTinDocGiaTheoISBN(char maISBN[]){
+    // In thong tin Sach
+    int slDocGia = 0;
+    printf("\n+++ THONG TIN DOC GIA MUON SACH +++\n");
+    printf("\n----------------------------------\n");
+    for(int i=0; i<tongPhieuMuon; i++){
+        if(strstr(maISBNMuon[i],maISBN) != NULL){
+            slDocGia++;
+            inThongTinDocGiav2(i);
+        }
+    } 
+    printf("\n----------------------------------\n");
+    if(slDocGia <= 0){
+        printf("\n>>> Khong tim thay Doc Gia muon <<<\n");
+    }
+
+}
+
+
 
 // Them thong phieu muon
 

@@ -71,11 +71,8 @@ void xemThongTinToanBoDocGia(){
 
 // In thôn tin Đọc Giả theo tên
 // maDG, tenDG, email, sdt
-void inThongTinDocGiav1(int i){
-    printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
-}
 
-void inThongTinDocGiav2(int i){
+void inThongTinDocGiav1(int i){
     printf("\tMa DG:         | %s\n", maDG[i]);
     printf("\tTen DG:        | %s\n", tenDG[i]);
     printf("\tCMND:          | %s\n", cmnd[i]);
@@ -86,6 +83,9 @@ void inThongTinDocGiav2(int i){
     printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);  
 }
 
+void inThongTinDocGiav2(int i){
+    printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
+}
 // ===========================
 // Thêm thông tin của Độc Giả
 void themThongTinDocGia(){
@@ -132,7 +132,6 @@ void themThongTinDocGia(){
 // Tìm Đọc Giả theo CMND
 int timDocGiaTheoCMND(char timCMND[]){
     int vitriDocGia = -1;
-    printf("\n====== TIM DOC GIA THEO TEN ======\n");
     for(int i=0; i<tongSoDG; i++){
         if(strcmp(cmnd[i], timCMND) ==0){
             vitriDocGia = i;
@@ -140,7 +139,7 @@ int timDocGiaTheoCMND(char timCMND[]){
             break;
         }
     }
-    if(vitriDocGia == 0) printf("\n>> Khong tim thay doc gia <<\n");
+    if(vitriDocGia < 0) printf("\n>> Khong tim thay doc gia <<\n");
     return vitriDocGia;
 }
 

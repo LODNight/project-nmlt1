@@ -14,8 +14,8 @@
 
 // Menu ChucNang
 void menuChucNang(){
-    int choice;
-    while(choice != 0){
+    int choice = -1;
+    do{
         printf("\n===== MENU CHUC NANG =====\n");
         printf("1: Quan li Doc Gia\n");
         printf("2: Quan li Sach\n");
@@ -56,7 +56,7 @@ void menuChucNang(){
             printf("\n>> Lua chon khong hop le. Vui long nhap lai <<\n");
             break;
         }
-    }
+    }while(choice != 0);
     
 }
 
@@ -119,8 +119,7 @@ void chucNangDocGia(){
         case 6:
         case 0:
             printf("\n>> Quay ve Menu Chinh <<\n");
-            menuChucNang();
-            break;
+            return;
         default:
             printf("\n>> Vui long chon lai <<\n"); break;
         }
@@ -206,8 +205,7 @@ void chucNangSach(){
                 break;
             case 0:
                 printf("\n>> Quay ve Menu Chinh <<\n");
-                menuChucNang();
-                break;
+                return;
             default:
                 printf("\n>> Vui long chon lai <<\n"); 
                 break;
@@ -239,22 +237,26 @@ void chucNangPhieuMuon(){
                 break;
             case 2: 
                 // Tìm Sách theo CMND Đọc Giả
-                printf("Nhap ma Doc Gia: ");
                 printf("Nhap So CMND: ");
                 scanf("%s", timCMND);
                 timMaDocGiaTheoCMND(timCMND,timMaDG);
                 if(strcmp(timMaDG,"NULL") != 0)
                     inThongTinSachTheoDocGia(timMaDG);
-
+                choice = -1;
                 break;
             case 3: 
                 // Tìm Đọc Giả theo mã ISBN
+                printf("Nhap ma ISBN: ");
+                getchar();
+                fgets(timISBN,20, stdin);
+                timISBN[strcspn(timISBN,"\n")] = '\0';
+                inThongTinDocGiaTheoISBN(timISBN);
+                choice = -1;
                 
                 break;
             case 0:
                 printf("\n>> Quay ve Menu Chinh <<\n");
-                menuChucNang();
-                break;
+                return;
             default:
                 printf("\n>> Vui long chon lai <<\n"); 
                 break;
