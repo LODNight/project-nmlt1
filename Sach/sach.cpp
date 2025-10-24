@@ -81,7 +81,7 @@ void inThongTinSachv1(int i){
     printf("So luong sach: %d\n", soLuongSach[i]);
 }
 void inThongTinSachv2(int i){ 
-    printf("%5s | %20s | %5d | %5d \n",
+    printf("%5s | %20s | %d | %d \n",
     ISBN[i], tenSach[i], giaSach[i], soLuongSach[i]);    
 }
 
@@ -353,7 +353,7 @@ int timSachTheoTen(char timSach[]){
             vitriSach = i;
             printf("\n>>> Tim thay Sach voi cac thong tin la <<<\n");
             printf("\n----------------------------------");
-            printf("\n====== DANH SACH [DOC GIA] ======\n");
+            printf("\n====== DANH SACH [SACH] ======\n");
             inThongTinSachv1(i);
             printf("\n----------------------------------\n");
         }

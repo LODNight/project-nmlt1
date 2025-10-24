@@ -29,7 +29,7 @@ void napDuLieuDGMau() {
     strncpy(tenDG[1], "Tran Thi B", sizeof(tenDG[1]) - 1);
     strncpy(tenDG[2], "Le Van C", sizeof(tenDG[2]) - 1);
 
-    strncpy(cmnd[0], "123456789", sizeof(cmnd[0]) - 1);
+    strncpy(cmnd[0], "111", sizeof(cmnd[0]) - 1);
     strncpy(cmnd[1], "987654321", sizeof(cmnd[1]) - 1);
     strncpy(cmnd[2], "01234", sizeof(cmnd[2]) - 1);
 
@@ -142,6 +142,16 @@ int timDocGiaTheoCMND(char timCMND[]){
     }
     if(vitriDocGia == 0) printf("\n>> Khong tim thay doc gia <<\n");
     return vitriDocGia;
+}
+
+// Tìm mã đọc Giả theo CMND
+void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]){
+    int vitri = timDocGiaTheoCMND(timCMND);
+    if(vitri != -1){
+        strcpy(ketqua,maDG[vitri]);
+    } else{
+        strcpy(ketqua,"NULL");
+    }
 }
 
 // Tìm Đọc Giả theo tên

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+
 #include "DocGia/docgia.h"
 #include "DocGia/docgia.cpp"
 #include "Sach/sach.h"
@@ -218,6 +219,8 @@ void chucNangSach(){
 void chucNangPhieuMuon(){
     int choice = -1;
     char timISBN[5];
+    char timCMND[20];
+    char timMaDG[20];
     do{
         printf("\n\n===== PHIEU MUON SACH =====\n");
         printf("1: Xem toan bo phieu muon\n");
@@ -235,8 +238,14 @@ void chucNangPhieuMuon(){
                 inThongTinToanBoPhieuMuon();
                 break;
             case 2: 
-                // Tìm Sách theo mã Đọc Giả
-                inThongTinSachTheoDocGia("DG001");
+                // Tìm Sách theo CMND Đọc Giả
+                printf("Nhap ma Doc Gia: ");
+                printf("Nhap So CMND: ");
+                scanf("%s", timCMND);
+                timMaDocGiaTheoCMND(timCMND,timMaDG);
+                if(strcmp(timMaDG,"NULL") != 0)
+                    inThongTinSachTheoDocGia(timMaDG);
+
                 break;
             case 3: 
                 // Tìm Đọc Giả theo mã ISBN

@@ -2,8 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-// #include "../DocGia/docgia.h"
-// #include "../DocGia/docgia.cpp"
+#include "../DocGia/docgia.h"
 #include "../Sach/sach.h"
 
 #define MAX 200
@@ -12,7 +11,7 @@
 char maPhieuMuon[MAX][7];
 char maDGMuon[MAX][7];
 char maISBNMuon[MAX][5];
-char soluongSachMuon[MAX][5];
+int soluongSachMuon[MAX][5];
 char ngayMuonSach[MAX][20];
 char ngayTraSachDuKien[MAX][20];
 char ngayTraSachThucTe[MAX][20];
@@ -32,9 +31,9 @@ void napMauThongTinPhieuMuon(){
     strncpy(maISBNMuon[1], "S003", sizeof(maISBNMuon[1])-1);
     strncpy(maISBNMuon[2], "S002", sizeof(maISBNMuon[2])-1);
 
-    strncpy(soluongSachMuon[0], "2", sizeof(soluongSachMuon[0])-1);
-    strncpy(soluongSachMuon[1], "5", sizeof(soluongSachMuon[1])-1);
-    strncpy(soluongSachMuon[2], "6", sizeof(soluongSachMuon[2])-1);
+    soluongSachMuon[0][1] = 1;
+    soluongSachMuon[1][1] = 1;
+    soluongSachMuon[2][1] = 2;
 
     strncpy(ngayMuonSach[0], "20/10/2024", sizeof(ngayMuonSach[0])-1);
     strncpy(ngayMuonSach[1], "20/10/2024", sizeof(ngayMuonSach[1])-1);
@@ -57,7 +56,7 @@ void inThongTinToanBoPhieuMuon(){
         return;
     }
     for(int i=0; i < tongPhieuMuon; i++){
-        printf("%4s | %4s | %4s | %5s | %10s | %10d \n",
+        printf("%4s | %4s | %4s | %5s | %10s | %10s \n",
         maPhieuMuon[i], maDGMuon[i], maISBNMuon[i], soluongSachMuon[i], ngayMuonSach[i], ngayTraSachDuKien[i]);
     }
     printf("\n----------------------------------\n");
@@ -65,11 +64,19 @@ void inThongTinToanBoPhieuMuon(){
 
 // In Thong tin toan bo Sach theo nguoi muon
 void inThongTinSachTheoDocGia(char maDGCanTim[]){
+    // In thong tin Sach
+    int slSach = 0;
+    printf("\n+++ SACH +++\n");
     for(int i=0; i<tongPhieuMuon; i++){
         if(strstr(maDGMuon[i],maDGCanTim) != NULL){
+            slSach++;
             inThongTinSachv2(i);
         }
+    } 
+    if(slSach <= 0){
+        printf("\n>>> Khong tim thay sach <<<\n");
     }
+
 }
 
 // In thong tin toan bo nguoi muon dua theo ISBN
