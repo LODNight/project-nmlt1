@@ -11,7 +11,9 @@ char tenTacGia[MAX][50];
 char tenNhaXuatBan[MAX][100];
 char namXuatBan[MAX][5];
 char theLoai[MAX][50];
-char giaSach[MAX][9];
+int giaSach[MAX][5];
+// Quản lý số lượng Sách đang có
+char soLuongSach[MAX][5];
 int tongSach;
 
 // ==========================
@@ -42,9 +44,13 @@ void napDuLieuSachMau(){
     strncpy(theLoai[1], "Toan hoc", sizeof(theLoai[1]) - 1);
     strncpy(theLoai[2], "CSDL", sizeof(theLoai[2]) - 1);
 
-    strncpy(giaSach[0], "120000", sizeof(giaSach[0]) - 1);
-    strncpy(giaSach[1], "95000", sizeof(giaSach[1]) - 1);
-    strncpy(giaSach[2], "150000", sizeof(giaSach[2]) - 1);
+    giaSach[0][1] = 20000; 
+    giaSach[1][1] = 15000; 
+    giaSach[2][1] = 40000;
+
+    soLuongSach[0][1] = 20; 
+    soLuongSach[1][1] = 20; 
+    soLuongSach[2][1] = 20; 
 }
 
 
@@ -58,8 +64,8 @@ void inThongTinToanBoSach(){
         return;
     }
     for(int i=0; i < tongSach; i++){
-        printf("%04s | %20s | %20s | %20s | %5s | %10s | %9s \n",
-        ISBN[i], tenSach[i], tenTacGia[i], tenNhaXuatBan[i], namXuatBan[i], theLoai[i], giaSach[i]);
+        printf("%04s | %20s | %20s | %20s | %5s | %10s | %9d | %2d\n",
+        ISBN[i], tenSach[i], tenTacGia[i], tenNhaXuatBan[i], namXuatBan[i], theLoai[i], giaSach[i][1],soLuongSach[i][1]);
     }
     printf("\n----------------------------------\n");
 }
@@ -165,12 +171,36 @@ void themGiaSach(int vitri){
         if(m < 1000 || m > 999999999){
             printf("\n>>> Gia tien khong hop le. Vui long nhap lai <<<\n");
         } else {
-            sprintf(giaSach[vitri], "%d", m); 
+            giaSach[vitri][1] = m; 
             hopLe = true;
         }
     } while(!hopLe);
 
 }
+
+
+void themSoLuongSach(int vitri){
+    int soluong = 0;
+    if(vitri > tongSach){
+        printf("\n>>> Khong hop le <<<\n");
+        return;
+    }
+    bool hopLe = false;
+    
+    do{        
+        printf("Them so luong: ");
+        scanf("%d",&soluong);
+
+        if(soluong <= 0){
+            printf("\n>>> So luong khong hop le. Nhap lai so luong: ");
+        }
+    } while(!hopLe);
+    if(hopLe){
+        soLuongSach[vitri][1] = soluong;
+    }
+
+}
+
 #pragma endregion
 
 // ==========================
@@ -261,7 +291,8 @@ void xoaSach(char timISBN[]){
             strcpy(tenNhaXuatBan[i],tenNhaXuatBan[i+1]);
             strcpy(namXuatBan[i],namXuatBan[i+1]);
             strcpy(theLoai[i],theLoai[i+1]);
-            strcpy(giaSach[i],giaSach[i+1]);
+            // strcpy(giaSach[i],giaSach[i+1]);
+            giaSach[i][1] = giaSach[i+1][1];
         }
         tongSach--;
         printf("\n >>> Da xoa Sach thanh cong <<<\n");
