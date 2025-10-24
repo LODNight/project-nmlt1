@@ -69,6 +69,23 @@ void xemThongTinToanBoDocGia(){
     printf("\n----------------------------------\n");
 }
 
+// In thôn tin Đọc Giả theo tên
+// maDG, tenDG, email, sdt
+void inThongTinDocGiav1(int i){
+    printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
+}
+
+void inThongTinDocGiav2(int i){
+    printf("\tMa DG:         | %s\n", maDG[i]);
+    printf("\tTen DG:        | %s\n", tenDG[i]);
+    printf("\tCMND:          | %s\n", cmnd[i]);
+    printf("\tGioi tinh:     | %s\n", gioiTinh[i]);
+    printf("\tEmail:         | %s\n", email[i]);
+    printf("\tDia chi:       | %s\n", diachi[i]);
+    printf("\tNgay Lap The:  | %s\n", ngayLapThe[i]);
+    printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);  
+}
+
 // ===========================
 // Thêm thông tin của Độc Giả
 void themThongTinDocGia(){
@@ -119,17 +136,7 @@ int timDocGiaTheoCMND(char timCMND[]){
     for(int i=0; i<tongSoDG; i++){
         if(strcmp(cmnd[i], timCMND) ==0){
             vitriDocGia = i;
-            printf("\n>> Tim Thay Doc Gia <<\n");
-            printf("------------------------------------------\n");
-            printf("\tMa DG:         | %s\n", maDG[i]);
-            printf("\tTen DG:        | %s\n", tenDG[i]);
-            printf("\tCMND:          | %s\n", cmnd[i]);
-            printf("\tGioi tinh:     | %s\n", gioiTinh[i]);
-            printf("\tEmail:         | %s\n", email[i]);
-            printf("\tDia chi:       | %s\n", diachi[i]);
-            printf("\tNgay Lap The:  | %s\n", ngayLapThe[i]);
-            printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);
-            printf("------------------------------------------\n");
+            
             break;
         }
     }
@@ -137,11 +144,20 @@ int timDocGiaTheoCMND(char timCMND[]){
     return vitriDocGia;
 }
 
-
-// Tìm Sách theo Tên Đọc Giả
-int timSachTheoTenDocGia(char tenDG[]){
-    return 0;
+// Tìm Đọc Giả theo tên
+int timDocGiaTheoMaDG(char maDGtim[]){
+    int vitriDocGia = -1;
+    for(int i=0; i<tongSoDG; i++){
+        if(strstr(maDG[i], maDGtim) != NULL){
+            vitriDocGia = i;
+            printf("\n>> Tim Thay Doc Gia <<\n");
+            printf("------------------------------------------\n");
+            inThongTinDocGiav1(i);
+            printf("------------------------------------------\n");
+        }
+    }
 }
+
 
 // ===========================
 // Chỉnh sửa thông tin Đọc Giả

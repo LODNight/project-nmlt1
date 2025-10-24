@@ -13,7 +13,7 @@ char namXuatBan[MAX][5];
 char theLoai[MAX][50];
 int giaSach[MAX][5];
 // Quản lý số lượng Sách đang có
-char soLuongSach[MAX][5];
+int soLuongSach[MAX][5];
 int tongSach;
 
 // ==========================
@@ -68,6 +68,21 @@ void inThongTinToanBoSach(){
         ISBN[i], tenSach[i], tenTacGia[i], tenNhaXuatBan[i], namXuatBan[i], theLoai[i], giaSach[i][1],soLuongSach[i][1]);
     }
     printf("\n----------------------------------\n");
+}
+
+void inThongTinSachv1(int i){
+    printf("Ma ISBN: %s\n", ISBN[i]);
+    printf("Ten sach: %s\n", tenSach[i]);
+    printf("Tac gia: %s\n", tenTacGia[i]);
+    printf("Nha xuat Ban: %s\n", tenNhaXuatBan[i]);
+    printf("Nam xuat ban: %s\n", namXuatBan[i]);
+    printf("The loai: %s\n", theLoai[i]);
+    printf("Gia sach: %d\n", giaSach[i]);
+    printf("So luong sach: %d\n", soLuongSach[i]);
+}
+void inThongTinSachv2(int i){ 
+    printf("%5s | %20s | %5d | %5d \n",
+    ISBN[i], tenSach[i], giaSach[i], soLuongSach[i]);    
 }
 
 
@@ -178,7 +193,7 @@ void themGiaSach(int vitri){
 
 }
 
-
+// Số lượng Sách
 void themSoLuongSach(int vitri){
     int soluong = 0;
     if(vitri > tongSach){
@@ -337,13 +352,10 @@ int timSachTheoTen(char timSach[]){
         if(strstr(tenSach[i], timSach) != NULL){
             vitriSach = i;
             printf("\n>>> Tim thay Sach voi cac thong tin la <<<\n");
-            printf("Ma ISBN: %s\n", ISBN[i]);
-            printf("Ten sach: %s\n", tenSach[i]);
-            printf("Tac gia: %s\n", tenTacGia[i]);
-            printf("Nha xuat Ban: %s\n", tenNhaXuatBan[i]);
-            printf("Nam xuat ban: %s\n", namXuatBan[i]);
-            printf("The loai: %s\n", theLoai[i]);
-            printf("Gia sach: %s\n", giaSach[i]);
+            printf("\n----------------------------------");
+            printf("\n====== DANH SACH [DOC GIA] ======\n");
+            inThongTinSachv1(i);
+            printf("\n----------------------------------\n");
         }
     }
     if(vitriSach < 0 )  printf("\n>>> Khong tim thay sach <<< \n");

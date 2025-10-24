@@ -4,6 +4,10 @@
 #include "DocGia/docgia.cpp"
 #include "Sach/sach.h"
 #include "Sach/sach.cpp"
+#include "PhieuMuonSach/phieuMuon.h"
+#include "PhieuMuonSach/phieuMuon.cpp"
+#include "PhieuTraSach/phieuTra.h"
+#include "PhieuTraSach/phieuTra.cpp"
 
 
 
@@ -59,17 +63,15 @@ void menuChucNang(){
 void napThongTin(){
     napDuLieuDGMau();
     napDuLieuSachMau();
+    napMauThongTinPhieuMuon();
 }
 
 // Menu lựa chọn Đọc Giả
 void chucNangDocGia(){
     int choice = -1;
     char timCMND[20];
-
-    napDuLieuDGMau();
-
     do{
-        printf("\n\n===== MENU QUAN LY DOC GIA =====\n");
+        printf("\n\n===== QUAN LY DOC GIA =====\n");
         printf("1: Xem danh sach Doc Gia\n");
         printf("2: Them Doc Gia\n");
         printf("3: Chinh sua thong tin Doc Gia\n");
@@ -130,7 +132,7 @@ void chucNangSach(){
     int choice = -1;
     char timISBN[5];
     do{
-        printf("\n\n===== MENU QUAN LY SACH =====\n");
+        printf("\n\n===== QUAN LY SACH =====\n");
         printf("1: Xem danh sach Sach\n");
         printf("2: Them Sach\n");
         printf("3: Chinh sua thong tin Sach\n");
@@ -214,7 +216,41 @@ void chucNangSach(){
 
 // Menu Xu ly chuc nang Phieu Muon Sach
 void chucNangPhieuMuon(){
-    printf("\n===== PHIEU MUON SACH =====\n");
+    int choice = -1;
+    char timISBN[5];
+    do{
+        printf("\n\n===== PHIEU MUON SACH =====\n");
+        printf("1: Xem toan bo phieu muon\n");
+        printf("2: Tim Sach theo ma Doc Gia\n");
+        printf("3: Tim Doc Gia theo ISBN Sach\n");
+        printf("0: Thoat\n");
+        printf("=================================\n");
+        printf("Chon chuc nang: ");
+        scanf("%d",&choice);
+        
+        switch (choice)
+        {
+            case 1:
+                // Xem toàn bộ thông tin Phieu Muon
+                inThongTinToanBoPhieuMuon();
+                break;
+            case 2: 
+                // Tìm Sách theo mã Đọc Giả
+                inThongTinSachTheoDocGia("DG001");
+                break;
+            case 3: 
+                // Tìm Đọc Giả theo mã ISBN
+                
+                break;
+            case 0:
+                printf("\n>> Quay ve Menu Chinh <<\n");
+                menuChucNang();
+                break;
+            default:
+                printf("\n>> Vui long chon lai <<\n"); 
+                break;
+        }
+    }while(choice!=0);
 }
 
 // Menu Xu ly chuc nang Phieu Tra Sach

@@ -1,7 +1,11 @@
 #pragma once
 
 void napDuLieuSachMau();
+
+// In Thong Tin Sach
 void inThongTinToanBoSach();
+void inThongTinSachv1(int i);
+void inThongTinSachv2(int i);
 
 // Them Sach
 void themThongTinSach();
