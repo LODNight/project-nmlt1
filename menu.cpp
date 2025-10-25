@@ -71,6 +71,7 @@ void napThongTin(){
 void chucNangDocGia(){
     int choice = -1;
     char timCMND[20];
+    char timTenDG[40];
     do{
         printf("\n\n===== QUAN LY DOC GIA =====\n");
         printf("1: Xem danh sach Doc Gia\n");
@@ -114,9 +115,14 @@ void chucNangDocGia(){
             // Tìm Kiếm Đọc Giả theo CMND
             printf("Nhap So CMND: ");
             scanf("%s", timCMND);
-            timDocGiaTheoCMND(timCMND);
+            inThongTinDocGiaSauKhiTimTheoCMND(timCMND);
             break;
         case 6:
+            // Tim Sach theo ten Doc Gia
+            printf("Nhap ten Doc Gia: ");
+            fgets(timTenDG,40,stdin);
+            timTenDG[strcspn(timTenDG,"\n")] = '\0';
+
         case 0:
             printf("\n>> Quay ve Menu Chinh <<\n");
             return;
@@ -187,7 +193,7 @@ void chucNangSach(){
                 fgets(timISBN, 5, stdin);
                 timISBN[strcspn(timISBN,"\n")] = '\0';
                 
-                timSachTheoISBN(timISBN);
+                inThongTinSachSauKhiTimThayISBN(timISBN);
                 choice = -1;
                 break;
             case 6:
@@ -200,7 +206,7 @@ void chucNangSach(){
                 fgets(timTenSach, 100, stdin);
                 timTenSach[strcspn(timTenSach,"\n")] = '\0';
                 
-                timSachTheoTen(timTenSach);
+                inThongTinSachSauKhiTimThayTen(timTenSach);
                 choice = -1;
                 break;
             case 0:

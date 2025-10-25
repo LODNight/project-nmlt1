@@ -77,26 +77,14 @@ void inThongTinSachv1(int i){
     printf("\tNha xuat Ban: | %s\n", tenNhaXuatBan[i]);
     printf("\tNam xuat ban: | %s\n", namXuatBan[i]);
     printf("\tThe loai:     | %s\n", theLoai[i]);
-    printf("\tGia sach:     | %d\n", giaSach[i]);
-    printf("\tSo luong:     | %d\n", soLuongSach[i]);
+    printf("\tGia sach:     | %d\n", giaSach[i][1]);
+    printf("\tSo luong:     | %d\n", soLuongSach[i][1]);
 }
 // In nhieu Sach
 void inThongTinSachv2(int i){ 
     printf("%5s | %20s | %d | %d \n",
-    ISBN[i], tenSach[i], giaSach[i], soLuongSach[i]);    
+    ISBN[i], tenSach[i], giaSach[i][1], soLuongSach[i][1]);    
 }
-
-// --------------------------
-// In Thon tin Sach sau khi tim thay ma ISBN
-void inThongTinSachSauKhiTim(char timISBN[]){
-    int vitriSach = timSachTheoISBN(timISBN);
-    printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
-    printf("------------------------------------------\n");
-    inThongTinDocGiav2(vitriSach);
-    if(vitriSach < 0)  printf("\n>>> Khong tim thay sach <<< \n");
-    printf("------------------------------------------\n");
-}
-
 
 // =======[TIM KIEM]=========
 // --------------------------
@@ -119,15 +107,35 @@ int timSachTheoTen(char timSach[]){
     for(int i=0; i<tongSach; i++){
         if(strstr(tenSach[i], timSach) != NULL){
             vitriSach = i;
-            printf("\n>>> Tim thay Sach voi cac thong tin la <<<\n");
-            printf("\n----------------------------------");
-            printf("\n====== DANH SACH [SACH] ======\n");
-            inThongTinSachv1(i);
-            printf("\n----------------------------------\n");
         }
     }
     if(vitriSach < 0 )  printf("\n>>> Khong tim thay sach <<< \n");
     return vitriSach;
+}
+// --------------------------
+// In Thong tin Sach sau khi tim thay ma ISBN
+void inThongTinSachSauKhiTimThayISBN(char timISBN[]){
+    int vitriSach = timSachTheoISBN(timISBN);
+    if(vitriSach >=0 ){
+        printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
+        printf("------------------------------------------\n");
+        inThongTinSachv1(vitriSach);
+       printf("------------------------------------------\n");
+    }
+    if(vitriSach < 0)  
+        printf("\n>>> Khong tim thay sach <<< \n");
+}
+// In Thong tin Sach sau khi tim thay ten Sach
+void inThongTinSachSauKhiTimThayTen(char timSach[]){
+    int vitriSach = timSachTheoTen(timSach);
+    if(vitriSach >=0 ){
+        printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
+        printf("------------------------------------------\n");
+        inThongTinSachv2(vitriSach);
+        printf("------------------------------------------\n");
+    }
+    if(vitriSach < 0)  
+        printf("\n>>> Khong tim thay sach <<< \n");
 }
 
 

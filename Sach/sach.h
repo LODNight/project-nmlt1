@@ -10,7 +10,8 @@ void inThongTinSachv1(int i);
 void inThongTinSachv2(int i);
 // ===========================
 // In Thon tin Sach sau khi tim thay ma ISBN
-void inThongTinSachSauKhiTim(char timISBN[]);
+void inThongTinSachSauKhiTimThayISBN(char timISBN[]);
+void inThongTinSachSauKhiTimThayTen(char timSach[]);
 
 // ==========================
 // Them Sach

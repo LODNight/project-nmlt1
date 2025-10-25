@@ -87,34 +87,6 @@ void inThongTinDocGiav2(int i){
     printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
 }
 
-// IN Thong tin Doc Gia sau khi tim theo CMND
-void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
-    int vitriDocGia = timDocGiaTheoCMND(timCMND);
-
-    if(vitriDocGia >= 0){
-        printf("\n>> Tim Thay Doc Gia <<\n");
-        printf("------------------------------------------\n");
-        inThongTinDocGiav1(vitriDocGia);
-        printf("------------------------------------------\n");
-    }
-    if(vitriDocGia < 0) 
-        printf("\n>> Khong tim thay doc gia <<\n");
-}
-// IN Thong tin Doc Gia sau khi tim theo ten
-void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
-    int vitriDocGia = timDocGiaTheoMaDG(maDGtim);
-
-    if(vitriDocGia >= 0){
-        printf("\n>> Tim Thay Doc Gia <<\n");
-        printf("------------------------------------------\n");
-        inThongTinDocGiav1(vitriDocGia);
-        printf("------------------------------------------\n");
-    }
-    if(vitriDocGia < 0) 
-        printf("\n>> Khong tim thay doc gia <<\n");
-}
-
-
 // ===========================
 // Thêm thong tin cua Doc Gia
 void themThongTinDocGia(){
@@ -190,7 +162,31 @@ int timDocGiaTheoMaDG(char maDGtim[]){
         }
     }
 }
+// IN Thong tin Doc Gia sau khi tim theo CMND
+void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
+    int vitriDocGia = timDocGiaTheoCMND(timCMND);
+    if(vitriDocGia >= 0){
+        printf("\n>> Tim Thay Doc Gia <<\n");
+        printf("------------------------------------------\n");
+        inThongTinDocGiav1(vitriDocGia);
+        printf("------------------------------------------\n");
+    }
+    if(vitriDocGia < 0) 
+        printf("\n>> Khong tim thay doc gia <<\n");
+}
 
+// IN Thong tin Doc Gia sau khi tim theo ten
+void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
+    int vitriDocGia = timDocGiaTheoMaDG(maDGtim);
+    if(vitriDocGia >= 0){
+        printf("\n>> Tim Thay Doc Gia <<\n");
+        printf("------------------------------------------\n");
+        inThongTinDocGiav2(vitriDocGia);
+        printf("------------------------------------------\n");
+    }
+    if(vitriDocGia < 0) 
+        printf("\n>> Khong tim thay doc gia <<\n");
+}
 // ========[CHINH SUA]========
 // ===========================
 // Chinh sua thong tin Doc Gia
