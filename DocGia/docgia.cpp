@@ -130,6 +130,7 @@ void themThongTinDocGia(){
 
 // ===========================
 // Tìm Đọc Giả theo CMND
+// Kết quả trả về là vị trí 
 int timDocGiaTheoCMND(char timCMND[]){
     int vitriDocGia = -1;
     for(int i=0; i<tongSoDG; i++){
@@ -139,7 +140,8 @@ int timDocGiaTheoCMND(char timCMND[]){
             break;
         }
     }
-    if(vitriDocGia < 0) printf("\n>> Khong tim thay doc gia <<\n");
+    if(vitriDocGia < 0) 
+        printf("\n>> Khong tim thay doc gia <<\n");
     return vitriDocGia;
 }
 

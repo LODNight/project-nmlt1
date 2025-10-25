@@ -16,9 +16,17 @@ void themNgayHetHanThe(int d, int m, int y);
 void suaThongTinDocGia(char timCMND[]);
 void xoaDGTheoCMND(char timCMND[]);
 
-// Tìm theo CMND 
+// ====================
+// Tìm theo CMND
+// return trả về là vị trí
 int timDocGiaTheoCMND(char timCMND[]);
+
+// ====================
 // Tìm theo tên 
+// return là vị trí
 int timDocGiaTheoTen(char tenDG[]);
+
+// ====================
 // Tim MaDG theo CMND
+// return mã Đọc Giả
 void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]);

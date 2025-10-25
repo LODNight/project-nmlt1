@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 
 #include "../DocGia/docgia.h"
 #include "../Sach/sach.h"
@@ -63,13 +64,13 @@ void inThongTinToanBoPhieuMuon(){
 }
 
 // In Thong tin toan bo Sach theo nguoi muon
-void inThongTinSachTheoDocGia(char maDGCanTim[]){
+void inThongTinSachTheoDocGia(char maDGTim[]){
     // In thong tin Sach
     int slSach = 0;
     printf("\n+++ SACH +++\n");
     printf("\n----------------------------------\n");
     for(int i=0; i<tongPhieuMuon; i++){
-        if(strstr(maDGMuon[i],maDGCanTim) != NULL){
+        if(strstr(maDGMuon[i],maDGTim) != NULL){
             slSach++;
             inThongTinSachv2(i);
         }
@@ -82,13 +83,13 @@ void inThongTinSachTheoDocGia(char maDGCanTim[]){
 }
 
 // In thong tin toan bo nguoi muon dua theo ISBN
-void inThongTinDocGiaTheoISBN(char maISBN[]){
+void inThongTinDocGiaTheoISBN(char maISBNTim[]){
     // In thong tin Sach
     int slDocGia = 0;
     printf("\n+++ THONG TIN DOC GIA MUON SACH +++\n");
     printf("\n----------------------------------\n");
     for(int i=0; i<tongPhieuMuon; i++){
-        if(strstr(maISBNMuon[i],maISBN) != NULL){
+        if(strstr(maISBNMuon[i],maISBNTim) != NULL){
             slDocGia++;
             inThongTinDocGiav2(i);
         }
@@ -101,8 +102,36 @@ void inThongTinDocGiaTheoISBN(char maISBN[]){
 }
 
 
+// Them thong tin phieu muon
+// maDG, ISBN, Sl Sach, Ngay muon, Ngay du kien tra, ngay tra thuc te
+void themThongTinPhieuMuon(){
+    if(tongPhieuMuon >= MAX){
+        printf(">> Thu vien da day, khong the them phieu moi <<\n");
+    }
 
-// Them thong phieu muon
+    char timCMND[20];
+    char timISBN[10];
+    printf("\n====== THEM PHIEU MUON SACH MOI ======\n");
+    
+    // Su dung CMND cua Doc Gia de them thong tin
+    printf("Nhap CMND Doc Gia: ");
+    fgets(timCMND, 20, stdin);
+    timCMND[strcmp(timCMND,"\n")] = '\0';
+    int vitriDocGia = timDocGiaTheoCMND(timCMND);
+    if(vitriDocGia >= 0)
+        timMaDocGiaTheoCMND(timCMND,maDGMuon[tongPhieuMuon]);
+
+    printf("Nhap ma sach(ISBN): ");
+    fgets(timISBN, 10, stdin);
+    timISBN[strcmp(timISBN,"\n")] = '\0';
+    int vitriSach = timSachTheoISBN(timISBN);
+    
+    printf("Nhap SL Sach can muonL: ");
+    // Ngay muon - AUTO
+    // Ngay tra du kien - AUTO
+
+}
+
 
 // Thay doi thong tin
 
