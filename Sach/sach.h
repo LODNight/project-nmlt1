@@ -25,8 +25,11 @@ void themGiaSach(int vitri);
 void themSoLuongSach(int vitri);
 
 // ==========================
-// Chinh sua Sach
+// Chinh sua toan bo Sach
 void chinhSuaSach(char timISBN[]);
+
+// Chinh sua So luong Sach
+void thayDoiSoLuongSach(char timISBN[], int soLuong);
 // ==========================
 // Xoa Sach
 void xoaSach(char timISBN[]);
@@ -35,7 +38,13 @@ void xoaSach(char timISBN[]);
 // Tim kiem Sach
 // return vị trí sách
 int timSachTheoISBN(char timISBN[]);
+
 // ==========================
 // Tim kiem Sach theo Tên Sách
 // return vị trí sách
 int timSachTheoTen(char timSach[]);
+
+// ==========================
+// Tim SL theo ISBN
+// return slSach
+int timSoLuongSachTheoISBN(char timISBN[]);

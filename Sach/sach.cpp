@@ -112,6 +112,17 @@ int timSachTheoTen(char timSach[]){
     if(vitriSach < 0 )  printf("\n>>> Khong tim thay sach <<< \n");
     return vitriSach;
 }
+
+// Tim SL theo ISBN
+// return slSach
+int timSoLuongSachTheoISBN(char timISBN[]){
+    for(int i=0; i<tongSach; i++){
+        if(strcmp(ISBN[i],timISBN) == 0){
+            return soLuongSach[i][1];
+        }
+    }
+    return -1;
+}
 // --------------------------
 // In Thong tin Sach sau khi tim thay ma ISBN
 void inThongTinSachSauKhiTimThayISBN(char timISBN[]){
@@ -344,6 +355,10 @@ void chinhSuaSach(char timISBN[]){
     
 }
 
+void thayDoiSoLuongSach(char timISBN[], int soLuong){
+    int vitriSach = timSachTheoISBN(timISBN);
+    soLuongSach[vitriSach][1] -= soLuong;
+}
 // ==========[XOA]===========
 // --------------------------
 // Xoa Sach

@@ -135,7 +135,7 @@ void themThongTinDocGia(){
 int timDocGiaTheoCMND(char timCMND[]){
     int vitriDocGia = -1;
     for(int i=0; i<tongSoDG; i++){
-        if(strcmp(cmnd[i], timCMND) ==0){
+        if(strcmp(cmnd[i], timCMND) == 0){
             vitriDocGia = i;
             break;
         }

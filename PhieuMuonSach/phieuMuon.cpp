@@ -12,7 +12,7 @@
 char maPhieuMuon[MAX][7];
 char maDGMuon[MAX][7];
 char maISBNMuon[MAX][5];
-int soluongSachMuon[MAX][5];
+int soluongSachMuon[MAX][2];
 char ngayMuonSach[MAX][20];
 char ngayTraSachDuKien[MAX][20];
 char ngayTraSachThucTe[MAX][20];
@@ -63,6 +63,22 @@ void inThongTinToanBoPhieuMuon(){
     printf("\n----------------------------------\n");
 }
 
+// In 1 Phieu Muon
+void inThongTinPhieuMuonv1(int i){
+    printf("\tMa Doc Gia:           | %s\n", maDGMuon[i]);
+    printf("\tMa ISBN:              | %s\n", maISBNMuon[i]);
+    printf("\tSo luong sach muon:   | %d\n", soluongSachMuon[i][1]);
+    printf("\tNgay muon sach:       | %s\n", ngayMuonSach[i]);
+    printf("\tNgay tra du kien:     | %s\n", ngayTraSachDuKien[i]);
+    printf("\tNgay tra thuc te:     | %s\n", ngayTraSachThucTe[i]);
+};
+
+// In nhieu Phieu Muon
+void inThongTinPhieuMuonv2(int i){
+    printf("%5s | %5s | %3d | %12S | %12s | %12s",
+    maDGMuon[i],maISBNMuon[i],soluongSachMuon[i][1],ngayMuonSach[i],ngayTraSachDuKien[i],ngayTraSachThucTe[i]);
+}
+
 // In Thong tin toan bo Sach theo nguoi muon
 void inThongTinSachTheoDocGia(char maDGTim[]){
     // In thong tin Sach
@@ -111,6 +127,8 @@ void themThongTinPhieuMuon(){
 
     char timCMND[20];
     char timISBN[10];
+    int vitriDocGia;
+    int vitriSach;
     bool hopLe = false;
     printf("\n====== THEM PHIEU MUON SACH MOI ======\n");
     getchar();
@@ -120,7 +138,7 @@ void themThongTinPhieuMuon(){
         printf("Nhap CMND Doc Gia: ");
         fgets(timCMND, 20, stdin);
         timCMND[strcspn(timCMND,"\n")] = '\0';
-        int vitriDocGia = timDocGiaTheoCMND(timCMND);
+        vitriDocGia = timDocGiaTheoCMND(timCMND);
 
         if(vitriDocGia >= 0){
 
@@ -130,12 +148,14 @@ void themThongTinPhieuMuon(){
         else
             printf("\n>>> Khong hop le. Vui long nhap lai <<<\n");
     } while(!hopLe);
+
+    // Them ma ISBN
     hopLe = false;
     do{
         printf("Nhap ma sach(ISBN): ");
         fgets(timISBN, 10, stdin);
         timISBN[strcspn(timISBN,"\n")] = '\0';
-        int vitriSach = timSachTheoISBN(timISBN);
+        vitriSach = timSachTheoISBN(timISBN);
         if(vitriSach >= 0){
             strcpy(maISBNMuon[tongPhieuMuon],timISBN);
             hopLe = true;
@@ -144,15 +164,94 @@ void themThongTinPhieuMuon(){
             printf("\n>>> Khong hop le. Vui long nhap lai <<<\n");
     } while(!hopLe);
     
+    // Them So luong Sach can muon
+    int soLuong;
+    int soluongSach = timSoLuongSachTheoISBN(timISBN); 
+    do {
+        printf("Nhap so luong sach can muon: ");
+        scanf("%d", &soLuong);
+        if(soLuong < 0){
+            printf(">>> So luong sach khong hop le <<<\n");
+        } 
+        else if(soLuong > soluongSach){
+            printf(">>> Khong du sach <<<\n");
+        } 
+        else {
+            if (soLuong > 0 && soLuong <= soluongSach) {
+                soluongSachMuon[vitriSach][1] = soLuong;
+                thayDoiSoLuongSach(timISBN, soLuong);
+                break;
+            }
+        }
+    } while (1);
+
     
-    printf("\n----- ma DG: %s --- ma ISBN: %s -----\n", maDGMuon[tongPhieuMuon],maISBNMuon[tongPhieuMuon]);
-    printf("Nhap SL Sach can muonL: ");
     // Ngay muon - AUTO
+
     // Ngay tra du kien - AUTO
+
+    // Them maPhieuMuon tang tu dong
+    sprintf(maPhieuMuon[tongPhieuMuon],"PM%04d",tongPhieuMuon+1);
+    
+    // THONG BAO
+    printf(">> Them Thanh Cong <<\n");
+    tongPhieuMuon++;
 
 }
 
+// void layNgayHienTai(char ngayMuon[]){
+//     time_t now;
+//     time(&now);
+//     // Su ly chuoi: chuoiThoiGian = "Sat Oct 20 20:22:04 2025\n"
+//     char *chuoiThoiGian = ctime(&now);
+//     int ngay, nam;
+// }
+
 
 // Thay doi thong tin
+void suaThongTinPhieuMuon(char timPhieuMuon[]){
+    int vitriPhieuMuon = timPhieuMuonTheoMa(timPhieuMuon);
+    if(vitriPhieuMuon < 0)
+        printf("\n>>> Khong tim thay Phieu Muon <<<\n");
+    else{
+        char timCMND[20];
+        char timISBN[10];
+        int vitriDocGia;
+        int vitriSach;
+        bool hopLe = false;
+        printf("\n====== CHINH SUA PHIEU MUON SACH ======\n");
+        getchar();  
+        // Kiem tra Doc Gia
 
+
+        // Kiem Tra Sach 
+
+
+    }
+}
+
+// Tim Phieu Muon theo MaPhieuMuon   return vitri
+int timPhieuMuonTheoMa(char timPhieuMuon[]){
+    int vitriPhieuMuon = -1;
+    for(int i=0; i<tongPhieuMuon; i++){
+        if(strcmp(maPhieuMuon[i],timPhieuMuon) == 0){
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+// In thong tin Phieu Muon theo maPhieuMuon
+void inThongTinPhieuMuonKhiTimThayMa(char timPhieuMuon[]){
+    int vitriPhieuMuon = timDocGiaTheoCMND(timPhieuMuon);
+    if(vitriPhieuMuon >= 0){
+        printf("\n>> Tim Thay Phieu Muon <<\n");
+        printf("------------------------------------------\n");
+        inThongTinPhieuMuonv1(vitriPhieuMuon);
+        printf("------------------------------------------\n");
+    }
+    if(vitriPhieuMuon < 0) 
+        printf("\n>> Khong tim thay Phieu Muon <<\n");
+}
 
