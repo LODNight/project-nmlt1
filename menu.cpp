@@ -88,27 +88,27 @@ void chucNangDocGia(){
         {
         case 1:
             // Xem Toàn bộ thông tin Đọc Giả
-            xemThongTinToanBoDocGia(); break;
+            inThongTinToanBoDocGia(); break;
         case 2: 
             // Thêm Thông tin Đọc Giả
             themThongTinDocGia(); 
-            xemThongTinToanBoDocGia();
+            inThongTinToanBoDocGia();
             break;
         case 3: 
             // Sửa Thông tin Đọc Giả
-            xemThongTinToanBoDocGia();
+            inThongTinToanBoDocGia();
             printf("Nhap So CMND: ");
             scanf("%s", timCMND);
             suaThongTinDocGia(timCMND);
-            xemThongTinToanBoDocGia();
+            inThongTinToanBoDocGia();
             break;
         case 4:
             // Xóa Đọc Giả
-            xemThongTinToanBoDocGia();
+            inThongTinToanBoDocGia();
             printf("Nhap So CMND: ");
             scanf("%s", timCMND);
             xoaDGTheoCMND(timCMND);
-            xemThongTinToanBoDocGia();
+            inThongTinToanBoDocGia();
             break;
         case 5:
             // Tìm Kiếm Đọc Giả theo CMND
@@ -224,6 +224,7 @@ void chucNangPhieuMuon(){
         printf("1: Xem toan bo phieu muon\n");
         printf("2: Tim Sach theo ma Doc Gia\n");
         printf("3: Tim Doc Gia theo ISBN Sach\n");
+        printf("4: Them phieu muon\n");
         printf("0: Thoat\n");
         printf("=================================\n");
         printf("Chon chuc nang: ");
@@ -252,7 +253,12 @@ void chucNangPhieuMuon(){
                 timISBN[strcspn(timISBN,"\n")] = '\0';
                 inThongTinDocGiaTheoISBN(timISBN);
                 choice = -1;
-                
+                break;
+
+            case 4: 
+                // Thêm Phiếu mượn
+                printf("\n++++ Them Phieu muon ++++\n");
+                themThongTinPhieuMuon();
                 break;
             case 0:
                 printf("\n>> Quay ve Menu Chinh <<\n");

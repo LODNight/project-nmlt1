@@ -2,10 +2,20 @@
 
 void napDuLieuDGMau();
 
-// In dữ liệu
-void xemThongTinToanBoDocGia();
+// In du lieu
+void inThongTinToanBoDocGia();
+// In 1
 void inThongTinDocGiav1(int i);
+// In nhieu
 void inThongTinDocGiav2(int i);
+
+// =========================
+// IN Thong tin Doc Gia sau khi tim theo ten
+void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]);
+// =========================
+// IN Thong tin Doc Gia sau khi tim theo CMND
+void inThongTinDocGiaSauKhiTimTheoCMND(char maDGtim[]);
+
 
 // Kiểm tra bắt lỗi
 void kiemTraCMNDDocGia();
@@ -17,16 +27,16 @@ void suaThongTinDocGia(char timCMND[]);
 void xoaDGTheoCMND(char timCMND[]);
 
 // ====================
-// Tìm theo CMND
-// return trả về là vị trí
+// Tim theo CMND
+// return vi tri
 int timDocGiaTheoCMND(char timCMND[]);
 
 // ====================
-// Tìm theo tên 
-// return là vị trí
+// Tim theo ten 
+// return vi tri
 int timDocGiaTheoTen(char tenDG[]);
 
 // ====================
 // Tim MaDG theo CMND
-// return mã Đọc Giả
+// return maDG
 void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]);

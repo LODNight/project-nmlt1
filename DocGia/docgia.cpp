@@ -16,8 +16,8 @@ char ngayHetHanThe[MAX][20];
 int tongSoDG = 0;
 int d, m, y;
 
-// ===========================
-// Thêm mẫu Đọc Giả vào Thư viện
+// --------------------------
+// Nap Du lieu
 void napDuLieuDGMau() {
     tongSoDG = 3;
     // strncpy(): dùng để thêm chỉ định tối đa các ký tự vào danh sách và đảm bảo kết thúc bằng \0:
@@ -54,9 +54,10 @@ void napDuLieuDGMau() {
     strncpy(ngayHetHanThe[2], "20/05/2028", sizeof(ngayHetHanThe[2]) - 1);
 }
 
-// ===========================
-// In thông tin tất cả Đọc Giả
-void xemThongTinToanBoDocGia(){
+// =====[IN THONG TIN]=======
+// --------------------------
+// In thong tin tat ca Doc Gia
+void inThongTinToanBoDocGia(){
     printf("\n----------------------------------\n");
     printf("\n====== DANH SACH [DOC GIA] ======\n");
     if(tongSoDG == 0){
@@ -68,10 +69,8 @@ void xemThongTinToanBoDocGia(){
     }
     printf("\n----------------------------------\n");
 }
-
-// In thôn tin Đọc Giả theo tên
-// maDG, tenDG, email, sdt
-
+// In thong tin Doc Gia theo ten
+// In 1 Doc Gia 
 void inThongTinDocGiav1(int i){
     printf("\tMa DG:         | %s\n", maDG[i]);
     printf("\tTen DG:        | %s\n", tenDG[i]);
@@ -83,11 +82,41 @@ void inThongTinDocGiav1(int i){
     printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);  
 }
 
+// In nhieu Doc Gia 
 void inThongTinDocGiav2(int i){
     printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
 }
+
+// IN Thong tin Doc Gia sau khi tim theo CMND
+void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
+    int vitriDocGia = timDocGiaTheoCMND(timCMND);
+
+    if(vitriDocGia >= 0){
+        printf("\n>> Tim Thay Doc Gia <<\n");
+        printf("------------------------------------------\n");
+        inThongTinDocGiav1(vitriDocGia);
+        printf("------------------------------------------\n");
+    }
+    if(vitriDocGia < 0) 
+        printf("\n>> Khong tim thay doc gia <<\n");
+}
+// IN Thong tin Doc Gia sau khi tim theo ten
+void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
+    int vitriDocGia = timDocGiaTheoMaDG(maDGtim);
+
+    if(vitriDocGia >= 0){
+        printf("\n>> Tim Thay Doc Gia <<\n");
+        printf("------------------------------------------\n");
+        inThongTinDocGiav1(vitriDocGia);
+        printf("------------------------------------------\n");
+    }
+    if(vitriDocGia < 0) 
+        printf("\n>> Khong tim thay doc gia <<\n");
+}
+
+
 // ===========================
-// Thêm thông tin của Độc Giả
+// Thêm thong tin cua Doc Gia
 void themThongTinDocGia(){
     int d,m,y;
     if(tongSoDG >= MAX){
@@ -128,24 +157,21 @@ void themThongTinDocGia(){
     tongSoDG++;
 }
 
-// ===========================
-// Tìm Đọc Giả theo CMND
-// Kết quả trả về là vị trí 
+// =====[TIM KIEM]=======
+// --------------------------
+// Tim Doc Gia theo CMND  return vi tri 
 int timDocGiaTheoCMND(char timCMND[]){
     int vitriDocGia = -1;
     for(int i=0; i<tongSoDG; i++){
         if(strcmp(cmnd[i], timCMND) ==0){
             vitriDocGia = i;
-            
             break;
         }
     }
-    if(vitriDocGia < 0) 
-        printf("\n>> Khong tim thay doc gia <<\n");
     return vitriDocGia;
 }
 
-// Tìm mã đọc Giả theo CMND
+// Tim Ma doc Gia theo CMND  return vi tri 
 void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]){
     int vitri = timDocGiaTheoCMND(timCMND);
     if(vitri != -1){
@@ -155,23 +181,19 @@ void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]){
     }
 }
 
-// Tìm Đọc Giả theo tên
+// Tim Doc Gia theo ten  return vi tri 
 int timDocGiaTheoMaDG(char maDGtim[]){
     int vitriDocGia = -1;
     for(int i=0; i<tongSoDG; i++){
         if(strstr(maDG[i], maDGtim) != NULL){
             vitriDocGia = i;
-            printf("\n>> Tim Thay Doc Gia <<\n");
-            printf("------------------------------------------\n");
-            inThongTinDocGiav1(i);
-            printf("------------------------------------------\n");
         }
     }
 }
 
-
+// ========[CHINH SUA]========
 // ===========================
-// Chỉnh sửa thông tin Đọc Giả
+// Chinh sua thong tin Doc Gia
 void suaThongTinDocGia(char timCMND[]){
     // Tìm Đọc Giả
     int vitriDG = timDocGiaTheoCMND(timCMND);
@@ -264,7 +286,7 @@ void suaThongTinDocGia(char timCMND[]){
 
 }
 
-// Xóa Thông tin Đọc Giả
+// Xoa Thong tin Doc Gia
 void xoaDGTheoCMND(char timCMND[]){
     int vitriDG = timDocGiaTheoCMND(timCMND);
     printf("\n >>>> Ban co muon xoa Doc Gia  [%s - %s] khong <<<<\n",maDG[vitriDG],tenDG[vitriDG]);
@@ -294,8 +316,7 @@ void xoaDGTheoCMND(char timCMND[]){
     }
 }
 
-
-// Nhóm xử lý bắt lỗi
+// =======[VALIDATION]=======
 // ===========================
 #pragma region Validation
 

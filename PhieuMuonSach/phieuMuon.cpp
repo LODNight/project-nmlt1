@@ -111,21 +111,41 @@ void themThongTinPhieuMuon(){
 
     char timCMND[20];
     char timISBN[10];
+    bool hopLe = false;
     printf("\n====== THEM PHIEU MUON SACH MOI ======\n");
+    getchar();
     
     // Su dung CMND cua Doc Gia de them thong tin
-    printf("Nhap CMND Doc Gia: ");
-    fgets(timCMND, 20, stdin);
-    timCMND[strcmp(timCMND,"\n")] = '\0';
-    int vitriDocGia = timDocGiaTheoCMND(timCMND);
-    if(vitriDocGia >= 0)
-        timMaDocGiaTheoCMND(timCMND,maDGMuon[tongPhieuMuon]);
+    do{
+        printf("Nhap CMND Doc Gia: ");
+        fgets(timCMND, 20, stdin);
+        timCMND[strcspn(timCMND,"\n")] = '\0';
+        int vitriDocGia = timDocGiaTheoCMND(timCMND);
 
-    printf("Nhap ma sach(ISBN): ");
-    fgets(timISBN, 10, stdin);
-    timISBN[strcmp(timISBN,"\n")] = '\0';
-    int vitriSach = timSachTheoISBN(timISBN);
+        if(vitriDocGia >= 0){
+
+            timMaDocGiaTheoCMND(timCMND,maDGMuon[tongPhieuMuon]);
+            hopLe = true;
+        }
+        else
+            printf("\n>>> Khong hop le. Vui long nhap lai <<<\n");
+    } while(!hopLe);
+    hopLe = false;
+    do{
+        printf("Nhap ma sach(ISBN): ");
+        fgets(timISBN, 10, stdin);
+        timISBN[strcspn(timISBN,"\n")] = '\0';
+        int vitriSach = timSachTheoISBN(timISBN);
+        if(vitriSach >= 0){
+            strcpy(maISBNMuon[tongPhieuMuon],timISBN);
+            hopLe = true;
+        }
+        else
+            printf("\n>>> Khong hop le. Vui long nhap lai <<<\n");
+    } while(!hopLe);
     
+    
+    printf("\n----- ma DG: %s --- ma ISBN: %s -----\n", maDGMuon[tongPhieuMuon],maISBNMuon[tongPhieuMuon]);
     printf("Nhap SL Sach can muonL: ");
     // Ngay muon - AUTO
     // Ngay tra du kien - AUTO

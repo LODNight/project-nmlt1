@@ -4,9 +4,15 @@ void napDuLieuSachMau();
 
 // In Thong Tin Sach
 void inThongTinToanBoSach();
+// In Thong tin It Sach
 void inThongTinSachv1(int i);
+// In Thong tin Nhieu Sach
 void inThongTinSachv2(int i);
+// ===========================
+// In Thon tin Sach sau khi tim thay ma ISBN
+void inThongTinSachSauKhiTim(char timISBN[]);
 
+// ==========================
 // Them Sach
 void themThongTinSach();
 void themTenSach(int vitri);

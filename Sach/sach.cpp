@@ -53,8 +53,8 @@ void napDuLieuSachMau(){
     soLuongSach[2][1] = 20; 
 }
 
-
-// ==========================
+// =====[IN THONG TIN]=======
+// --------------------------
 // In Thông tin toàn bộ Sách
 void inThongTinToanBoSach(){
     printf("\n----------------------------------\n");
@@ -69,25 +69,71 @@ void inThongTinToanBoSach(){
     }
     printf("\n----------------------------------\n");
 }
-
+// In 1 Sach
 void inThongTinSachv1(int i){
-    printf("Ma ISBN: %s\n", ISBN[i]);
-    printf("Ten sach: %s\n", tenSach[i]);
-    printf("Tac gia: %s\n", tenTacGia[i]);
-    printf("Nha xuat Ban: %s\n", tenNhaXuatBan[i]);
-    printf("Nam xuat ban: %s\n", namXuatBan[i]);
-    printf("The loai: %s\n", theLoai[i]);
-    printf("Gia sach: %d\n", giaSach[i]);
-    printf("So luong sach: %d\n", soLuongSach[i]);
+    printf("\tMa ISBN:      | %s\n", ISBN[i]);
+    printf("\tTen sach:     | %s\n", tenSach[i]);
+    printf("\tTac gia:      | %s\n", tenTacGia[i]);
+    printf("\tNha xuat Ban: | %s\n", tenNhaXuatBan[i]);
+    printf("\tNam xuat ban: | %s\n", namXuatBan[i]);
+    printf("\tThe loai:     | %s\n", theLoai[i]);
+    printf("\tGia sach:     | %d\n", giaSach[i]);
+    printf("\tSo luong:     | %d\n", soLuongSach[i]);
 }
+// In nhieu Sach
 void inThongTinSachv2(int i){ 
     printf("%5s | %20s | %d | %d \n",
     ISBN[i], tenSach[i], giaSach[i], soLuongSach[i]);    
 }
 
+// --------------------------
+// In Thon tin Sach sau khi tim thay ma ISBN
+void inThongTinSachSauKhiTim(char timISBN[]){
+    int vitriSach = timSachTheoISBN(timISBN);
+    printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
+    printf("------------------------------------------\n");
+    inThongTinDocGiav2(vitriSach);
+    if(vitriSach < 0)  printf("\n>>> Khong tim thay sach <<< \n");
+    printf("------------------------------------------\n");
+}
 
-// ==========================
-// Thêm Sách
+
+// =======[TIM KIEM]=========
+// --------------------------
+// Tim sach theo ISBN
+int timSachTheoISBN(char timISBN[]){
+    int vitriSach = -1;
+    for(int i=0; i<tongSach; i++){
+        if(strcmp(ISBN[i],timISBN) == 0){
+            vitriSach = i;
+            break;
+        }
+    }
+    return vitriSach;
+}
+
+// --------------------------
+// Tim sach theo ten Sach
+int timSachTheoTen(char timSach[]){
+    int vitriSach = -1;
+    for(int i=0; i<tongSach; i++){
+        if(strstr(tenSach[i], timSach) != NULL){
+            vitriSach = i;
+            printf("\n>>> Tim thay Sach voi cac thong tin la <<<\n");
+            printf("\n----------------------------------");
+            printf("\n====== DANH SACH [SACH] ======\n");
+            inThongTinSachv1(i);
+            printf("\n----------------------------------\n");
+        }
+    }
+    if(vitriSach < 0 )  printf("\n>>> Khong tim thay sach <<< \n");
+    return vitriSach;
+}
+
+
+// =========[THEM]===========
+// --------------------------
+// Sach
 void themThongTinSach(){
     if(tongSach >= 0){
         printf("\n>>> Ban khong the them Sach <<<\n");
@@ -218,7 +264,9 @@ void themSoLuongSach(int vitri){
 
 #pragma endregion
 
-// ==========================
+
+// =======[CHINH SUA]========
+// --------------------------
 // Chinh sua Sách
 void chinhSuaSach(char timISBN[]){
     int vitriSach = timSachTheoISBN(timISBN);
@@ -288,7 +336,8 @@ void chinhSuaSach(char timISBN[]){
     
 }
 
-// ==========================
+// ==========[XOA]===========
+// --------------------------
 // Xoa Sach
 void xoaSach(char timISBN[]){
     int vitriSach = timSachTheoISBN(timISBN);
@@ -320,44 +369,3 @@ void xoaSach(char timISBN[]){
     }
 }
 
-// ==========================
-// Tim sach theo ISBN
-int timSachTheoISBN(char timISBN[]){
-    int vitriSach = -1;
-    for(int i=0; i<tongSach; i++){
-        if(strcmp(ISBN[i],timISBN) == 0){
-            vitriSach = i;
-            printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
-            printf("------------------------------------------\n");
-            printf("\tMa ISBN:      | %s\n", ISBN[i]);
-            printf("\tTen sach:     | %s\n", tenSach[i]);
-            printf("\tTac gia:      | %s\n", tenTacGia[i]);
-            printf("\tNha xuat Ban: | %s\n", tenNhaXuatBan[i]);
-            printf("\tNam xuat ban: | %s\n", namXuatBan[i]);
-            printf("\tThe loai:     | %s\n", theLoai[i]);
-            printf("\tGia sach:     | %s\n", giaSach[i]);
-            printf("------------------------------------------\n");
-            break;
-        }
-    }
-    if(vitriSach < 0)  printf("\n>>> Khong tim thay sach <<< \n");
-    return vitriSach;
-}
-
-// ==========================
-// Tim sach theo ten Sach
-int timSachTheoTen(char timSach[]){
-    int vitriSach = -1;
-    for(int i=0; i<tongSach; i++){
-        if(strstr(tenSach[i], timSach) != NULL){
-            vitriSach = i;
-            printf("\n>>> Tim thay Sach voi cac thong tin la <<<\n");
-            printf("\n----------------------------------");
-            printf("\n====== DANH SACH [SACH] ======\n");
-            inThongTinSachv1(i);
-            printf("\n----------------------------------\n");
-        }
-    }
-    if(vitriSach < 0 )  printf("\n>>> Khong tim thay sach <<< \n");
-    return vitriSach;
-}
