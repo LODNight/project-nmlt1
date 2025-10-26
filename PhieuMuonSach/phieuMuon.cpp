@@ -222,10 +222,35 @@ void suaThongTinPhieuMuon(char timPhieuMuon[]){
         printf("\n====== CHINH SUA PHIEU MUON SACH ======\n");
         getchar();  
         // Kiem tra Doc Gia
+        do{
+            printf("Nhap CMND Doc Gia: ");
+            fgets(timCMND, 20, stdin);
+            timCMND[strcspn(timCMND,"\n")] = '\0';
+            vitriDocGia = timDocGiaTheoCMND(timCMND);
 
+            if(vitriDocGia >= 0){
+
+                timMaDocGiaTheoCMND(timCMND,maDGMuon[tongPhieuMuon]);
+                hopLe = true;
+            }
+            else
+                printf("\n>>> Khong hop le. Vui long nhap lai <<<\n");
+        } while(!hopLe);    
 
         // Kiem Tra Sach 
-
+        hopLe = false;
+        do{
+            printf("Nhap ma sach(ISBN): ");
+            fgets(timISBN, 10, stdin);
+            timISBN[strcspn(timISBN,"\n")] = '\0';
+            vitriSach = timSachTheoISBN(timISBN);
+            if(vitriSach >= 0){
+                strcpy(maISBNMuon[tongPhieuMuon],timISBN);
+                hopLe = true;
+            }
+            else
+                printf("\n>>> Khong hop le. Vui long nhap lai <<<\n");
+        } while(!hopLe);
 
     }
 }
