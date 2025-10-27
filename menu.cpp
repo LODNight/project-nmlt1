@@ -280,6 +280,7 @@ void chucNangPhieuMuon(){
                 fgets(maPhieuMuon,7,stdin);
                 
                 suaThongTinPhieuMuon(maPhieuMuon);
+                
                 choice = -1;
 
                 break;

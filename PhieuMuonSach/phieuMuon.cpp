@@ -259,6 +259,13 @@ void suaThongTinPhieuMuon(char timPhieuMuon[]){
                 }
             }
         } while (!hopLe);
+
+        if(hopLe){
+            printf("\n>>> Chinh sua so luong Sach thanh cong <<<\n");
+        } 
+        else {
+            printf("\n>>> Chinh sua That bai <<<\n");
+        }
     }
 }
 
