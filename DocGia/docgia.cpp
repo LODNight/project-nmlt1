@@ -153,7 +153,7 @@ void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]){
     }
 }
 
-// Tim Doc Gia theo ten  return vi tri 
+// Tim Doc Gia theo ten   return vi tri 
 int timDocGiaTheoMaDG(char maDGtim[]){
     int vitriDocGia = -1;
     for(int i=0; i<tongSoDG; i++){
@@ -162,6 +162,24 @@ int timDocGiaTheoMaDG(char maDGtim[]){
         }
     }
 }
+
+// Tim CMND theo maDG   return CMND
+void timCMNDDocGiaTheoMaDG(char maDGtim[], char ketqua[]){
+    int vitriDocGia = -1;
+    for(int i=0; i < tongSoDG; i++){
+        if(strcmp(maDG[i], maDGtim) == 0){
+            vitriDocGia = i;
+            break;
+        }
+    }
+
+    if(vitriDocGia != -1){
+        strcpy(ketqua, cmnd[vitriDocGia]);
+    } else {
+        strcpy(ketqua, "NULL");
+    }
+}
+
 // IN Thong tin Doc Gia sau khi tim theo CMND
 void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
     int vitriDocGia = timDocGiaTheoCMND(timCMND);
@@ -187,6 +205,7 @@ void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
     if(vitriDocGia < 0) 
         printf("\n>> Khong tim thay doc gia <<\n");
 }
+
 // ========[CHINH SUA]========
 // ===========================
 // Chinh sua thong tin Doc Gia

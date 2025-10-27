@@ -40,3 +40,7 @@ int timDocGiaTheoTen(char tenDG[]);
 // Tim MaDG theo CMND
 // return maDG
 void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]);
+
+// Tim CMND theo maDG  
+// return CMND
+void timCMNDDocGiaTheoMaDG(char maDGtim[], char ketqua[]);

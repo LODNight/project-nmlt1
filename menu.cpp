@@ -222,6 +222,7 @@ void chucNangSach(){
 // Menu Xu ly chuc nang Phieu Muon Sach
 void chucNangPhieuMuon(){
     int choice = -1;
+    char maPhieuMuon[7];
     char timISBN[5];
     char timCMND[20];
     char timMaDG[20];
@@ -231,6 +232,7 @@ void chucNangPhieuMuon(){
         printf("2: Tim Sach theo ma Doc Gia\n");
         printf("3: Tim Doc Gia theo ISBN Sach\n");
         printf("4: Them phieu muon\n");
+        printf("5: Chinh sua phieu muon\n");
         printf("0: Thoat\n");
         printf("=================================\n");
         printf("Chon chuc nang: ");
@@ -265,6 +267,21 @@ void chucNangPhieuMuon(){
                 // Thêm Phiếu mượn
                 printf("\n++++ Them Phieu muon ++++\n");
                 themThongTinPhieuMuon();
+                break;
+
+            case 5:
+                // Chỉnh sửa Phiếu mượn
+                printf("\n++++ Chinh sua Phieu muon ++++\n");
+                
+                inThongTinToanBoPhieuMuon();
+
+                printf("\nNhap ma Phieu muon: ");
+                getchar();
+                fgets(maPhieuMuon,7,stdin);
+                
+                suaThongTinPhieuMuon(maPhieuMuon);
+                choice = -1;
+
                 break;
             case 0:
                 printf("\n>> Quay ve Menu Chinh <<\n");
