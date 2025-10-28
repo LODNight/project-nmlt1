@@ -3,7 +3,8 @@
 #include <string.h>
 #include <time.h>
 
-#include "../DocGia/docgia.h"
+#include "lapPhieu.h"
+#include "../DocGia/docGia.h"
 #include "../Sach/sach.h"
 
 #define MAX 200
@@ -220,6 +221,7 @@ int chuyenThangSangSo(char *thang) {
     if (strcmp(thang, "Dec") == 0) return 12;
     return 0;
 }
+
 // Them ngay muon tu dong
 void themNgayMuonSachTuDong(){
     time_t now;
@@ -243,12 +245,28 @@ void themNgayMuonSachTuDong(){
     }
 
     sprintf(ngayMuonSach[tongPhieuMuon], "%2d/%2d/%4d", d,m,y);
+    themNgayTraDuKienTuDong(d,m,y);
 
 }
 
 // Them ngay tra du kien tu dong
-void themNgayTraDuKienTuDong(){
+void themNgayTraDuKienTuDong(int d, int m, int y){
+    int d_new = d + 7;
+    int m_new = m;
+    int y_new = y;
 
+    // Nếu vượt quá số ngày trong tháng
+    int soNgayThang = timSoNgayTrongThang(m_new, y_new);
+    if (d_new > soNgayThang) {
+        d_new -= soNgayThang;
+        m_new++;
+        if (m_new > 12) {
+            m_new = 1;
+            y_new++;
+        }
+    }
+
+    sprintf(ngayTraSachDuKien[tongPhieuMuon], "%2d/%2d/%4d", d_new,m_new,y_new);
 }
 // ------------------------------
 

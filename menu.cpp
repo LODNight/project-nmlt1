@@ -1,14 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
-#include "DocGia/docgia.h"
-#include "DocGia/docgia.cpp"
+#include "menu.h"
+#include "DocGia/docGia.h"
 #include "Sach/sach.h"
-#include "Sach/sach.cpp"
 #include "Phieu/lapPhieu.h"
-#include "Phieu/lapPhieu.cpp"
-
-
 
 // Menu ChucNang
 void menuChucNang(){
@@ -122,14 +119,13 @@ void chucNangDocGia(){
             timTenDG[strcspn(timTenDG,"\n")] = '\0';
 
         case 0:
-            printf("\n>> Quay ve Menu Chinh <<\n");
+            printf("\n>>> Quay ve Menu Chinh <<<\n\n");
             return;
         default:
-            printf("\n>> Vui long chon lai <<\n"); break;
+            printf("\n>>> LOI: Vui long chon lai <<<\n"); break;
         }
     } while(choice != 0);
 }
-
 
 // Menu lựa chọn Đọc Giả
 void chucNangSach(){
@@ -208,10 +204,10 @@ void chucNangSach(){
                 choice = -1;
                 break;
             case 0:
-                printf("\n>> Quay ve Menu Chinh <<\n");
+                printf("\n>>> Quay ve Menu Chinh <<<\n\n");
                 return;
             default:
-                printf("\n>> Vui long chon lai <<\n"); 
+                printf("\n>>> LOI: Vui long chon lai <<<\n"); 
                 break;
         }
     }while(choice!=0);
@@ -283,10 +279,10 @@ void chucNangPhieuMuon(){
 
                 break;
             case 0:
-                printf("\n>> Quay ve Menu Chinh <<\n");
+                printf("\n>>> Quay ve Menu Chinh <<<\n\n");
                 return;
             default:
-                printf("\n>> Vui long chon lai <<\n"); 
+                printf("\n>>> LOI: Vui long chon lai <<<\n"); 
                 break;
         }
     }while(choice!=0);

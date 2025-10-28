@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "docGia.h"
 // Khai báo biến toàn cục là MAX với kí tự tối đa là 200 đơn vị
 #define MAX 200
 
@@ -161,6 +162,7 @@ int timDocGiaTheoMaDG(char maDGtim[]){
             vitriDocGia = i;
         }
     }
+    return vitriDocGia;
 }
 
 // Tim CMND theo maDG   return CMND
@@ -395,7 +397,6 @@ int timNamNhuan(int y){
         return 28;
     }
 }
-
 // Tim so ngay trong 1 thang
 int timSoNgayTrongThang(int m, int y){
     if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
@@ -407,7 +408,6 @@ int timSoNgayTrongThang(int m, int y){
         return timNamNhuan(y);
     }
 }
-
 // Kiem tra ngay hop le
 bool kiemTraNgayHopLe(int d, int m, int y){
     if(d <=0 || m <=0 || m > 12 || y <= 2003)
@@ -416,7 +416,6 @@ bool kiemTraNgayHopLe(int d, int m, int y){
         return  false;
     else return true;
 }
-
 // Hop le khi nam tu 2003 tro di
 void kiemTraNgayLapThe(){
     int d,m,y;

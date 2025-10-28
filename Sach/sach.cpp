@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "sach.h"
 // Khai báo biến toàn cục là MAX với kí tự tối đa là 200 đơn vị
 #define MAX 200
 

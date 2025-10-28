@@ -1,5 +1,8 @@
 #pragma once
 
+
+#ifndef DOCGIA_H
+#define DOCGIA_H
 void napDuLieuDGMau();
 
 // In du lieu
@@ -22,6 +25,8 @@ void kiemTraCMNDDocGia();
 void kiemTraEmail();
 bool kiemTraNgayHopLe(int d, int m, int y);
 void kiemTraNgayLapThe();
+
+void themThongTinDocGia();
 void themNgayHetHanThe(int d, int m, int y);
 void suaThongTinDocGia(char timCMND[]);
 void xoaDGTheoCMND(char timCMND[]);
@@ -44,3 +49,17 @@ void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]);
 // Tim CMND theo maDG  
 // return CMND
 void timCMNDDocGiaTheoMaDG(char maDGtim[], char ketqua[]);
+
+// Kiem tra Ngay Them va Tra
+int timNamNhuan(int y);
+// Tim so ngay trong 1 thang
+int timSoNgayTrongThang(int m, int y);
+// Kiem tra ngay hop le
+bool kiemTraNgayHopLe(int d, int m, int y);
+
+// Hop le khi nam tu 2003 tro di
+void kiemTraNgayLapThe();
+
+// Het han sau 48 thang ke tu ngay lap the
+void themNgayHetHanThe(int d, int m, int y);
+#endif

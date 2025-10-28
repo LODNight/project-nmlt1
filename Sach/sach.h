@@ -1,5 +1,8 @@
 #pragma once
 
+
+#ifndef SACH_H
+#define SACH_H
 void napDuLieuSachMau();
 
 // In Thong Tin Sach
@@ -48,3 +51,5 @@ int timSachTheoTen(char timSach[]);
 // Tim SL theo ISBN
 // return slSach
 int timSoLuongSachTheoISBN(char timISBN[]);
+
+#endif

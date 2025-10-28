@@ -1,5 +1,7 @@
 #pragma once
 
+#ifndef LAPPHIEU_H
+#define LAPPHIEU_H
 // ============= [PHIEU MUON SACH] =============
 // --------------------------
 // Nạp dữ liệu mẫu
@@ -7,6 +9,8 @@ void napMauThongTinPhieuMuon();
 // --------------------------
 // In thông tin Sách theo Mã Đọc Giả
 void inThongTinSachTheoDocGia(char maDGCanTim[]);
+// In Thong tin toan bo phieu muon
+void inThongTinToanBoPhieuMuon();
 // In 1
 void inThongTinPhieuMuonv1(int i);
 // In nhieu
@@ -32,6 +36,9 @@ void suaThongTinPhieuMuon(char timPhieuMuon[]);
 int chuyenThangSangSo(char *thang);
 // Them ngay muon tu dong
 void themNgayMuonSachTuDong();
+
+// Them ngay tra du kien tu dong (7 days)
+void themNgayTraDuKienTuDong(int d, int m, int y);
 // --------------------------
 
 
@@ -49,3 +56,5 @@ void themNgayMuonSachTuDong();
 // Kiem tra sach co mat hay khong => co: phat 200% tien sach
 
 // Cap nhat du lieu
+
+#endif
