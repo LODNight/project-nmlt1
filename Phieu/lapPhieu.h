@@ -37,9 +37,12 @@ void suaThongTinPhieuMuon(char timPhieuMuon[]);
 int chuyenThangSangSo(char *thang);
 // Them ngay muon tu dong
 void themNgayMuonSachTuDong();
-
 // Them ngay tra du kien tu dong (7 days)
 void themNgayTraDuKienTuDong(int d, int m, int y);
+// Them ngay tra thuc te tu dong
+void themNgayTraThucTeTuDong(int i);
+// Them ngay tra thuc te thu cong
+void themNgayTraThucTeThuCong(int i);
 // --------------------------
 
 
@@ -52,5 +55,12 @@ void inToanBoThongTinPhieuTra();
 void timPhieuMuonTheoCMND(char timCMND[]);
 // them phieu Tra Sach thuc te
 void themPhieuTraSach();
+
+// Tach ngay tu chuoi dd/mm/yyyy
+void tachNgay(char s[], int &d, int &m, int &y);
+// Tinh khoang cach cua ngay du kien va ngay thuc te
+int tinhKhoangNgayDuKienVaThucTe(int d1,int m1,int y1,int d2,int m2,int y2);
+// Tinh so ngay tra tre
+int tinhSoNgayTre(char duKien[], char thucTe[]);
 
 #endif

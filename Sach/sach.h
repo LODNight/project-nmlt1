@@ -39,13 +39,17 @@ void xoaSach(char timISBN[]);
 
 // ==========================
 // Tim kiem Sach
-// return vị trí sách
+// return vi tri sach
 int timSachTheoISBN(char timISBN[]);
 
 // ==========================
-// Tim kiem Sach theo Tên Sách
-// return vị trí sách
+// Tim kiem Sach theo Ten Sach
+// return vị tri ssch
 int timSachTheoTen(char timSach[]);
+
+// Tim gia Sach theo maSach
+// return giaSach
+int timGiaSachSachTheoISBN(char timISBN[]);
 
 // ==========================
 // Tim SL theo ISBN

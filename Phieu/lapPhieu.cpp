@@ -23,6 +23,7 @@ char maDGTra[MAX][7];
 char maISBNTra[MAX][5];
 int soluongSachTra[MAX][2];
 char ngayTraSachThucTe[MAX][20];
+int sachBiMat[MAX];
 int tongPhieuTra = 0;
 
 // ============= [PHIEU MUON SACH] =============
@@ -102,8 +103,8 @@ void inThongTinPhieuMuonv1(int i){
 
 // In nhieu Phieu Muon
 void inThongTinPhieuMuonv2(int i){
-    printf("%5s | %5s | %3d | %12S | %12s | %12s",
-    maDGMuon[i],maISBNMuon[i],soluongSachMuon[i][1],ngayMuonSach[i],ngayTraSachDuKien[i],ngayTraSachThucTe[i]);
+    printf("\n%5s | %5s | %5s | %3d | %12S | %12s | %12s",
+    maPhieuMuon[i],maDGMuon[i],maISBNMuon[i],soluongSachMuon[i][1],ngayMuonSach[i],ngayTraSachDuKien[i],ngayTraSachThucTe[i]);
 }
 
 // In Thong tin toan bo Sach theo nguoi muon
@@ -293,6 +294,44 @@ void themNgayTraDuKienTuDong(int d, int m, int y){
 
     sprintf(ngayTraSachDuKien[tongPhieuMuon], "%2d/%2d/%4d", d_new,m_new,y_new);
 }
+
+// Them ngay tra thuc te tu dong
+void themNgayTraThucTeTuDong(int i){    
+    time_t now;
+    // Lay ngya hien tai
+    time(&now);
+    char thoiGian[30];
+    // chuyen thoi gian thanh chuoi
+    strcpy(thoiGian,ctime(&now));
+    char thang[4]; 
+    char ngay[4];
+    int d,y;
+
+    sscanf(thoiGian, "%s %s %d %*s %d", ngay, thang, &d, &y);
+
+    int m = chuyenThangSangSo(thang);
+
+    sprintf(ngayTraSachThucTe[i], "%02d/%02d/%04d", d, m, y);
+}
+
+// Them ngay tra thuc te thu cong
+void themNgayTraThucTeThuCong(int i){
+    int d,m,y;
+    bool hopLe = false;
+
+    do{
+        printf("Them ngay tra sach thuc te (dd/mm/yyyy): ");
+        scanf("%d/%d/%d",&d,&m,&y);
+       
+        hopLe = kiemTraNgayHopLe(d,m,y);
+        
+        if(!hopLe) 
+            printf("\n>> Ngay ko hop le. Vui long nhap lai <<\n");
+    } while(!hopLe);
+
+    // Lưu chuỗi ngày hợp lệ
+    sprintf(ngayTraSachThucTe[i], "%02d/%02d/%04d", d, m, y);
+}
 // ------------------------------
 
 // Thay doi thong tin
@@ -382,11 +421,10 @@ void inThongTinPhieuMuonKhiTimThayMa(char timPhieuMuon[]){
 
 
 // ============= [PHIEU TRA SACH] =============
-
 // In nhieu Phieu Tra
 void inThongTinPhieuTra(int i){
-    printf("%5s | %5s | %3d | %12s\n",
-    maDGTra[i],maISBNTra[i],soluongSachTra[i][1],ngayTraSachThucTe[i]);
+    printf("%5s | %5s | %5s | %3d | %12s\n",
+    maPhieuTra[i],maDGTra[i],maISBNTra[i],soluongSachTra[i][1],ngayTraSachThucTe[i]);
 }
 
 // In toan bo thong tin Phieu Tra
@@ -426,24 +464,49 @@ void timPhieuMuonTheoCMND(char timCMND[]){
 
     if(dem == 0)
         printf("\n>>> Doc gia chua co phieu <<<\n");
+    else
+        printf("\n++++ Doc Gia %s co %d phieu muon ++++\n",maDGMuon,dem);
+        
 }
 
 // them phieu Tra Sach thuc te
 void themPhieuTraSach(){
-    char maDGTra [20];
+    char timCMND [20];
+    char maPhieuMuonCanTim[5];
     int matSach;
     int hopLe = -1;
-    printf("\nNhap CMND cua doc gia can tra sach:");
-    scanf("%s",maDGTra);
 
-    
-    int i = 0; // timPhieuMuonTheoCMND
+    // tim Phieu Muon theo CMND Doc Gia
+    printf("\nNhap CMND cua doc gia can tra sach:");
+    scanf("%s",timCMND);
+
+    // Kiem tra co ton tai ma Phieu Muon theo CMND khong
+    timPhieuMuonTheoCMND(timCMND);
+
+    // Nhap Ma Phieu Muon
+    printf("\nNhap ma phieu muon ban muon thay doi: ");
+    scanf("%s",maPhieuMuonCanTim);
+
+    // Tim vi tri cua Phieu muon theo Ma Phieu Muon
+    int vitriPhieuMuon = timPhieuMuonTheoMa(maPhieuMuonCanTim);
+    if(vitriPhieuMuon == -1){
+        printf("\n>>> Khong tim thay Phieu muon <<<\n");
+        return;
+    }
+
+    // Gia tien 1 quyen Sach
+    int giaTien = timGiaSachSachTheoISBN(maISBNMuon[vitriPhieuMuon]);
+    int phat = 0;
+
+    // themNgayTraThucTeTuDong(vitriPhieuMuon);
+    themNgayTraThucTeThuCong(vitriPhieuMuon);
 
     do{
         printf("Sach co bi mat khong? (1:Co / 0:Khong): ");
         scanf("%d",&matSach);
         if(matSach == 1){
-            printf(">>> Mat sach paht 200% <<<\n");
+            sachBiMat[vitriPhieuMuon] = matSach;
+            phat = giaTien*2.0;
             hopLe = 1;
         } 
         else if (matSach == 0)
@@ -456,7 +519,42 @@ void themPhieuTraSach(){
         }
         
     } while(hopLe < 0);
-   
+    int tre = tinhSoNgayTre(ngayTraSachDuKien[vitriPhieuMuon],ngayTraSachThucTe[vitriPhieuMuon]);
+    
+    if(matSach > 0)
+        printf("\n\t>>> Tien phat phai dong: %d VND <<<\n",phat);
+    else
+        printf("\n\t>>> Tien phat phai dong: %d VND <<<\n",phat*tre);
 
+}
 
+// Tach ngay tu chuoi dd/mm/yyyy
+void tachNgay(char s[], int &d, int &m, int &y){
+    sscanf(s, "%d/%d/%d", &d, &m, &y);
+}
+
+// Tinh khoang cach cua ngay du kien va ngay thuc te
+int tinhKhoangNgayDuKienVaThucTe(int d1,int m1,int y1,int d2,int m2,int y2){
+    int ngay = 0;
+    while(y1 < y2 || m1 < m2 || d1 < d2){
+        d1++;
+        ngay++;
+        if(d1 > timSoNgayTrongThang(m1,y1)){
+            d1 = 1; m1++;
+            if(m1 > 12){ m1 = 1; y1++; }
+        }
+        if(y1 == y2 && m1 == m2 && d1 == d2) break;
+    }
+    return ngay;
+}
+
+// Tinh so ngay tra tre
+int tinhSoNgayTre(char duKien[], char thucTe[]){
+    int d1,m1,y1,d2,m2,y2;
+    tachNgay(duKien, d1,m1,y1);
+    tachNgay(thucTe, d2,m2,y2);
+
+    if(y2 < y1 || (y2 == y1&& m2<m1) || (y2 == y1 && m2 == m1 && d2 <= d1))
+        return 0; 
+    return tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
 }

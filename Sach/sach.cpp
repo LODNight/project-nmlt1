@@ -115,7 +115,7 @@ int timSachTheoTen(char timSach[]){
 }
 
 // Tim SL theo ISBN
-// return slSach
+// return so luong Sach
 int timSoLuongSachTheoISBN(char timISBN[]){
     for(int i=0; i<tongSach; i++){
         if(strcmp(ISBN[i],timISBN) == 0){
@@ -124,6 +124,18 @@ int timSoLuongSachTheoISBN(char timISBN[]){
     }
     return -1;
 }
+
+// Tim gia Sach theo maSach
+// return gia Sach
+int timGiaSachSachTheoISBN(char timISBN[]){
+    for(int i=0; i<tongSach; i++){
+        if(strcmp(ISBN[i],timISBN) == 0){
+            return giaSach[i][1];
+        }
+    }
+    return -1;
+}
+
 // --------------------------
 // In Thong tin Sach sau khi tim thay ma ISBN
 void inThongTinSachSauKhiTimThayISBN(char timISBN[]){
@@ -283,7 +295,6 @@ void themSoLuongSach(int vitri){
 }
 
 #pragma endregion
-
 
 // =======[CHINH SUA]========
 // --------------------------
