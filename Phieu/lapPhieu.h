@@ -6,6 +6,7 @@
 // --------------------------
 // Nạp dữ liệu mẫu
 void napMauThongTinPhieuMuon();
+void napMauThongTinPhieuTra();
 // --------------------------
 // In thông tin Sách theo Mã Đọc Giả
 void inThongTinSachTheoDocGia(char maDGCanTim[]);
@@ -43,18 +44,13 @@ void themNgayTraDuKienTuDong(int d, int m, int y);
 
 
 // ============= [PHIEU TRA SACH] =============
-// In thong tin
-
-// Nhap CMND de kiem tra co muon sach chua tra khong => ngayTraSachThucTe = NULL
-
-// Hien thi cac phieu muon dang con han
-
-// Nhap ngay tra thuc te
-
-// Tim so ngay nop tre -> phat 5000 1 ngay
-
-// Kiem tra sach co mat hay khong => co: phat 200% tien sach
-
-// Cap nhat du lieu
+// In nhieu Phieu Tra
+void inThongTinPhieuTra(int i);
+// In toan bo thong tin Phieu Tra
+void inToanBoThongTinPhieuTra();
+// Tim Phieu Muon Theo CMND doc gia
+void timPhieuMuonTheoCMND(char timCMND[]);
+// them phieu Tra Sach thuc te
+void themPhieuTraSach();
 
 #endif

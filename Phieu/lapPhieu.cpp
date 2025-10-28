@@ -16,8 +16,14 @@ char maISBNMuon[MAX][5];
 int soluongSachMuon[MAX][2];
 char ngayMuonSach[MAX][20];
 char ngayTraSachDuKien[MAX][20];
-char ngayTraSachThucTe[MAX][20];
 int tongPhieuMuon = 0;
+
+char maPhieuTra[MAX][7];
+char maDGTra[MAX][7];
+char maISBNTra[MAX][5];
+int soluongSachTra[MAX][2];
+char ngayTraSachThucTe[MAX][20];
+int tongPhieuTra = 0;
 
 // ============= [PHIEU MUON SACH] =============
 void napMauThongTinPhieuMuon(){
@@ -47,8 +53,27 @@ void napMauThongTinPhieuMuon(){
     strncpy(ngayTraSachDuKien[2], "25/10/2024", sizeof(ngayTraSachDuKien[2])-1);
 
     strncpy(ngayTraSachThucTe[2], "25/10/2024", sizeof(ngayTraSachThucTe[2])-1);
-
 }
+
+void napMauThongTinPhieuTra(){
+    tongPhieuTra = 2;
+    strncpy(maPhieuTra[0], "PT0001", sizeof(maPhieuTra[0])-1);
+    strncpy(maPhieuTra[1], "PT0002", sizeof(maPhieuTra[1])-1);
+
+    strncpy(maDGTra[0], "DG001", sizeof(maDGTra[0])-1);
+    strncpy(maDGTra[1], "DG002", sizeof(maDGTra[1])-1);
+
+    strncpy(maISBNTra[0], "S001", sizeof(maISBNTra[0])-1);
+    strncpy(maISBNTra[1], "S003", sizeof(maISBNTra[1])-1);
+
+    soluongSachTra[0][1] = 1;
+    soluongSachTra[1][1] = 1;
+
+    strncpy(ngayTraSachThucTe[0], "27/10/2024", sizeof(ngayTraSachThucTe[0])-1);
+    strncpy(ngayTraSachThucTe[1], "29/10/2024", sizeof(ngayTraSachThucTe[1])-1);
+    
+}
+
 
 // In Thong tin toan bo phieu muon
 void inThongTinToanBoPhieuMuon(){
@@ -357,16 +382,81 @@ void inThongTinPhieuMuonKhiTimThayMa(char timPhieuMuon[]){
 
 
 // ============= [PHIEU TRA SACH] =============
-// In thong tin
 
-// Nhap CMND de kiem tra co muon sach chua tra khong => ngayTraSachThucTe = NULL
+// In nhieu Phieu Tra
+void inThongTinPhieuTra(int i){
+    printf("%5s | %5s | %3d | %12s\n",
+    maDGTra[i],maISBNTra[i],soluongSachTra[i][1],ngayTraSachThucTe[i]);
+}
 
-// Hien thi cac phieu muon dang con han
+// In toan bo thong tin Phieu Tra
+void inToanBoThongTinPhieuTra(){
+    printf("\n----------------------------------\n");
+    printf("\n====== DANH SACH [PHIEU TRA] ======\n");
+    if(tongPhieuTra == 0){
+        printf("\n>>> Chua co Phieu Tra <<<\n");
+        return;
+    }
+    for(int i=0; i<tongPhieuTra; i++){
+        inThongTinPhieuTra(i);
+    }
+    printf("\n----------------------------------\n");
 
-// Nhap ngay tra thuc te
+}
 
-// Tim so ngay nop tre -> phat 5000 1 ngay
+// Tim phieu muon theo CMND
+void timPhieuMuonTheoCMND(char timCMND[]){
+    // Chuyen doi tu CMND sang MaDG
+    char maDGCanTim[10];
+    timMaDocGiaTheoCMND(timCMND,maDGCanTim);
 
-// Kiem tra sach co mat hay khong => co: phat 200% tien sach
+    if (strcmp(maDGCanTim, "NULL") == 0) {
+        printf("\n>>> Khong tim thay doc gia <<<\n");
+        return;
+    }
 
-// Cap nhat du lieu
+    // tim Phieu Muon theo MaDG
+    int dem = 0;
+    for(int i=0; i<tongPhieuMuon; i++){
+        if(strcmp(maDGMuon[i],maDGCanTim) == 0){
+            inThongTinPhieuMuonv2(i);
+            dem++;
+        }
+    }
+
+    if(dem == 0)
+        printf("\n>>> Doc gia chua co phieu <<<\n");
+}
+
+// them phieu Tra Sach thuc te
+void themPhieuTraSach(){
+    char maDGTra [20];
+    int matSach;
+    int hopLe = -1;
+    printf("\nNhap CMND cua doc gia can tra sach:");
+    scanf("%s",maDGTra);
+
+    
+    int i = 0; // timPhieuMuonTheoCMND
+
+    do{
+        printf("Sach co bi mat khong? (1:Co / 0:Khong): ");
+        scanf("%d",&matSach);
+        if(matSach == 1){
+            printf(">>> Mat sach paht 200% <<<\n");
+            hopLe = 1;
+        } 
+        else if (matSach == 0)
+        {
+            printf(">>> Khong mat sach <<<\n");
+            hopLe = 1;
+        }
+        else {
+            printf("\n>>> LOI: Khong hop le. Vui long thu lai <<<\n");
+        }
+        
+    } while(hopLe < 0);
+   
+
+
+}

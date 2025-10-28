@@ -60,6 +60,7 @@ void napThongTin(){
     napDuLieuDGMau();
     napDuLieuSachMau();
     napMauThongTinPhieuMuon();
+    napMauThongTinPhieuTra();
 }
 
 // Menu lựa chọn Đọc Giả
@@ -290,7 +291,40 @@ void chucNangPhieuMuon(){
 
 // Menu Xu ly chuc nang Phieu Tra Sach
 void chucNangPhieuTra(){
-    printf("\n===== PHIEU TRA SACH =====\n");
+    int choice = -1;
+    char timCMND[20];
+    do{
+        printf("\n\n===== PHIEU TRA SACH =====\n");
+        printf("1: Them phieu tra Sach\n");
+        printf("2: Xem toan bo phieu tra Sach\n");
+        printf("3: Xem thong tin phieu tra Sach\n");
+        printf("0: Thoat\n");
+        printf("=================================\n");
+        printf("Chon chuc nang: ");
+        scanf("%d",&choice);
+        
+         switch (choice)
+        {
+            case 1:
+                // them Thong tin Phieu Tra Sach
+                themPhieuTraSach();
+
+                break;
+            case 2:
+                inToanBoThongTinPhieuTra();
+                break;
+            case 3:
+                // Tim phieu muon theo CMND
+                printf("Nhap CMND: ");
+                scanf("%s",timCMND);
+
+                timPhieuMuonTheoCMND(timCMND);
+                break;
+            default:
+                break;
+        }
+    } while(choice!=0);
+    
 }
 
 // Menu Xu ly chuc nang Thong Ke
