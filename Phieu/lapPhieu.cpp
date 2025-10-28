@@ -497,6 +497,7 @@ void themPhieuTraSach(){
     // Gia tien 1 quyen Sach
     int giaTien = timGiaSachSachTheoISBN(maISBNMuon[vitriPhieuMuon]);
     int phat = 0;
+    int tre = 0;
 
     // themNgayTraThucTeTuDong(vitriPhieuMuon);
     themNgayTraThucTeThuCong(vitriPhieuMuon);
@@ -511,7 +512,8 @@ void themPhieuTraSach(){
         } 
         else if (matSach == 0)
         {
-            printf(">>> Khong mat sach <<<\n");
+            tre = tinhSoNgayTre(ngayTraSachDuKien[vitriPhieuMuon],ngayTraSachThucTe[vitriPhieuMuon]);
+            phat = giaTien * tre;
             hopLe = 1;
         }
         else {
@@ -519,12 +521,11 @@ void themPhieuTraSach(){
         }
         
     } while(hopLe < 0);
-    int tre = tinhSoNgayTre(ngayTraSachDuKien[vitriPhieuMuon],ngayTraSachThucTe[vitriPhieuMuon]);
     
-    if(matSach > 0)
-        printf("\n\t>>> Tien phat phai dong: %d VND <<<\n",phat);
-    else
-        printf("\n\t>>> Tien phat phai dong: %d VND <<<\n",phat*tre);
+    printf("Ngay du kien: %s | Ngay Tra Sach thuc te: %s\n",ngayTraSachDuKien[vitriPhieuMuon],ngayTraSachThucTe[vitriPhieuMuon]);
+    printf("Phat: %d | Tre: %d\n",phat,tre);
+
+    printf("\n\t>>> Tien phat phai dong: %d VND <<<\n",phat);
 
 }
 
