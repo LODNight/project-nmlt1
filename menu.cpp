@@ -7,8 +7,6 @@
 #include "Sach/sach.cpp"
 #include "PhieuMuonSach/phieuMuon.h"
 #include "PhieuMuonSach/phieuMuon.cpp"
-#include "PhieuTraSach/phieuTra.h"
-#include "PhieuTraSach/phieuTra.cpp"
 
 
 

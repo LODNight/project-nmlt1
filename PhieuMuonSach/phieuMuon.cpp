@@ -18,6 +18,7 @@ char ngayTraSachDuKien[MAX][20];
 char ngayTraSachThucTe[MAX][20];
 int tongPhieuMuon = 0;
 
+// ============= [PHIEU MUON SACH] =============
 void napMauThongTinPhieuMuon(){
     tongPhieuMuon = 3;
     strncpy(maPhieuMuon[0], "PM0001", sizeof(maPhieuMuon[0])-1);
@@ -280,7 +281,6 @@ int timPhieuMuonTheoMa(char timPhieuMuon[]){
     return -1;
 }
 
-
 // In thong tin Phieu Muon theo maPhieuMuon
 void inThongTinPhieuMuonKhiTimThayMa(char timPhieuMuon[]){
     int vitriPhieuMuon = timDocGiaTheoCMND(timPhieuMuon);
@@ -294,3 +294,18 @@ void inThongTinPhieuMuonKhiTimThayMa(char timPhieuMuon[]){
         printf("\n>> Khong tim thay Phieu Muon <<\n");
 }
 
+
+// ============= [PHIEU TRA SACH] =============
+// In thong tin
+
+// Nhap CMND de kiem tra co muon sach chua tra khong => ngayTraSachThucTe = NULL
+
+// Hien thi cac phieu muon dang con han
+
+// Nhap ngay tra thuc te
+
+// Tim so ngay nop tre -> phat 5000 1 ngay
+
+// Kiem tra sach co mat hay khong => co: phat 200% tien sach
+
+// Cap nhat du lieu
