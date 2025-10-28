@@ -188,9 +188,10 @@ void themThongTinPhieuMuon(){
     } while (!hopLe);
 
     // Ngay muon - AUTO
-
+    themNgayMuonSachTuDong();
     // Ngay tra du kien - AUTO
 
+    
     // Them maPhieuMuon tang tu dong
     sprintf(maPhieuMuon[tongPhieuMuon],"PM%04d",tongPhieuMuon+1);
     
@@ -200,14 +201,56 @@ void themThongTinPhieuMuon(){
 
 }
 
-// void layNgayHienTai(char ngayMuon[]){
-//     time_t now;
-//     time(&now);
-//     // Su ly chuoi: chuoiThoiGian = "Sat Oct 20 20:22:04 2025\n"
-//     char *chuoiThoiGian = ctime(&now);
-//     int ngay, nam;
-// }
+// ------------------------------
+// XU LY THOI GIAN
 
+// Chuyen ten thang sang so
+int chuyenThangSangSo(char *thang) {
+    if (strcmp(thang, "Jan") == 0) return 1;
+    if (strcmp(thang, "Feb") == 0) return 2;
+    if (strcmp(thang, "Mar") == 0) return 3;
+    if (strcmp(thang, "Apr") == 0) return 4;
+    if (strcmp(thang, "May") == 0) return 5;
+    if (strcmp(thang, "Jun") == 0) return 6;
+    if (strcmp(thang, "Jul") == 0) return 7;
+    if (strcmp(thang, "Aug") == 0) return 8;
+    if (strcmp(thang, "Sep") == 0) return 9;
+    if (strcmp(thang, "Oct") == 0) return 10;
+    if (strcmp(thang, "Nov") == 0) return 11;
+    if (strcmp(thang, "Dec") == 0) return 12;
+    return 0;
+}
+// Them ngay muon tu dong
+void themNgayMuonSachTuDong(){
+    time_t now;
+    // Lay ngya hien tai
+    time(&now);
+    char thoiGian[30];
+    // chuyen thoi gian thanh chuoi
+    strcpy(thoiGian,ctime(&now));
+
+    char thang[4]; 
+    char ngay[4];
+    int d,y;
+
+    sscanf(thoiGian,"%s %s %d %*s %d", ngay,thang,&d,&y);
+
+    int m = chuyenThangSangSo(thang);
+
+    if(!kiemTraNgayHopLe(d,m,y)){
+        printf("\n>>> LOI: Ngay khong hop le <<<\n");
+        return;
+    }
+
+    sprintf(ngayMuonSach[tongPhieuMuon], "%2d/%2d/%4d", d,m,y);
+
+}
+
+// Them ngay tra du kien tu dong
+void themNgayTraDuKienTuDong(){
+
+}
+// ------------------------------
 
 // Thay doi thong tin
 void suaThongTinPhieuMuon(char timPhieuMuon[]){

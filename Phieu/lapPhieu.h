@@ -15,6 +15,7 @@ void inThongTinPhieuMuonv2(int i);
 void inThongTinSachTheoDocGia(char maDGTim[]);
 // In thong tin toan bo nguoi muon theo ISBN
 void inThongTinDocGiaTheoISBN(char maISBNTim[]);
+
 // ----------------------------
 // Thêm Phiếu Mượn
 void themThongTinPhieuMuon();
@@ -24,6 +25,14 @@ int timPhieuMuonTheoMa(char timPhieuMuon[]);
 // --------------------------
 // Thay doi thong tin Phieu Muon
 void suaThongTinPhieuMuon(char timPhieuMuon[]);
+
+
+// --------------------------
+// Chuyen ten thang sang so
+int chuyenThangSangSo(char *thang);
+// Them ngay muon tu dong
+void themNgayMuonSachTuDong();
+// --------------------------
 
 
 // ============= [PHIEU TRA SACH] =============

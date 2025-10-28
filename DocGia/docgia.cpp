@@ -335,7 +335,7 @@ void xoaDGTheoCMND(char timCMND[]){
 // ===========================
 #pragma region Validation
 
-// Kiểm tra CMND Đọc Giả
+// Kiem tra CMND Doc Gia
 void kiemTraCMNDDocGia(){
     char cmndNew[20]; // cmnd[kí tự]
     bool hopLe = false;
@@ -360,7 +360,7 @@ void kiemTraCMNDDocGia(){
 }
 
 // ===========================
-// Kiểm tra Email
+// Kiem tra Email
 void kiemTraEmail(){
     char emailNew[20];
     bool hopLe = false;
@@ -387,7 +387,7 @@ void kiemTraEmail(){
 }
 
 // ===========================
-// Kiểm tra Ngày Them va Tra
+// Kiem tra Ngay Them va Tra
 int timNamNhuan(int y){
     if((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0)){
         return 29;
@@ -396,7 +396,7 @@ int timNamNhuan(int y){
     }
 }
 
-// Tìm số ngày trong 1 tháng
+// Tim so ngay trong 1 thang
 int timSoNgayTrongThang(int m, int y){
     if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
         return 31;
@@ -408,7 +408,7 @@ int timSoNgayTrongThang(int m, int y){
     }
 }
 
-// Kiểm tra ngày hợp lệ
+// Kiem tra ngay hop le
 bool kiemTraNgayHopLe(int d, int m, int y){
     if(d <=0 || m <=0 || m > 12 || y <= 2003)
         return false;
@@ -417,7 +417,7 @@ bool kiemTraNgayHopLe(int d, int m, int y){
     else return true;
 }
 
-// Hợp lệ khi năm từ 2003 trở đi
+// Hop le khi nam tu 2003 tro di
 void kiemTraNgayLapThe(){
     int d,m,y;
     bool hopLe = false;
@@ -439,7 +439,7 @@ void kiemTraNgayLapThe(){
 
 }
 
-// Het han sau 48 thang kể từ ngày lập thẻ
+// Het han sau 48 thang ke tu ngay lap the
 void themNgayHetHanThe(int d, int m, int y){
     m += 48;
     y += (m-1)/12;
