@@ -5,8 +5,8 @@
 #include "DocGia/docgia.cpp"
 #include "Sach/sach.h"
 #include "Sach/sach.cpp"
-#include "PhieuMuonSach/phieuMuon.h"
-#include "PhieuMuonSach/phieuMuon.cpp"
+#include "Phieu/lapPhieu.h"
+#include "Phieu/lapPhieu.cpp"
 
 
 
