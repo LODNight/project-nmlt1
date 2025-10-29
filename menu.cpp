@@ -335,6 +335,10 @@ void chucNangThongKe(){
         printf("\n\n===== THONG KE CO BAN =====\n");
         printf("1: Thong ke so luong sach trong thu vien\n");
         printf("2: Thong ke so luong sach theo the loai\n");
+        printf("3: Thong ke so luong doc gia\n");
+        printf("4: Thong ke so luong doc gia theo gioi tinh\n");
+        printf("5: Thong ke so sach dang duoc muon\n");
+        printf("6: Thong ke danh sach doc gia bi tre han\n");
         printf("0: Thoat\n");
         printf("=================================\n");
         printf("Chon chuc nang: ");
@@ -349,6 +353,22 @@ void chucNangThongKe(){
             case 2:
                 // Thong ke so luong sach theo the loai
                 inTongSoLuongSachTheoTheLoai();
+                break;
+            case 3:
+                // Thong ke so luong doc gia
+                inTongSoLuongDocGia();
+                break;
+            case 4:
+                // Thong ke so luong doc gia theo gioi tinh
+                inTongSoLuongDocGiaTheoGioiTinh();
+                break;
+            case 5:
+                // Thong ke so sach dang duoc muon
+                
+                break;
+            case 6:
+                // Thong ke danh sach doc gia bi tre han
+                
                 break;
             default:
                 break;

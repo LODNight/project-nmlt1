@@ -9,7 +9,7 @@
 char maDG[MAX][7];         // Không được trùng
 char tenDG[MAX][40];        
 char cmnd[MAX][12];         // Không được trùng
-char gioiTinh[MAX][10];
+int gioiTinh[MAX];
 char email[MAX][40];        // Không được trùng
 char diachi[MAX][100];
 char ngayLapThe[MAX][20];
@@ -34,9 +34,9 @@ void napDuLieuDGMau() {
     strncpy(cmnd[1], "987654321", sizeof(cmnd[1]) - 1);
     strncpy(cmnd[2], "01234", sizeof(cmnd[2]) - 1);
 
-    strncpy(gioiTinh[0], "Male", sizeof(gioiTinh[0]) - 1);
-    strncpy(gioiTinh[1], "Female", sizeof(gioiTinh[1]) - 1);
-    strncpy(gioiTinh[2], "Male", sizeof(gioiTinh[2]) - 1);
+    gioiTinh[0] = 1;
+    gioiTinh[1] = 0;
+    gioiTinh[2] = 1;
 
     strncpy(email[0], "nguyenVanA@gmail.com", sizeof(email[0]) - 1);
     strncpy(email[1], "tranThiB@gmail.com", sizeof(email[1]) - 1);
@@ -55,43 +55,12 @@ void napDuLieuDGMau() {
     strncpy(ngayHetHanThe[2], "20/05/2028", sizeof(ngayHetHanThe[2]) - 1);
 }
 
-// =====[IN THONG TIN]=======
+// =======[THEM THONG TIN]=======
 // --------------------------
-// In thong tin tat ca Doc Gia
-void inThongTinToanBoDocGia(){
-    printf("\n----------------------------------\n");
-    printf("\n====== DANH SACH [DOC GIA] ======\n");
-    if(tongSoDG == 0){
-        printf("Chua co doc gia");
-        return;
-    }
-    for(int i=0; i < tongSoDG; i++){
-        printf("%05s | %20s | %12s | %20s | %10s | %10s \n",maDG[i], tenDG[i],cmnd[i],email[i],ngayLapThe[i],ngayHetHanThe[i]);
-    }
-    printf("\n----------------------------------\n");
-}
-// In thong tin Doc Gia theo ten
-// In 1 Doc Gia 
-void inThongTinDocGiav1(int i){
-    printf("\tMa DG:         | %s\n", maDG[i]);
-    printf("\tTen DG:        | %s\n", tenDG[i]);
-    printf("\tCMND:          | %s\n", cmnd[i]);
-    printf("\tGioi tinh:     | %s\n", gioiTinh[i]);
-    printf("\tEmail:         | %s\n", email[i]);
-    printf("\tDia chi:       | %s\n", diachi[i]);
-    printf("\tNgay Lap The:  | %s\n", ngayLapThe[i]);
-    printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);  
-}
-
-// In nhieu Doc Gia 
-void inThongTinDocGiav2(int i){
-    printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
-}
-
-// ===========================
 // Thêm thong tin cua Doc Gia
 void themThongTinDocGia(){
     int d,m,y;
+    bool hopLe = false;
     if(tongSoDG >= MAX){
         printf(">> Thu vien da day, khong the them doc gia moi <<\n");
     }
@@ -99,7 +68,6 @@ void themThongTinDocGia(){
     printf("\n====== THEM DOC GIA MOI ======\n");
     // Thêm tên DG
     printf("Them ho ten Doc Gia: ");
-    getchar();
     fgets(tenDG[tongSoDG],40,stdin);
     tenDG[tongSoDG][strcspn(tenDG[tongSoDG],"\n")] = '\0';
 
@@ -107,8 +75,18 @@ void themThongTinDocGia(){
     kiemTraCMNDDocGia();
 
     // Them Gioi Tinh
-    printf("Them Gioi tinh (Male/Female/Other):  ");
-    scanf("%s",gioiTinh[tongSoDG]);
+    int gt = 0;
+    do{
+        printf("Them Gioi tinh (0:Nam, 1:Nu, 2:Khac):  ");
+        scanf("%d",&gt);
+        if(gt >= 0 && gt <= 2){
+            gioiTinh[tongSoDG] = gt;
+            hopLe = true;
+        }else{
+            printf("\n>>> LOI: Lua chon khong hop le <<<\n");
+        }
+    } while(!hopLe);
+    
     
     // Them Email
     kiemTraEmail();
@@ -130,7 +108,8 @@ void themThongTinDocGia(){
     tongSoDG++;
 }
 
-// =====[TIM KIEM]=======
+
+// =======[TIM KIEM]=======
 // --------------------------
 // Tim Doc Gia theo CMND  return vi tri 
 int timDocGiaTheoCMND(char timCMND[]){
@@ -182,6 +161,42 @@ void timCMNDDocGiaTheoMaDG(char maDGtim[], char ketqua[]){
     }
 }
 
+
+// =======[IN THONG TIN]=======
+// --------------------------
+// In thong tin tat ca Doc Gia
+void inThongTinToanBoDocGia(){
+    printf("\n----------------------------------\n");
+    printf("\n====== DANH SACH [DOC GIA] ======\n");
+    if(tongSoDG == 0){
+        printf("Chua co doc gia");
+        return;
+    }
+    for(int i=0; i < tongSoDG; i++){
+        printf("%05s | %20s | %12s | %20s | %5d | %10s | %10s \n",
+        maDG[i], tenDG[i],cmnd[i],email[i],gioiTinh[i],ngayLapThe[i],ngayHetHanThe[i]);
+    }
+    printf("\n----------------------------------\n");
+}
+
+// In thong tin Doc Gia theo ten
+// In 1 Doc Gia 
+void inThongTinDocGiav1(int i){
+    printf("\tMa DG:         | %s\n", maDG[i]);
+    printf("\tTen DG:        | %s\n", tenDG[i]);
+    printf("\tCMND:          | %s\n", cmnd[i]);
+    printf("\tGioi tinh:     | %d\n", gioiTinh[i]);
+    printf("\tEmail:         | %s\n", email[i]);
+    printf("\tDia chi:       | %s\n", diachi[i]);
+    printf("\tNgay Lap The:  | %s\n", ngayLapThe[i]);
+    printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);  
+}
+
+// In nhieu Doc Gia 
+void inThongTinDocGiav2(int i){
+    printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
+}
+
 // IN Thong tin Doc Gia sau khi tim theo CMND
 void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
     int vitriDocGia = timDocGiaTheoCMND(timCMND);
@@ -208,13 +223,51 @@ void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
         printf("\n>> Khong tim thay doc gia <<\n");
 }
 
+// IN tong so luong Doc Gia
+void inTongSoLuongDocGia(){
+    printf("\n--------- THONG KE SO LUONG DOC GIA ---------\n");
+    if(tongSoDG < 1){
+        printf("\n>>> Khong tim thay doc gia <<<\n");
+        return;
+    }
+    printf("Tong so Doc Gia hien dang co la: %d\n", tongSoDG);
+}
+
+// IN tong so luong Doc Gia theo gioi tinh
+void inTongSoLuongDocGiaTheoGioiTinh(){
+    printf("\n--------- THONG KE SO LUONG DOC GIA ---------\n");
+    if(tongSoDG < 1){
+        printf("\n>>> Khong tim thay doc gia <<<\n");
+        return;
+    }
+    int tongNam = 0;
+    int tongNu = 0;
+    int tongKhac = 0;
+    for(int i = 0; i < tongSoDG; i++){
+        if(gioiTinh[i] == 0) tongNu++;
+        if(gioiTinh[i] == 1) tongNam++;
+        if(gioiTinh[i] == 2) tongKhac++;
+    }
+
+    printf("Tong so Doc Gia hien dang co la: %d\n", tongSoDG);
+    printf("\n------------------------------\n");
+    printf("Trong do co\n");
+    printf("- NAM: %d\n", tongNam);
+    printf("- NU: %d\n", tongNu);
+    printf("- KHAC: %d\n", tongKhac);
+    printf("------------------------------\n");
+}
+
+
 // ========[CHINH SUA]========
-// ===========================
+// --------------------------
 // Chinh sua thong tin Doc Gia
 void suaThongTinDocGia(char timCMND[]){
     // Tìm Đọc Giả
     int vitriDG = timDocGiaTheoCMND(timCMND);
-    if(vitriDG == 0) return;
+    int d,m,y;
+    bool hopLe = false;
+    if(vitriDG == -1) return;
     else{
         printf("\n>> Bat dau sua thong tin Doc Gia <<\n");
         // nếu để khai báo int choice; thì sẽ có khả năng random là 0
@@ -237,29 +290,77 @@ void suaThongTinDocGia(char timCMND[]){
             
             switch (choice)
             {
-            case 1:
-                // Ten
-                printf("Ten: %s", tenDG[vitriDG]);
-                printf("Nhap ho ten moi: ");
-                fgets(tenDG[vitriDG],sizeof(tenDG[vitriDG]), stdin);
-                // Xóa kí tự "\n"
-                tenDG[vitriDG][strcspn(tenDG[vitriDG],"\n")] = '\0';
+            case 1:{
+                char ten[MAX];
+                do{
+                    // Ten
+                    printf("Ten: %s\n", tenDG[vitriDG]);
+                    printf("Nhap ho ten moi: ");
+                    fgets(ten,sizeof(ten), stdin);
+                    // Xóa kí tự "\n"
+                    ten[strcspn(ten,"\n")] = '\0';
+
+                    if(ten != NULL){
+                        strcpy(tenDG[vitriDG],ten);
+                        hopLe = true;
+                    }
+                    else{
+                        printf("\n>>> LOI: Khong hop le. Vui long thu lai <<<\n");
+                    }
+                } while(!hopLe);
                 break;
-            case 2:
+            }
+            case 2:{
                 // CMND
-                printf("CMND: %s", cmnd[vitriDG]);
-                printf("Nhap ho ten moi: ");
-                scanf("%d",cmnd[vitriDG]);
+                char c[MAX];
+                do{
+                    // Ten
+                    printf("CMND: %s\n", cmnd[vitriDG]);
+                    printf("Nhap CMND moi: ");
+                    fgets(c,sizeof(c), stdin);
+                    // Xóa kí tự "\n"
+                    c[strcspn(c,"\n")] = '\0';
+
+                    if(c != NULL){
+                        strcpy(cmnd[vitriDG],c);
+                        hopLe = true;
+                    }
+                    else{
+                        printf("\n>>> LOI: Khong hop le. Vui long thu lai <<<\n");
+                    }
+                } while(!hopLe);
                 break;
-            case 3:
+            }
+            case 3:{
                 // Gioi Tinh
-                printf("Gioi Tinh: %s", gioiTinh[vitriDG]);
-                printf("Them Gioi tinh Moi(Male/Female/Other):  ");
-                scanf("%s",gioiTinh[tongSoDG]);
+                printf("Gioi tinh hien tai la: ");
+                if(gioiTinh[vitriDG] == 0) 
+                    printf("Nam\n");
+                else if(gioiTinh[vitriDG] == 1) 
+                    printf("Nu\n");
+                else if(gioiTinh[vitriDG] == 2) 
+                    printf("Khac\n");
+                else printf("Chua co thong tin\n");
+
+                int gt = 0;
+                bool hopLe = false;
+                do{
+                    printf("Them Gioi tinh (0:Nam, 1:Nu, 2:Other):  ");
+                    scanf("%d",&gt);
+                    getchar();
+                    if(gt >= 0 && gt <=2){
+                        gioiTinh[vitriDG] = gt;
+                        hopLe = true;
+                    }
+                    else{
+                        printf("\n>>> LOI: Khong hop le. Vui long thu lai <<<\n");
+                    }
+                } while(!hopLe);
                 break;
+            }
             case 4:
                 // Email
-                printf("Emai: %s", email[vitriDG]);
+                printf("Emai: %s\n", email[vitriDG]);
                 printf("Nhap email moi: ");
                 fgets(email[vitriDG],sizeof(email[vitriDG]), stdin);
                 // Xóa kí tự "\n"
@@ -267,7 +368,7 @@ void suaThongTinDocGia(char timCMND[]){
                 break;
             case 5:
                 // Dia chi
-                printf("Dia chi: %s", diachi[vitriDG]);
+                printf("Dia chi: %s\n", diachi[vitriDG]);
                 printf("Nhap dia chi moi: ");
                 fgets(diachi[vitriDG],sizeof(diachi[vitriDG]), stdin);
                 // Xóa kí tự "\n"
@@ -275,14 +376,14 @@ void suaThongTinDocGia(char timCMND[]){
                 break;
             case 6:
                 // Ngay lap the
-                printf("Ngay lap the: %s", ngayLapThe[vitriDG]);
+                printf("Ngay lap the: %s\n", ngayLapThe[vitriDG]);
                 printf("Nhap Ngay Lap The Moi (dd/mm/yyyy): ");
                 scanf("%d/%d/%d",&d,&m,&y);
                 kiemTraNgayHopLe(d, m, y);
                 break;
             case 7:
                 // Ngay het han the
-                printf("Ngay het han the: %s", ngayHetHanThe[vitriDG]);
+                printf("Ngay het han the: %s\n", ngayHetHanThe[vitriDG]);
                 printf("Nhap Ngay het han the moi (dd/mm/yyyy): ");
                 scanf("%d/%d/%d",&d,&m,&y);
                 kiemTraNgayHopLe(d, m, y);
@@ -296,11 +397,6 @@ void suaThongTinDocGia(char timCMND[]){
 
         }while(choice != 0);
     }
-    // Chọn nội dung cần sửa
-
-    
-    // Sửa Đọc giả
-
 }
 
 // Xoa Thong tin Doc Gia
@@ -316,7 +412,7 @@ void xoaDGTheoCMND(char timCMND[]){
         for(int i = vitriDG; i < tongSoDG - 1; i++){
             strcpy(maDG[i],maDG[i+1]);
             strcpy(tenDG[i],tenDG[i+1]);
-            strcpy(gioiTinh[i],gioiTinh[i+1]);
+            gioiTinh[i]=gioiTinh[i+1];
             strcpy(email[i],email[i+1]);
             strcpy(diachi[i],diachi[i+1]);
             strcpy(ngayLapThe[i],ngayLapThe[i+1]);
@@ -333,8 +429,9 @@ void xoaDGTheoCMND(char timCMND[]){
     }
 }
 
+
 // =======[VALIDATION]=======
-// ===========================
+// --------------------------
 #pragma region Validation
 
 // Kiem tra CMND Doc Gia
@@ -361,7 +458,6 @@ void kiemTraCMNDDocGia(){
     }while(!hopLe);
 }
 
-// ===========================
 // Kiem tra Email
 void kiemTraEmail(){
     char emailNew[20];
@@ -388,7 +484,6 @@ void kiemTraEmail(){
 
 }
 
-// ===========================
 // Kiem tra Ngay Them va Tra
 int timNamNhuan(int y){
     if((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0)){
@@ -397,6 +492,7 @@ int timNamNhuan(int y){
         return 28;
     }
 }
+
 // Tim so ngay trong 1 thang
 int timSoNgayTrongThang(int m, int y){
     if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
@@ -408,6 +504,7 @@ int timSoNgayTrongThang(int m, int y){
         return timNamNhuan(y);
     }
 }
+
 // Kiem tra ngay hop le
 bool kiemTraNgayHopLe(int d, int m, int y){
     if(d <=0 || m <=0 || m > 12 || y <= 2003)
@@ -416,6 +513,7 @@ bool kiemTraNgayHopLe(int d, int m, int y){
         return  false;
     else return true;
 }
+
 // Hop le khi nam tu 2003 tro di
 void kiemTraNgayLapThe(){
     int d,m,y;
