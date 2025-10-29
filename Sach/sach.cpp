@@ -86,6 +86,11 @@ void inThongTinSachv2(int i){
     printf("%5s | %20s | %d | %d \n",
     ISBN[i], tenSach[i], giaSach[i][1], soLuongSach[i][1]);    
 }
+// In nhieu Sach khong co so luong sach
+void inThongTinSachv3(int i){ 
+    printf("%5s | %20s | %d\n",
+    ISBN[i], tenSach[i], giaSach[i][1]);    
+}
 
 // Tong so luong Sach
 void inTongSoLuongSach(){

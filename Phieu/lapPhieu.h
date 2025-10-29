@@ -20,6 +20,8 @@ void inThongTinPhieuMuonv2(int i);
 void inThongTinSachTheoDocGia(char maDGTim[]);
 // In thong tin toan bo nguoi muon theo ISBN
 void inThongTinDocGiaTheoISBN(char maISBNTim[]);
+// In so luong sach dang muon (slSachMuon - SlSachTra)
+void inSoLuongSachMuon();
 
 // ----------------------------
 // Thêm Phiếu Mượn

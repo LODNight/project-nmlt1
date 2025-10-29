@@ -11,7 +11,8 @@
 void menuChucNang(){
     int choice = -1;
     do{
-        printf("\n===== MENU CHUC NANG =====\n");
+        printf("\n----------------------------\n");
+        printf("\n\n===== MENU CHUC NANG =====\n");
         printf("1: Quan li Doc Gia\n");
         printf("2: Quan li Sach\n");
         printf("3: Lap phieu muon sach\n");
@@ -364,7 +365,7 @@ void chucNangThongKe(){
                 break;
             case 5:
                 // Thong ke so sach dang duoc muon
-                
+                inSoLuongSachMuon();
                 break;
             case 6:
                 // Thong ke danh sach doc gia bi tre han

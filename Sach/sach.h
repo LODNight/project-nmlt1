@@ -11,6 +11,8 @@ void inThongTinToanBoSach();
 void inThongTinSachv1(int i);
 // In Thong tin Nhieu Sach
 void inThongTinSachv2(int i);
+// In nhieu Sach khong co so luong sach
+void inThongTinSachv3(int i);
 // Tong so luong Sach
 void inTongSoLuongSach();
 // Tong so luong Sach theo the loai Sach
