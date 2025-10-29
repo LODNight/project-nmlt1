@@ -87,6 +87,17 @@ void inThongTinSachv2(int i){
     ISBN[i], tenSach[i], giaSach[i][1], soLuongSach[i][1]);    
 }
 
+// Tong so luong Sach
+void inTongSoLuongSach(){
+    printf("\n--------- SO LUONG SACH ---------\n");
+    printf("Tong so Sach la: %d\n", tongSach);
+    printf("Sach cac loai hien co:\n");
+    printf("\tmaSach |             ten Sach | So luong Sach\n");
+    for(int i = 0; i < tongSach; i++){
+        printf("\t%6s | %20s | %9d\n", ISBN[i],tenSach[i],soLuongSach[i][1]);
+    }
+}
+
 // =======[TIM KIEM]=========
 // --------------------------
 // Tim sach theo ISBN

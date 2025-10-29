@@ -11,6 +11,8 @@ void inThongTinToanBoSach();
 void inThongTinSachv1(int i);
 // In Thong tin Nhieu Sach
 void inThongTinSachv2(int i);
+// Tong so luong Sach
+void inTongSoLuongSach();
 // ===========================
 // In Thon tin Sach sau khi tim thay ma ISBN
 void inThongTinSachSauKhiTimThayISBN(char timISBN[]);

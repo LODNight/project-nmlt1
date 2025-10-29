@@ -469,7 +469,7 @@ void timPhieuMuonTheoCMND(char timCMND[]){
         
 }
 
-// them phieu Tra Sach thuc te
+// Them phieu Tra Sach thuc te
 void themPhieuTraSach(){
     char timCMND [20];
     char maPhieuMuonCanTim[5];
@@ -541,8 +541,12 @@ int tinhKhoangNgayDuKienVaThucTe(int d1,int m1,int y1,int d2,int m2,int y2){
         d1++;
         ngay++;
         if(d1 > timSoNgayTrongThang(m1,y1)){
-            d1 = 1; m1++;
-            if(m1 > 12){ m1 = 1; y1++; }
+            d1 = 1; 
+            m1++;
+            if(m1 > 12){ 
+                m1 = 1; 
+                y1++; 
+            }
         }
         if(y1 == y2 && m1 == m2 && d1 == d2) break;
     }

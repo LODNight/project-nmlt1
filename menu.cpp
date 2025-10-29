@@ -329,6 +329,25 @@ void chucNangPhieuTra(){
 
 // Menu Xu ly chuc nang Thong Ke
 void chucNangThongKe(){
-    printf("\n===== THONG KE CO BAN =====\n");
-
+    int choice = -1;
+    char timCMND[20];
+    do{
+        printf("\n===== THONG KE CO BAN =====\n");
+        printf("1: Thong ke so luong sach trong thu vien\n");
+        printf("0: Thoat\n");
+        printf("=================================\n");
+        printf("Chon chuc nang: ");
+        scanf("%d",&choice);
+        
+         switch (choice)
+        {
+            case 1:
+                // Thong ke so luong sach trong thu vien
+                inTongSoLuongSach();
+                break;
+            default:
+                break;
+        }
+    }while(choice != 0);
 }
+
