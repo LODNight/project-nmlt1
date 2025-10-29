@@ -13,6 +13,8 @@ void inThongTinSachv1(int i);
 void inThongTinSachv2(int i);
 // Tong so luong Sach
 void inTongSoLuongSach();
+// Tong so luong Sach theo the loai Sach
+void inTongSoLuongSachTheoTheLoai();
 // ===========================
 // In Thon tin Sach sau khi tim thay ma ISBN
 void inThongTinSachSauKhiTimThayISBN(char timISBN[]);

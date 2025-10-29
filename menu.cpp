@@ -332,8 +332,9 @@ void chucNangThongKe(){
     int choice = -1;
     char timCMND[20];
     do{
-        printf("\n===== THONG KE CO BAN =====\n");
+        printf("\n\n===== THONG KE CO BAN =====\n");
         printf("1: Thong ke so luong sach trong thu vien\n");
+        printf("2: Thong ke so luong sach theo the loai\n");
         printf("0: Thoat\n");
         printf("=================================\n");
         printf("Chon chuc nang: ");
@@ -344,6 +345,10 @@ void chucNangThongKe(){
             case 1:
                 // Thong ke so luong sach trong thu vien
                 inTongSoLuongSach();
+                break;
+            case 2:
+                // Thong ke so luong sach theo the loai
+                inTongSoLuongSachTheoTheLoai();
                 break;
             default:
                 break;

@@ -89,14 +89,56 @@ void inThongTinSachv2(int i){
 
 // Tong so luong Sach
 void inTongSoLuongSach(){
-    printf("\n--------- SO LUONG SACH ---------\n");
+    printf("\n--------- THONG KE TOAN BO SO LUONG SACH ---------\n");
     printf("Tong so Sach la: %d\n", tongSach);
     printf("Sach cac loai hien co:\n");
-    printf("\tmaSach |             ten Sach | So luong Sach\n");
+    printf("\tmaSach |        ten Sach      | So luong  | The loai\n");
     for(int i = 0; i < tongSach; i++){
-        printf("\t%6s | %20s | %9d\n", ISBN[i],tenSach[i],soLuongSach[i][1]);
+        printf("\t%6s | %20s | %9d | %s\n", ISBN[i],tenSach[i],soLuongSach[i][1], theLoai[i]);
     }
 }
+
+// Tong so luong Sach theo the loai Sach
+void inTongSoLuongSachTheoTheLoai(){
+    printf("\n--------- THONG KE SO LUONG SACH THEO THE LOAI ---------\n");
+    int dem = 0;
+    int tong = 0;
+    char theLoaiCanTim[50];
+
+    getchar();
+    printf("Nhap ten the loai: ");
+    fgets(theLoaiCanTim,50,stdin);
+    theLoaiCanTim[strcspn(theLoaiCanTim,"\n")] = '\0';
+
+    // Kiem tra bien dem
+    for(int i = 0; i < tongSach; i++){
+        if(strstr(theLoai[i],theLoaiCanTim) != NULL){
+            dem++;
+            tong += soLuongSach[i][1];
+        }
+    }
+
+    // Neu bien dem > 1
+    if(dem >= 1){
+        printf("------------------------------------------------\n");
+        printf("\nSach theo the loai [%s] la: %d\n", theLoaiCanTim,dem);
+        printf("Tong so luong sach la: %d\n", tong);
+        printf("\nSach cac loai hien co:\n");
+        printf("\tmaSach |        ten Sach      | So luong Sach\n");
+        for(int i = 0; i < tongSach; i++){
+            if(strstr(theLoai[i],theLoaiCanTim) != NULL){
+                printf("\t%6s | %20s | %9d\n", ISBN[i],tenSach[i],soLuongSach[i][1]);
+            }
+        }
+        printf("------------------------------------------------\n");
+    } else {
+        printf("\n>>> LOI: Khong tim thay sach. <<<\n");
+        
+    }
+   
+    
+}
+
 
 // =======[TIM KIEM]=========
 // --------------------------
