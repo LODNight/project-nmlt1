@@ -79,8 +79,9 @@ void inThongTinToanBoPhieuMuon(){
         printf("\n>>> Chua co Phieu Muon <<<\n");
         return;
     }
+    printf("  ma   | ma DG | ma Sach |  SL   | Ngay muon | Ngay tra du kien | Ngay tra thuc te\n");
     for(int i=0; i < tongPhieuMuon; i++){
-        printf("%4s | %4s | %4s | %5d | %10s | %10s | %10s \n",
+        printf("%6s | %5s | %5s   | %5d | %10s | %13s | %13s \n",
         maPhieuMuon[i], maDGMuon[i], maISBNMuon[i], soluongSachMuon[i], ngayMuonSach[i], ngayTraSachDuKien[i],ngayTraSachThucTe[i]);
     }
     printf("\n----------------------------------\n");
@@ -580,4 +581,57 @@ int tinhSoNgayTre(char duKien[], char thucTe[]){
     if(y2 < y1 || (y2 == y1&& m2<m1) || (y2 == y1 && m2 == m1 && d2 <= d1))
         return 0; 
     return tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
+}
+
+// Thong ke Danh Sach doc gia tre han
+void thongKeDanhSachDocGiaTreHan(){
+    int d1,m1,y1,d2,m2,y2;
+    bool hopLe = false;
+    char cmndTim[MAX];
+    int vitriDocGia;
+    int dem=0;
+    printf("\n--------- THONG KE SO LUONG SACH DANG DUOC MUON ---------\n");
+     do{
+        printf("Them ngay hien tai (dd/mm/yyyy): ");
+        scanf("%d/%d/%d",&d1,&m1,&y1);
+       
+        hopLe = kiemTraNgayHopLe(d1,m1,y1);
+        
+        if(!hopLe) 
+            printf("\n>> Ngay ko hop le. Vui long nhap lai <<\n");
+    } while(!hopLe);
+
+    // Check co so luong hay ko
+    for(int i=0; i < tongPhieuMuon; i++){
+        tachNgay(ngayTraSachDuKien[i],d2,m2,y2);
+        int tre = tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
+        if(tre >= 1){
+            printf("\nmaDGMuon: %s",maDGMuon[i]);
+            printf("\ncmnd: %s",cmndTim);
+            printf("\n----------");
+            timCMNDDocGiaTheoMaDG(maDGMuon[i],cmndTim);
+            inThongTinDocGiaSauKhiTimTheoCMND(cmndTim);
+            inThongTinSachSauKhiTimThayISBNv2(maISBNMuon[i]);
+            dem++;
+        }
+    }
+
+    // if(dem>0){
+    //     printf("------------------------------------------------\n");
+    //     for(int i=0; i < tongPhieuMuon; i++){
+    //         tachNgay(ngayTraSachDuKien[i],d2,m2,y2);
+    //         int tre = tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
+    //         if(tre >= 1){
+    //             timCMNDDocGiaTheoMaDG(maDGMuon[i],cmndTim);
+    //             inThongTinDocGiaSauKhiTimTheoCMND(cmndTim);
+    //         }
+    //     }
+    //     printf("------------------------------------------------\n");
+    // } else {
+    //     printf("\n Khong tim thay Doc gia tre han \n");
+    // }
+
+
+
+
 }

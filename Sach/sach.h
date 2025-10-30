@@ -18,8 +18,10 @@ void inTongSoLuongSach();
 // Tong so luong Sach theo the loai Sach
 void inTongSoLuongSachTheoTheLoai();
 // ===========================
-// In Thon tin Sach sau khi tim thay ma ISBN
-void inThongTinSachSauKhiTimThayISBN(char timISBN[]);
+// In Thong tin Sach sau khi tim thay ma ISBN v1 (theo hang doc)
+void inThongTinSachSauKhiTimThayISBNv1(char timISBN[]);
+// In Thon tin Sach sau khi tim thay ma ISBN v2 (theo hang ngang)
+void inThongTinSachSauKhiTimThayISBNv2(char timISBN[]);
 void inThongTinSachSauKhiTimThayTen(char timSach[]);
 
 // ==========================

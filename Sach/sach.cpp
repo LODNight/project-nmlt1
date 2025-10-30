@@ -195,13 +195,27 @@ int timGiaSachSachTheoISBN(char timISBN[]){
 }
 
 // --------------------------
-// In Thong tin Sach sau khi tim thay ma ISBN
-void inThongTinSachSauKhiTimThayISBN(char timISBN[]){
+// In Thong tin Sach sau khi tim thay ma ISBN v1 (theo hang doc)
+void inThongTinSachSauKhiTimThayISBNv1(char timISBN[]){
     int vitriSach = timSachTheoISBN(timISBN);
     if(vitriSach >=0 ){
         printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
         printf("------------------------------------------\n");
         inThongTinSachv1(vitriSach);
+       printf("------------------------------------------\n");
+    }
+    if(vitriSach < 0)  
+        printf("\n>>> Khong tim thay sach <<< \n");
+}
+
+// --------------------------
+// In Thong tin Sach sau khi tim thay ma ISBN v2 (theo hang ngang)
+void inThongTinSachSauKhiTimThayISBNv2(char timISBN[]){
+    int vitriSach = timSachTheoISBN(timISBN);
+    if(vitriSach >=0 ){
+        printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
+        printf("------------------------------------------\n");
+        inThongTinSachv2(vitriSach);
        printf("------------------------------------------\n");
     }
     if(vitriSach < 0)  

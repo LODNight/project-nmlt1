@@ -192,7 +192,7 @@ void chucNangSach(){
                 fgets(timISBN, 5, stdin);
                 timISBN[strcspn(timISBN,"\n")] = '\0';
                 
-                inThongTinSachSauKhiTimThayISBN(timISBN);
+                inThongTinSachSauKhiTimThayISBNv1(timISBN);
                 choice = -1;
                 break;
             case 6:
@@ -372,7 +372,7 @@ void chucNangThongKe(){
                 break;
             case 6:
                 // Thong ke danh sach doc gia bi tre han
-                
+                thongKeDanhSachDocGiaTreHan();
                 break;
             default:
                 break;

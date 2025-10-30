@@ -65,4 +65,6 @@ int tinhKhoangNgayDuKienVaThucTe(int d1,int m1,int y1,int d2,int m2,int y2);
 // Tinh so ngay tra tre
 int tinhSoNgayTre(char duKien[], char thucTe[]);
 
+// Thong ke Danh Sach doc gia tre han
+void thongKeDanhSachDocGiaTreHan();
 #endif
