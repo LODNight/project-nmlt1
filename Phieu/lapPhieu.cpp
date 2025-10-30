@@ -606,32 +606,27 @@ void thongKeDanhSachDocGiaTreHan(){
         tachNgay(ngayTraSachDuKien[i],d2,m2,y2);
         int tre = tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
         if(tre >= 1){
-            printf("\nmaDGMuon: %s",maDGMuon[i]);
-            printf("\ncmnd: %s",cmndTim);
-            printf("\n----------");
-            timCMNDDocGiaTheoMaDG(maDGMuon[i],cmndTim);
-            inThongTinDocGiaSauKhiTimTheoCMND(cmndTim);
-            inThongTinSachSauKhiTimThayISBNv2(maISBNMuon[i]);
             dem++;
         }
     }
 
-    // if(dem>0){
-    //     printf("------------------------------------------------\n");
-    //     for(int i=0; i < tongPhieuMuon; i++){
-    //         tachNgay(ngayTraSachDuKien[i],d2,m2,y2);
-    //         int tre = tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
-    //         if(tre >= 1){
-    //             timCMNDDocGiaTheoMaDG(maDGMuon[i],cmndTim);
-    //             inThongTinDocGiaSauKhiTimTheoCMND(cmndTim);
-    //         }
-    //     }
-    //     printf("------------------------------------------------\n");
-    // } else {
-    //     printf("\n Khong tim thay Doc gia tre han \n");
-    // }
+    if(dem>0){
+        printf("------------------------------------------------\n");
+        for(int i=0; i < tongPhieuMuon; i++){
+            tachNgay(ngayTraSachDuKien[i],d2,m2,y2);
+            int tre = tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
+            if(tre >= 1){
+                timCMNDDocGiaTheoMaDG(maDGMuon[i],cmndTim);
 
-
-
+                inThongTinDocGiaSauKhiTimTheoCMNDv2(cmndTim);
+                inThongTinSachSauKhiTimThayISBNv2(maISBNMuon[i]);
+                printf("\n=====================================\n");
+            
+            }
+        }
+        printf("------------------------------------------------\n");
+    } else {
+        printf("\n Khong tim thay Doc gia tre han \n");
+    }
 
 }

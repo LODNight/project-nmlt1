@@ -262,7 +262,7 @@ void timCMNDDocGiaTheoMaDG(char maDGtim[], char ketqua[]){
 }
 
 
-// IN Thong tin Doc Gia sau khi tim theo CMND
+// IN Thong tin Doc Gia sau khi tim theo CMND (theo hang doc)
 void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
     int vitriDocGia = timDocGiaTheoCMND(timCMND);
     if(vitriDocGia >= 0){
@@ -275,6 +275,16 @@ void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
         printf("\n>> Khong tim thay doc gia <<\n");
 }
 
+// IN Thong tin Doc Gia sau khi tim theo CMND (theo hang ngang)
+void inThongTinDocGiaSauKhiTimTheoCMNDv2(char timCMND[]){
+    int vitriDocGia = timDocGiaTheoCMND(timCMND);
+    if(vitriDocGia >= 0){
+        printf("\n>> Tim Thay Doc Gia <<\n");
+        inThongTinDocGiav2(vitriDocGia);
+    }
+    if(vitriDocGia < 0) 
+        printf("\n>> Khong tim thay doc gia <<\n");
+}
 // IN Thong tin Doc Gia sau khi tim theo ten
 void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
     int vitriDocGia = timDocGiaTheoMaDG(maDGtim);

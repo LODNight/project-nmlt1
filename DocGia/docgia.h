@@ -19,6 +19,8 @@ void inThongTinDocGiav3(int i);
 void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]);
 // IN Thong tin Doc Gia sau khi tim theo CMND
 void inThongTinDocGiaSauKhiTimTheoCMND(char maDGtim[]);
+// IN Thong tin Doc Gia sau khi tim theo CMND (theo hang ngang)
+void inThongTinDocGiaSauKhiTimTheoCMNDv2(char timCMND[]);
 // IN tong so luong Doc Gia
 void inTongSoLuongDocGia();
 // IN tong so luong Doc Gia theo gioi tinh

@@ -213,10 +213,8 @@ void inThongTinSachSauKhiTimThayISBNv1(char timISBN[]){
 void inThongTinSachSauKhiTimThayISBNv2(char timISBN[]){
     int vitriSach = timSachTheoISBN(timISBN);
     if(vitriSach >=0 ){
-        printf("\n\n>>> Tim thay Sach voi cac thong tin la <<<\n");
-        printf("------------------------------------------\n");
+        printf("\n>>> Tim thay Sach voi cac thong tin la <<<\n");
         inThongTinSachv2(vitriSach);
-       printf("------------------------------------------\n");
     }
     if(vitriSach < 0)  
         printf("\n>>> Khong tim thay sach <<< \n");
