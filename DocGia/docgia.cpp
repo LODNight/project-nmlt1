@@ -108,6 +108,97 @@ void themThongTinDocGia(){
     tongSoDG++;
 }
 
+// =======[IN THONG TIN]=======
+// --------------------------
+// In thong tin tat ca Doc Gia
+void inThongTinToanBoDocGia(){
+    printf("\n----------------------------------\n");
+    printf("\n====== DANH SACH [DOC GIA] ======\n");
+    if(tongSoDG == 0){
+        printf("Chua co doc gia");
+        return;
+    }
+    printf("Ma DG |    ho va ten    |    cmnd    |         email        | gioi tinh |     dia chi       |  ngay lap  | ngay het han" );
+    for(int i=0; i < tongSoDG; i++){
+        inThongTinDocGiav3(i);
+    }
+    printf("\n----------------------------------\n");
+}
+
+// In thong tin Doc Gia theo ten
+// In 1 Doc Gia 
+void inThongTinDocGiav1(int i){
+    printf("\tMa DG:         | %s\n", maDG[i]);
+    printf("\tTen DG:        | %s\n", tenDG[i]);
+    printf("\tCMND:          | %s\n", cmnd[i]);
+
+    if(gioiTinh[i] == 0) printf("| Nam ");
+    else if(gioiTinh[i] == 1) printf("| Nu ");
+    else if(gioiTinh[i] == 2) printf("| Khac "); 
+
+    printf("\tEmail:         | %s\n", email[i]);
+    printf("\tDia chi:       | %s\n", diachi[i]);
+    printf("\tNgay Lap The:  | %s\n", ngayLapThe[i]);
+    printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);  
+}
+
+// In nhieu Doc Gia 
+void inThongTinDocGiav2(int i){
+    printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
+}
+
+// In nhieu Doc Gia voi day du thong tin 
+void inThongTinDocGiav3(int i){
+    printf("\n%05s ", maDG[i]);
+    printf("| %15s ", tenDG[i]);
+    printf("| %10s ", cmnd[i]);
+    printf("| %20s ", email[i]);
+    // Gioi tinh
+    if(gioiTinh[i] == 0) printf("|    Nam    ");
+    else if(gioiTinh[i] == 1) printf("|    Nu     ");
+    else if(gioiTinh[i] == 2) printf("|    Khac  ");    
+    
+    printf("| %17s ", diachi[i]);
+    printf("| %10s ", ngayLapThe[i]);
+    printf("| %10s ", ngayHetHanThe[i]);
+}
+
+
+// IN tong so luong Doc Gia
+void inTongSoLuongDocGia(){
+    printf("\n--------- THONG KE SO LUONG DOC GIA ---------\n");
+    if(tongSoDG < 1){
+        printf("\n>>> Khong tim thay doc gia <<<\n");
+        return;
+    }
+    printf("Tong so Doc Gia hien dang co la: %d\n", tongSoDG);
+}
+
+// IN tong so luong Doc Gia theo gioi tinh
+void inTongSoLuongDocGiaTheoGioiTinh(){
+    printf("\n--------- THONG KE SO LUONG DOC GIA ---------\n");
+    if(tongSoDG < 1){
+        printf("\n>>> Khong tim thay doc gia <<<\n");
+        return;
+    }
+    int tongNam = 0;
+    int tongNu = 0;
+    int tongKhac = 0;
+    for(int i = 0; i < tongSoDG; i++){
+        if(gioiTinh[i] == 0) tongNu++;
+        if(gioiTinh[i] == 1) tongNam++;
+        if(gioiTinh[i] == 2) tongKhac++;
+    }
+
+    printf("Tong so Doc Gia hien dang co la: %d\n", tongSoDG);
+    printf("\n------------------------------\n");
+    printf("Trong do co\n");
+    printf("- NAM: %d\n", tongNam);
+    printf("- NU: %d\n", tongNu);
+    printf("- KHAC: %d\n", tongKhac);
+    printf("------------------------------\n");
+}
+
 
 // =======[TIM KIEM]=======
 // --------------------------
@@ -121,6 +212,15 @@ int timDocGiaTheoCMND(char timCMND[]){
         }
     }
     return vitriDocGia;
+}
+
+// Tim Doc gia theo ten  return vi tri
+void timDocGiaTheoTen(char timTenDG[]){
+    for(int i=0; i < tongSoDG; i++){
+        if(strstr(tenDG[i],timTenDG) != NULL){
+            inThongTinDocGiav3(i);
+        }
+    }
 }
 
 // Tim Ma doc Gia theo CMND  return vi tri 
@@ -162,41 +262,6 @@ void timCMNDDocGiaTheoMaDG(char maDGtim[], char ketqua[]){
 }
 
 
-// =======[IN THONG TIN]=======
-// --------------------------
-// In thong tin tat ca Doc Gia
-void inThongTinToanBoDocGia(){
-    printf("\n----------------------------------\n");
-    printf("\n====== DANH SACH [DOC GIA] ======\n");
-    if(tongSoDG == 0){
-        printf("Chua co doc gia");
-        return;
-    }
-    for(int i=0; i < tongSoDG; i++){
-        printf("%05s | %20s | %12s | %20s | %5d | %10s | %10s \n",
-        maDG[i], tenDG[i],cmnd[i],email[i],gioiTinh[i],ngayLapThe[i],ngayHetHanThe[i]);
-    }
-    printf("\n----------------------------------\n");
-}
-
-// In thong tin Doc Gia theo ten
-// In 1 Doc Gia 
-void inThongTinDocGiav1(int i){
-    printf("\tMa DG:         | %s\n", maDG[i]);
-    printf("\tTen DG:        | %s\n", tenDG[i]);
-    printf("\tCMND:          | %s\n", cmnd[i]);
-    printf("\tGioi tinh:     | %d\n", gioiTinh[i]);
-    printf("\tEmail:         | %s\n", email[i]);
-    printf("\tDia chi:       | %s\n", diachi[i]);
-    printf("\tNgay Lap The:  | %s\n", ngayLapThe[i]);
-    printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);  
-}
-
-// In nhieu Doc Gia 
-void inThongTinDocGiav2(int i){
-    printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
-}
-
 // IN Thong tin Doc Gia sau khi tim theo CMND
 void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
     int vitriDocGia = timDocGiaTheoCMND(timCMND);
@@ -222,42 +287,6 @@ void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
     if(vitriDocGia < 0) 
         printf("\n>> Khong tim thay doc gia <<\n");
 }
-
-// IN tong so luong Doc Gia
-void inTongSoLuongDocGia(){
-    printf("\n--------- THONG KE SO LUONG DOC GIA ---------\n");
-    if(tongSoDG < 1){
-        printf("\n>>> Khong tim thay doc gia <<<\n");
-        return;
-    }
-    printf("Tong so Doc Gia hien dang co la: %d\n", tongSoDG);
-}
-
-// IN tong so luong Doc Gia theo gioi tinh
-void inTongSoLuongDocGiaTheoGioiTinh(){
-    printf("\n--------- THONG KE SO LUONG DOC GIA ---------\n");
-    if(tongSoDG < 1){
-        printf("\n>>> Khong tim thay doc gia <<<\n");
-        return;
-    }
-    int tongNam = 0;
-    int tongNu = 0;
-    int tongKhac = 0;
-    for(int i = 0; i < tongSoDG; i++){
-        if(gioiTinh[i] == 0) tongNu++;
-        if(gioiTinh[i] == 1) tongNam++;
-        if(gioiTinh[i] == 2) tongKhac++;
-    }
-
-    printf("Tong so Doc Gia hien dang co la: %d\n", tongSoDG);
-    printf("\n------------------------------\n");
-    printf("Trong do co\n");
-    printf("- NAM: %d\n", tongNam);
-    printf("- NU: %d\n", tongNu);
-    printf("- KHAC: %d\n", tongKhac);
-    printf("------------------------------\n");
-}
-
 
 // ========[CHINH SUA]========
 // --------------------------
@@ -432,8 +461,6 @@ void xoaDGTheoCMND(char timCMND[]){
 
 // =======[VALIDATION]=======
 // --------------------------
-#pragma region Validation
-
 // Kiem tra CMND Doc Gia
 void kiemTraCMNDDocGia(){
     char cmndNew[20]; // cmnd[kí tự]
@@ -547,6 +574,4 @@ void themNgayHetHanThe(int d, int m, int y){
 
     sprintf(ngayHetHanThe[tongSoDG],"%01d/%02d/%04d",d,m,y);
 }
-
-#pragma endregion
 

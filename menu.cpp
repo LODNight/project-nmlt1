@@ -90,6 +90,7 @@ void chucNangDocGia(){
         case 2: 
             // Thêm Thông tin Đọc Giả
             themThongTinDocGia(); 
+            
             inThongTinToanBoDocGia();
             break;
         case 3: 
@@ -115,10 +116,12 @@ void chucNangDocGia(){
             inThongTinDocGiaSauKhiTimTheoCMND(timCMND);
             break;
         case 6:
-            // Tim Sach theo ten Doc Gia
+            // Tim Doc Gia theo ten Doc Gia
             printf("Nhap ten Doc Gia: ");
-            fgets(timTenDG,40,stdin);
-            timTenDG[strcspn(timTenDG,"\n")] = '\0';
+            scanf("%s", timTenDG);
+            printf("Ma DG |    ho va ten    |    cmnd    |         email        | gioi tinh |     dia chi       |  ngay lap  | ngay het han" );
+            timDocGiaTheoTen(timTenDG);
+            break;
 
         case 0:
             printf("\n>>> Quay ve Menu Chinh <<<\n\n");
