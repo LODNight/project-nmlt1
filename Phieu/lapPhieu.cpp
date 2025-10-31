@@ -9,7 +9,8 @@
 
 #define MAX 200
 
-// Thong Tin Phieu Muon
+// ------------------ Biến toàn cục ------------------
+// ------- [Phiếu Mượn] -------
 char maPhieuMuon[MAX][7];
 char maDGMuon[MAX][7];
 char maISBNMuon[MAX][5];
@@ -18,6 +19,7 @@ char ngayMuonSach[MAX][20];
 char ngayTraSachDuKien[MAX][20];
 int tongPhieuMuon = 0;
 
+// ------- [Phiếu Trả] -------
 char maPhieuTra[MAX][7];
 char maDGTra[MAX][7];
 char maISBNTra[MAX][5];
@@ -27,6 +29,12 @@ int sachBiMat[MAX];
 int tongPhieuTra = 0;
 
 // ============= [PHIEU MUON SACH] =============
+
+// ------------------------------
+// napMauThongTinPhieuMuon()
+//  Chức năng: Nạp dữ liệu mẫu cho danh sách Phiếu mượn.
+//  Tham số: null
+//  Return: void
 void napMauThongTinPhieuMuon(){
     tongPhieuMuon = 3;
     strncpy(maPhieuMuon[0], "PM0001", sizeof(maPhieuMuon[0])-1);
@@ -55,6 +63,12 @@ void napMauThongTinPhieuMuon(){
 
     strncpy(ngayTraSachThucTe[2], "25/10/2025", sizeof(ngayTraSachThucTe[2])-1);
 }
+
+// ------------------------------
+// napMauThongTinPhieuTra()
+//  Chức năng: Nạp dữ liệu mẫu cho danh sách Phiếu trả.
+//  Tham số: null
+//  Return: void
 void napMauThongTinPhieuTra(){
     tongPhieuTra = 2;
     strncpy(maPhieuTra[0], "PT0001", sizeof(maPhieuTra[0])-1);
@@ -71,7 +85,10 @@ void napMauThongTinPhieuTra(){
 }
 
 // ------------------------------
-// In Thong tin toan bo phieu muon
+// inThongTinToanBoPhieuMuon()
+//  Chức năng: In toàn bộ danh sách phiếu mượn sách.
+//  Tham số: null
+//  Return: void
 void inThongTinToanBoPhieuMuon(){
     printf("\n----------------------------------\n");
     printf("\n====== DANH SACH [PHIEU MUON] ======\n");
@@ -87,7 +104,11 @@ void inThongTinToanBoPhieuMuon(){
     printf("\n----------------------------------\n");
 }
 
-// In 1 Phieu Muon
+// ------------------------------
+// inThongTinPhieuMuonv1()
+//  Chức năng: In chi tiết thông tin 1 phiếu mượn theo dạng cột.
+//  Tham số: i - vị trí phiếu trong danh sách.
+//  Return: void
 void inThongTinPhieuMuonv1(int i){
     printf("\tMa Doc Gia:           | %s\n", maDGMuon[i]);
     printf("\tMa ISBN:              | %s\n", maISBNMuon[i]);
@@ -97,13 +118,21 @@ void inThongTinPhieuMuonv1(int i){
     printf("\tNgay tra thuc te:     | %s\n", ngayTraSachThucTe[i]);
 };
 
-// In nhieu Phieu Muon
+// ------------------------------
+// inThongTinPhieuMuonv2()
+//  Chức năng: In rút gọn thông tin phiếu mượn theo dạng hàng ngang.
+//  Tham số: i - vị trí phiếu trong danh sách.
+//  Return: void
 void inThongTinPhieuMuonv2(int i){
-    printf("\n%5s | %5s | %5s | %3d | %12S | %12s | %12s",
+    printf("\n%5s | %5s | %5s | %3d | %12s | %12s | %12s",
     maPhieuMuon[i],maDGMuon[i],maISBNMuon[i],soluongSachMuon[i],ngayMuonSach[i],ngayTraSachDuKien[i],ngayTraSachThucTe[i]);
 }
 
-// In Thong tin toan bo Sach theo nguoi muon
+// ------------------------------
+// inThongTinSachTheoDocGia()
+//  Chức năng: In danh sách sách mà một độc giả đã mượn.
+//  Tham số: maDGTim - mã độc giả cần tìm.
+//  Return: void
 void inThongTinSachTheoDocGia(char maDGTim[]){
     // In thong tin Sach
     int slSach = 0;
@@ -122,7 +151,11 @@ void inThongTinSachTheoDocGia(char maDGTim[]){
 
 }
 
-// In thong tin toan bo nguoi muon dua theo ISBN
+// ------------------------------
+// inThongTinDocGiaTheoISBN()
+//  Chức năng: In danh sách độc giả đang mượn sách theo ISBN.
+//  Tham số: maISBNTim - mã ISBN cần tìm.
+//  Return: void
 void inThongTinDocGiaTheoISBN(char maISBNTim[]){
     // In thong tin Sach
     int slDocGia = 0;
@@ -141,7 +174,11 @@ void inThongTinDocGiaTheoISBN(char maISBNTim[]){
 
 }
 
-// In so luong sach dang muon (slSachMuon - SlSachTra)
+// ------------------------------
+// inSoLuongSachMuon()
+//  Chức năng: Thống kê số lượng sách đang được mượn (chưa trả).
+//  Tham số: null
+//  Return: void
 void inSoLuongSachMuon(){
     int tongsm = 0; // Tong sach muon
     int tongst = 0; // Tong sach tra
@@ -165,8 +202,10 @@ void inSoLuongSachMuon(){
 }
 
 // ------------------------------
-// Them thong tin phieu muon
-// maDG, ISBN, Sl Sach, Ngay muon, Ngay du kien tra, ngay tra thuc te
+// themThongTinPhieuMuon()
+//  Chức năng: Thêm phiếu mượn mới (nhập CMND, ISBN, SL, auto ngày mượn).
+//  Tham số: null
+//  Return: void
 void themThongTinPhieuMuon(){
     if(tongPhieuMuon >= MAX){
         printf(">> Thu vien da day, khong the them phieu moi <<\n");
@@ -247,9 +286,14 @@ void themThongTinPhieuMuon(){
 
 }
 
+
+// ===================== [XỬ LÝ THỜI GIAN] =====================
+
 // ------------------------------
-// XU LY THOI GIAN
-// Chuyen ten thang sang so
+// chuyenThangSangSo()
+//  Chức năng: Chuyển tên tháng tiếng Anh sang số tương ứng.
+//  Tham số: thang - chuỗi tháng (Jan, Feb, ...)
+//  Return: số tháng (int)
 int chuyenThangSangSo(char *thang) {
     if (strcmp(thang, "Jan") == 0) return 1;
     if (strcmp(thang, "Feb") == 0) return 2;
@@ -266,7 +310,11 @@ int chuyenThangSangSo(char *thang) {
     return 0;
 }
 
-// Them ngay muon tu dong
+// ------------------------------
+// themNgayMuonSachTuDong()
+//  Chức năng: Tự động lấy ngày hiện tại làm ngày mượn.
+//  Tham số: null
+//  Return: void
 void themNgayMuonSachTuDong(){
     time_t now;
     // Lay ngya hien tai
@@ -293,7 +341,11 @@ void themNgayMuonSachTuDong(){
 
 }
 
-// Them ngay tra du kien tu dong
+// ------------------------------
+// themNgayTraDuKienTuDong()
+//  Chức năng: Tự động tính ngày trả dự kiến sau 7 ngày kể từ ngày mượn.
+//  Tham số: d, m, y - ngày, tháng, năm mượn.
+//  Return: void
 void themNgayTraDuKienTuDong(int d, int m, int y){
     int d_new = d + 7;
     int m_new = m;
@@ -313,7 +365,11 @@ void themNgayTraDuKienTuDong(int d, int m, int y){
     sprintf(ngayTraSachDuKien[tongPhieuMuon], "%2d/%2d/%4d", d_new,m_new,y_new);
 }
 
-// Them ngay tra thuc te tu dong
+// ------------------------------
+// themNgayTraThucTeTuDong()
+//  Chức năng: Ghi nhận ngày trả thực tế bằng thời gian hệ thống.
+//  Tham số: i - vị trí phiếu trong danh sách.
+//  Return: void
 void themNgayTraThucTeTuDong(int i){    
     time_t now;
     // Lay ngya hien tai
@@ -332,7 +388,11 @@ void themNgayTraThucTeTuDong(int i){
     sprintf(ngayTraSachThucTe[i], "%02d/%02d/%04d", d, m, y);
 }
 
-// Them ngay tra thuc te thu cong
+// ------------------------------
+// themNgayTraThucTeThuCong()
+//  Chức năng: Cho phép nhập thủ công ngày trả thực tế.
+//  Tham số: i - vị trí phiếu trong danh sách.
+//  Return: void
 void themNgayTraThucTeThuCong(int i){
     int d,m,y;
     bool hopLe = false;
@@ -351,8 +411,14 @@ void themNgayTraThucTeThuCong(int i){
     sprintf(ngayTraSachThucTe[i], "%02d/%02d/%04d", d, m, y);
 }
 
+
+// ===================== [CHỈNH SỬA / TRA CỨU PHIẾU MƯỢN] =====================
+
 // ------------------------------
-// Thay doi thong tin
+// suaThongTinPhieuMuon()
+//  Chức năng: Chỉnh sửa thông tin phiếu mượn theo mã phiếu.
+//  Tham số: timPhieuMuon - mã phiếu cần chỉnh sửa.
+//  Return: void
 void suaThongTinPhieuMuon(char timPhieuMuon[]){
     int vitriPhieuMuon = timPhieuMuonTheoMa(timPhieuMuon);
     if(vitriPhieuMuon < 0)
@@ -413,7 +479,11 @@ void suaThongTinPhieuMuon(char timPhieuMuon[]){
     }
 }
 
-// Tim Phieu Muon theo MaPhieuMuon   return vitri
+// ------------------------------
+// timPhieuMuonTheoMa()
+//  Chức năng: Tìm vị trí phiếu mượn theo mã phiếu mượn.
+//  Tham số: timPhieuMuon - mã phiếu cần tìm.
+//  Return: vị trí phiếu (int), -1 nếu không tìm thấy.
 int timPhieuMuonTheoMa(char timPhieuMuon[]){
     int vitriPhieuMuon = -1;
     for(int i=0; i<tongPhieuMuon; i++){
@@ -424,7 +494,11 @@ int timPhieuMuonTheoMa(char timPhieuMuon[]){
     return -1;
 }
 
-// In thong tin Phieu Muon theo maPhieuMuon
+// ------------------------------
+// inThongTinPhieuMuonKhiTimThayMa()
+//  Chức năng: In thông tin chi tiết khi tìm thấy phiếu mượn.
+//  Tham số: timPhieuMuon - mã phiếu cần tìm.
+//  Return: void
 void inThongTinPhieuMuonKhiTimThayMa(char timPhieuMuon[]){
     int vitriPhieuMuon = timDocGiaTheoCMND(timPhieuMuon);
     if(vitriPhieuMuon >= 0){
@@ -438,15 +512,23 @@ void inThongTinPhieuMuonKhiTimThayMa(char timPhieuMuon[]){
 }
 
 
+// ===================== [PHIEU TRA SACH] =====================
 
-// ============= [PHIEU TRA SACH] =============
-// In nhieu Phieu Tra
+// ------------------------------
+// inThongTinPhieuTra()
+//  Chức năng: In thông tin 1 phiếu trả.
+//  Tham số: i - vị trí phiếu trả trong danh sách.
+//  Return: void
 void inThongTinPhieuTra(int i){
     printf("%5s | %5s | %5s | %3d | %12s\n",
     maPhieuTra[i],maDGTra[i],maISBNTra[i],soluongSachTra[i],ngayTraSachThucTe[i]);
 }
 
-// In toan bo thong tin Phieu Tra
+// ------------------------------
+// inToanBoThongTinPhieuTra()
+//  Chức năng: In toàn bộ danh sách phiếu trả.
+//  Tham số: null
+//  Return: void
 void inToanBoThongTinPhieuTra(){
     printf("\n----------------------------------\n");
     printf("\n====== DANH SACH [PHIEU TRA] ======\n");
@@ -461,7 +543,11 @@ void inToanBoThongTinPhieuTra(){
 
 }
 
-// Tim phieu muon theo CMND
+// ------------------------------
+// timPhieuMuonTheoCMND()
+//  Chức năng: Tìm và in các phiếu mượn của độc giả theo CMND.
+//  Tham số: timCMND - số CMND độc giả.
+//  Return: void
 void timPhieuMuonTheoCMND(char timCMND[]){
     // Chuyen doi tu CMND sang MaDG
     char maDGCanTim[10];
@@ -488,7 +574,11 @@ void timPhieuMuonTheoCMND(char timCMND[]){
         
 }
 
-// Them phieu Tra Sach thuc te
+// ------------------------------
+// themPhieuTraSach()
+//  Chức năng: Lập phiếu trả sách, kiểm tra trễ hạn, mất sách, tính tiền phạt.
+//  Tham số: null
+//  Return: void
 void themPhieuTraSach(){
     char timCMND [20];
     char maPhieuMuonCanTim[5];
@@ -546,12 +636,23 @@ void themPhieuTraSach(){
 
 }
 
-// Tach ngay tu chuoi dd/mm/yyyy
+
+// ===================== [XỬ LÝ NGÀY THÁNG & THỐNG KÊ] =====================
+
+// ------------------------------
+// tachNgay()
+//  Chức năng: Tách ngày/tháng/năm từ chuỗi "dd/mm/yyyy".
+//  Tham số: s - chuỗi ngày, d/m/y - tham chiếu lưu kết quả.
+//  Return: void
 void tachNgay(char s[], int &d, int &m, int &y){
     sscanf(s, "%d/%d/%d", &d, &m, &y);
 }
 
-// Tinh khoang cach cua ngay du kien va ngay thuc te
+// ------------------------------
+// tinhKhoangNgayDuKienVaThucTe()
+//  Chức năng: Tính số ngày chênh lệch giữa 2 mốc thời gian (d1/m1/y1 → d2/m2/y2).
+//  Tham số: d1, m1, y1, d2, m2, y2.
+//  Return: số ngày chênh lệch (int)
 int tinhKhoangNgayDuKienVaThucTe(int d1,int m1,int y1,int d2,int m2,int y2){
     int ngay = 0;
     while(y1 < y2 || m1 < m2 || d1 < d2){
@@ -570,7 +671,11 @@ int tinhKhoangNgayDuKienVaThucTe(int d1,int m1,int y1,int d2,int m2,int y2){
     return ngay;
 }
 
-// Tinh so ngay tra tre
+// ------------------------------
+// tinhSoNgayTre()
+//  Chức năng: Tính số ngày trả trễ giữa ngày dự kiến và ngày thực tế.
+//  Tham số: duKien - ngày dự kiến, thucTe - ngày thực tế.
+//  Return: số ngày trễ (int)
 int tinhSoNgayTre(char duKien[], char thucTe[]){
     int d1,m1,y1,d2,m2,y2;
     tachNgay(duKien, d1,m1,y1);
@@ -581,7 +686,11 @@ int tinhSoNgayTre(char duKien[], char thucTe[]){
     return tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
 }
 
-// Thong ke Danh Sach doc gia tre han
+// ------------------------------
+// thongKeDanhSachDocGiaTreHan()
+//  Chức năng: Thống kê danh sách độc giả bị trễ hạn (chưa trả & quá ngày).
+//  Tham số: null
+//  Return: void
 void thongKeDanhSachDocGiaTreHan(){
     int d1,m1,y1,d2,m2,y2;
     bool hopLe = false;

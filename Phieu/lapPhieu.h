@@ -2,69 +2,55 @@
 
 #ifndef LAPPHIEU_H
 #define LAPPHIEU_H
-// ============= [PHIEU MUON SACH] =============
-// --------------------------
-// Nạp dữ liệu mẫu
+// ===============================================
+//   MODULE: Quản lý Phiếu Mượn / Phiếu Trả Sách
+//   Mục đích: xử lý thao tác mượn - trả, ngày tháng,
+//   thống kê, và phạt trễ hạn.
+// ===============================================
+
+
+// ====== [PHIẾU MƯỢN SÁCH] ======
+
+// --- Nạp dữ liệu mẫu (demo)
 void napMauThongTinPhieuMuon();
 void napMauThongTinPhieuTra();
-// --------------------------
-// In thông tin Sách theo Mã Đọc Giả
-void inThongTinSachTheoDocGia(char maDGCanTim[]);
-// In Thong tin toan bo phieu muon
-void inThongTinToanBoPhieuMuon();
-// In 1
-void inThongTinPhieuMuonv1(int i);
-// In nhieu
-void inThongTinPhieuMuonv2(int i);
-// In Thong tin toan bo Sach theo maDG
+
+// --- In thông tin Phiếu mượn
+void inThongTinToanBoPhieuMuon();     // In toàn bộ danh sách
+void inThongTinPhieuMuonv1(int i);    // In chi tiết 1 phiếu
+void inThongTinPhieuMuonv2(int i);    // In ngắn gọn 1 phiếu
+
+// --- In thông tin theo người mượn hoặc ISBN
 void inThongTinSachTheoDocGia(char maDGTim[]);
-// In thong tin toan bo nguoi muon theo ISBN
 void inThongTinDocGiaTheoISBN(char maISBNTim[]);
-// In so luong sach dang muon (slSachMuon - SlSachTra)
+
+// --- Thống kê số lượng sách đang được mượn
 void inSoLuongSachMuon();
 
-// ----------------------------
-// Thêm Phiếu Mượn
+// --- Thêm, tìm, sửa Phiếu mượn
 void themThongTinPhieuMuon();
-// --------------------------
-// Tim Phieu Muon theo MaPhieuMuon   return vitri
 int timPhieuMuonTheoMa(char timPhieuMuon[]);
-// --------------------------
-// Thay doi thong tin Phieu Muon
 void suaThongTinPhieuMuon(char timPhieuMuon[]);
 
 
-// --------------------------
-// Chuyen ten thang sang so
-int chuyenThangSangSo(char *thang);
-// Them ngay muon tu dong
-void themNgayMuonSachTuDong();
-// Them ngay tra du kien tu dong (7 days)
-void themNgayTraDuKienTuDong(int d, int m, int y);
-// Them ngay tra thuc te tu dong
+// ====== [XỬ LÝ NGÀY THÁNG] ======
+int chuyenThangSangSo(char *thang);                 // Chuyển "Jan" → 1
+void themNgayMuonSachTuDong();                      // Auto ngày mượn
+void themNgayTraDuKienTuDong(int d, int m, int y);  // Auto +7 ngày
 void themNgayTraThucTeTuDong(int i);
-// Them ngay tra thuc te thu cong
 void themNgayTraThucTeThuCong(int i);
-// --------------------------
 
 
-// ============= [PHIEU TRA SACH] =============
-// In nhieu Phieu Tra
+// ====== [PHIẾU TRẢ SÁCH] ======
 void inThongTinPhieuTra(int i);
-// In toan bo thong tin Phieu Tra
 void inToanBoThongTinPhieuTra();
-// Tim Phieu Muon Theo CMND doc gia
 void timPhieuMuonTheoCMND(char timCMND[]);
-// them phieu Tra Sach thuc te
 void themPhieuTraSach();
 
-// Tach ngay tu chuoi dd/mm/yyyy
-void tachNgay(char s[], int &d, int &m, int &y);
-// Tinh khoang cach cua ngay du kien va ngay thuc te
-int tinhKhoangNgayDuKienVaThucTe(int d1,int m1,int y1,int d2,int m2,int y2);
-// Tinh so ngay tra tre
-int tinhSoNgayTre(char duKien[], char thucTe[]);
 
-// Thong ke Danh Sach doc gia tre han
+// ====== [XỬ LÝ HỖ TRỢ & THỐNG KÊ] ======
+void tachNgay(char s[], int &d, int &m, int &y);
+int tinhKhoangNgayDuKienVaThucTe(int d1,int m1,int y1,int d2,int m2,int y2);
+int tinhSoNgayTre(char duKien[], char thucTe[]);
 void thongKeDanhSachDocGiaTreHan();
 #endif

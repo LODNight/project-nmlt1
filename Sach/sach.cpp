@@ -6,6 +6,7 @@
 // Khai báo biến toàn cục là MAX với kí tự tối đa là 200 đơn vị
 #define MAX 200
 
+// ------------------ Biến toàn cục ------------------
 char ISBN[MAX][5];
 char tenSach[MAX][100];
 char tenTacGia[MAX][50];
@@ -17,8 +18,11 @@ int giaSach[MAX][5];
 int soLuongSach[MAX][5];
 int tongSach;
 
-// ==========================
-// Nap du lieu Sách
+// -----------------------
+// napDuLieuSachMau()
+//  Chức năng: Nạp dữ liệu mẫu cho danh sách sách.
+//  Tham số: null
+//  Return: void
 void napDuLieuSachMau(){
     tongSach = 3;
     strncpy(ISBN[0], "S001", sizeof(ISBN[0]) - 1);
@@ -54,9 +58,11 @@ void napDuLieuSachMau(){
     soLuongSach[2][1] = 20; 
 }
 
-// =====[IN THONG TIN]=======
-// --------------------------
-// In Thông tin toàn bộ Sách
+// -----------------------
+// inThongTinToanBoSach()
+//  Chức năng: In toàn bộ danh sách sách trong thư viện.
+//  Tham số: null
+//  Return: void
 void inThongTinToanBoSach(){
     printf("\n----------------------------------\n");
     printf("\n====== DANH SACH [SACH] ======\n");
@@ -70,7 +76,12 @@ void inThongTinToanBoSach(){
     }
     printf("\n----------------------------------\n");
 }
-// In 1 Sach
+
+// -----------------------
+// inThongTinSachv1()
+//  Chức năng: In chi tiết thông tin 1 sách theo hàng dọc.
+//  Tham số: i - vị trí sách trong danh sách.
+//  Return: void
 void inThongTinSachv1(int i){
     printf("\tMa ISBN:      | %s\n", ISBN[i]);
     printf("\tTen sach:     | %s\n", tenSach[i]);
@@ -81,18 +92,32 @@ void inThongTinSachv1(int i){
     printf("\tGia sach:     | %d\n", giaSach[i][1]);
     printf("\tSo luong:     | %d\n", soLuongSach[i][1]);
 }
-// In nhieu Sach
+
+// -----------------------
+// inThongTinSachv2()
+//  Chức năng: In thông tin rút gọn của sách theo hàng ngang.
+//  Tham số: i - vị trí sách trong danh sách.
+//  Return: void
 void inThongTinSachv2(int i){ 
     printf("%5s | %20s | %d | %d \n",
     ISBN[i], tenSach[i], giaSach[i][1], soLuongSach[i][1]);    
 }
-// In nhieu Sach khong co so luong sach
+
+// -----------------------
+// inThongTinSachv3()
+//  Chức năng: In thông tin sách nhưng không kèm số lượng.
+//  Tham số: i - vị trí sách.
+//  Return: void
 void inThongTinSachv3(int i){ 
     printf("%5s | %20s | %d\n",
     ISBN[i], tenSach[i], giaSach[i][1]);    
 }
 
-// Tong so luong Sach
+// -----------------------
+// inTongSoLuongSach()
+//  Chức năng: Thống kê tổng số lượng sách trong thư viện.
+//  Tham số: null
+//  Return: void
 void inTongSoLuongSach(){
     printf("\n--------- THONG KE TOAN BO SO LUONG SACH ---------\n");
     printf("Tong so Sach la: %d\n", tongSach);
@@ -103,7 +128,11 @@ void inTongSoLuongSach(){
     }
 }
 
-// Tong so luong Sach theo the loai Sach
+// -----------------------
+// inTongSoLuongSachTheoTheLoai()
+//  Chức năng: Thống kê số lượng sách theo thể loại nhập vào.
+//  Tham số: null (người dùng nhập thể loại từ bàn phím).
+//  Return: void
 void inTongSoLuongSachTheoTheLoai(){
     printf("\n--------- THONG KE SO LUONG SACH THEO THE LOAI ---------\n");
     int dem = 0;
@@ -145,9 +174,11 @@ void inTongSoLuongSachTheoTheLoai(){
 }
 
 
-// =======[TIM KIEM]=========
-// --------------------------
-// Tim sach theo ISBN
+// -----------------------
+// timSachTheoISBN()
+//  Chức năng: Tìm sách theo mã ISBN.
+//  Tham số: timISBN - mã ISBN cần tìm.
+//  Return: vị trí sách (int) hoặc -1 nếu không tìm thấy.
 int timSachTheoISBN(char timISBN[]){
     int vitriSach = -1;
     for(int i=0; i<tongSach; i++){
@@ -159,8 +190,11 @@ int timSachTheoISBN(char timISBN[]){
     return vitriSach;
 }
 
-// --------------------------
-// Tim sach theo ten Sach
+// -----------------------
+// timSachTheoTen()
+//  Chức năng: Tìm sách theo tên sách.
+//  Tham số: timSach - chuỗi tên sách cần tìm.
+//  Return: vị trí sách (int) hoặc -1 nếu không tìm thấy.
 int timSachTheoTen(char timSach[]){
     int vitriSach = -1;
     for(int i=0; i<tongSach; i++){
@@ -172,8 +206,11 @@ int timSachTheoTen(char timSach[]){
     return vitriSach;
 }
 
-// Tim SL theo ISBN
-// return so luong Sach
+// -----------------------
+// timSoLuongSachTheoISBN()
+//  Chức năng: Lấy số lượng sách theo mã ISBN.
+//  Tham số: timISBN - mã ISBN cần tìm.
+//  Return: số lượng sách hoặc -1 nếu không tồn tại.
 int timSoLuongSachTheoISBN(char timISBN[]){
     for(int i=0; i<tongSach; i++){
         if(strcmp(ISBN[i],timISBN) == 0){
@@ -183,8 +220,11 @@ int timSoLuongSachTheoISBN(char timISBN[]){
     return -1;
 }
 
-// Tim gia Sach theo maSach
-// return gia Sach
+// -----------------------
+// timGiaSachSachTheoISBN()
+//  Chức năng: Lấy giá sách theo mã ISBN.
+//  Tham số: timISBN - mã ISBN cần tìm.
+//  Return: giá sách hoặc -1 nếu không tồn tại.
 int timGiaSachSachTheoISBN(char timISBN[]){
     for(int i=0; i<tongSach; i++){
         if(strcmp(ISBN[i],timISBN) == 0){
@@ -194,8 +234,11 @@ int timGiaSachSachTheoISBN(char timISBN[]){
     return -1;
 }
 
-// --------------------------
-// In Thong tin Sach sau khi tim thay ma ISBN v1 (theo hang doc)
+// -----------------------
+// inThongTinSachSauKhiTimThayISBNv1()
+//  Chức năng: In chi tiết thông tin sách (theo hàng dọc) khi tìm thấy ISBN.
+//  Tham số: timISBN - mã ISBN cần tìm.
+//  Return: void
 void inThongTinSachSauKhiTimThayISBNv1(char timISBN[]){
     int vitriSach = timSachTheoISBN(timISBN);
     if(vitriSach >=0 ){
@@ -208,8 +251,11 @@ void inThongTinSachSauKhiTimThayISBNv1(char timISBN[]){
         printf("\n>>> Khong tim thay sach <<< \n");
 }
 
-// --------------------------
-// In Thong tin Sach sau khi tim thay ma ISBN v2 (theo hang ngang)
+// -----------------------
+// inThongTinSachSauKhiTimThayISBNv2()
+//  Chức năng: In thông tin sách (theo hàng ngang) khi tìm thấy ISBN.
+//  Tham số: timISBN - mã ISBN cần tìm.
+//  Return: void
 void inThongTinSachSauKhiTimThayISBNv2(char timISBN[]){
     int vitriSach = timSachTheoISBN(timISBN);
     if(vitriSach >=0 ){
@@ -219,7 +265,12 @@ void inThongTinSachSauKhiTimThayISBNv2(char timISBN[]){
     if(vitriSach < 0)  
         printf("\n>>> Khong tim thay sach <<< \n");
 }
-// In Thong tin Sach sau khi tim thay ten Sach
+
+// -----------------------
+// inThongTinSachSauKhiTimThayTen()
+//  Chức năng: In thông tin sách khi tìm theo tên sách.
+//  Tham số: timSach - tên sách cần tìm.
+//  Return: void
 void inThongTinSachSauKhiTimThayTen(char timSach[]){
     int vitriSach = timSachTheoTen(timSach);
     if(vitriSach >=0 ){
@@ -232,10 +283,11 @@ void inThongTinSachSauKhiTimThayTen(char timSach[]){
         printf("\n>>> Khong tim thay sach <<< \n");
 }
 
-
-// =========[THEM]===========
-// --------------------------
-// Sach
+// -----------------------
+// themThongTinSach()
+//  Chức năng: Thêm thông tin sách mới vào hệ thống.
+//  Tham số: null
+//  Return: void
 void themThongTinSach(){
     if(tongSach >= 0){
         printf("\n>>> Ban khong the them Sach <<<\n");
@@ -268,8 +320,11 @@ void themThongTinSach(){
     tongSach++;
 }
 
-#pragma region Them Sach
-// Tên Sách
+// -----------------------
+// themTenSach()
+//  Chức năng: Nhập tên sách mới.
+//  Tham số: vitri - vị trí sách trong mảng.
+//  Return: void
 void themTenSach(int vitri){
     printf("Nhap ten Sach: ");
     getchar();
@@ -277,7 +332,11 @@ void themTenSach(int vitri){
     tenSach[vitri][strcspn(tenSach[vitri],"\n")] = '\0';
 }
 
-// Tên Tác Giả
+// -----------------------
+// themTenTacGia()
+//  Chức năng: Nhập tên tác giả.
+//  Tham số: vitri - vị trí sách trong mảng.
+//  Return: void
 void themTenTacGia(int vitri){
     printf("Nhap ten Tac Gia: ");
     getchar();
@@ -285,7 +344,11 @@ void themTenTacGia(int vitri){
     tenTacGia[vitri][strcspn(tenTacGia[vitri],"\n")] = '\0';
 }
 
-// Tên nhà xuất bản
+// -----------------------
+// themNhaXuatBan()
+//  Chức năng: Nhập tên nhà xuất bản.
+//  Tham số: vitri - vị trí sách.
+//  Return: void
 void themNhaXuatBan(int vitri){
     printf("Nhap ten nha xuat ban: ");
     getchar();
@@ -293,7 +356,11 @@ void themNhaXuatBan(int vitri){
     tenNhaXuatBan[vitri][strcspn(tenNhaXuatBan[vitri],"\n")] = '\0';
 }
 
-// Năm Xuất bản
+// -----------------------
+// themNamXuatBan()
+//  Chức năng: Nhập năm xuất bản và kiểm tra hợp lệ.
+//  Tham số: vitri - vị trí sách.
+//  Return: void
 void themNamXuatBan(int vitri){
     int y;
     bool hopLe = false;
@@ -313,7 +380,11 @@ void themNamXuatBan(int vitri){
 
 }
 
-// The Loại
+// -----------------------
+// themTheLoai()
+//  Chức năng: Nhập thể loại sách.
+//  Tham số: vitri - vị trí sách.
+//  Return: void
 void themTheLoai(int vitri){
     printf("Nhap ten the loai: ");
     getchar();
@@ -321,7 +392,11 @@ void themTheLoai(int vitri){
     theLoai[vitri][strcspn(theLoai[vitri],"\n")] = '\0';
 }
 
-// Giá Sách
+// -----------------------
+// themGiaSach()
+//  Chức năng: Nhập giá sách, kiểm tra trong khoảng hợp lệ.
+//  Tham số: vitri - vị trí sách.
+//  Return: void
 void themGiaSach(int vitri){
     int m;
     bool hopLe = false;
@@ -341,7 +416,11 @@ void themGiaSach(int vitri){
 
 }
 
-// Số lượng Sách
+// -----------------------
+// themSoLuongSach()
+//  Chức năng: Nhập số lượng sách tồn kho.
+//  Tham số: vitri - vị trí sách.
+//  Return: void
 void themSoLuongSach(int vitri){
     int soluong = 0;
     if(vitri > tongSach){
@@ -364,11 +443,11 @@ void themSoLuongSach(int vitri){
 
 }
 
-#pragma endregion
-
-// =======[CHINH SUA]========
-// --------------------------
-// Chinh sua Sách
+// -----------------------
+// chinhSuaSach()
+//  Chức năng: Chỉnh sửa thông tin sách theo ISBN.
+//  Tham số: timISBN - mã ISBN của sách cần sửa.
+//  Return: void
 void chinhSuaSach(char timISBN[]){
     int vitriSach = timSachTheoISBN(timISBN);
     if(vitriSach == 0) return;
@@ -437,13 +516,21 @@ void chinhSuaSach(char timISBN[]){
     
 }
 
+// -----------------------
+// thayDoiSoLuongSach()
+//  Chức năng: Giảm số lượng sách khi mượn/trả.
+//  Tham số: timISBN - mã ISBN, soLuong - số lượng cần thay đổi.
+//  Return: void
 void thayDoiSoLuongSach(char timISBN[], int soLuong){
     int vitriSach = timSachTheoISBN(timISBN);
     soLuongSach[vitriSach][1] -= soLuong;
 }
-// ==========[XOA]===========
-// --------------------------
-// Xoa Sach
+
+// -----------------------
+// xoaSach()
+//  Chức năng: Xóa sách ra khỏi danh sách theo ISBN.
+//  Tham số: timISBN - mã ISBN của sách cần xóa.
+//  Return: void
 void xoaSach(char timISBN[]){
     int vitriSach = timSachTheoISBN(timISBN);
     printf("\n >>>> Ban co muon xoa Sach  [%s - %s] khong <<<<\n",ISBN[vitriSach],tenSach[vitriSach]);
