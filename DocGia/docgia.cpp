@@ -6,19 +6,23 @@
 // Khai báo biến toàn cục là MAX với kí tự tối đa là 200 đơn vị
 #define MAX 200
 
-char maDG[MAX][7];         // Không được trùng
+// ------------------ Biến toàn cục ------------------
+char maDG[MAX][7];        
 char tenDG[MAX][40];        
-char cmnd[MAX][12];         // Không được trùng
+char cmnd[MAX][12];         
 int gioiTinh[MAX];
-char email[MAX][40];        // Không được trùng
+char email[MAX][40];        
 char diachi[MAX][100];
 char ngayLapThe[MAX][20];
 char ngayHetHanThe[MAX][20];
 int tongSoDG = 0;
 int d, m, y;
 
-// --------------------------
-// Nap Du lieu
+// -----------------------
+// napDuLieuDGMau()
+//  Chức năng: Nạp dữ liệu mẫu cho danh sách độc giả.
+//  Tham số: null
+//  Return: void
 void napDuLieuDGMau() {
     tongSoDG = 3;
     // strncpy(): dùng để thêm chỉ định tối đa các ký tự vào danh sách và đảm bảo kết thúc bằng \0:
@@ -55,9 +59,11 @@ void napDuLieuDGMau() {
     strncpy(ngayHetHanThe[2], "20/05/2028", sizeof(ngayHetHanThe[2]) - 1);
 }
 
-// =======[THEM THONG TIN]=======
-// --------------------------
-// Thêm thong tin cua Doc Gia
+// -----------------------
+// themThongTinDocGia()
+//  Chức năng: Thêm thông tin độc giả mới vào hệ thống.
+//  Tham số: null
+//  Return: void
 void themThongTinDocGia(){
     int d,m,y;
     bool hopLe = false;
@@ -108,9 +114,11 @@ void themThongTinDocGia(){
     tongSoDG++;
 }
 
-// =======[IN THONG TIN]=======
-// --------------------------
-// In thong tin tat ca Doc Gia
+// -----------------------
+// inThongTinToanBoDocGia()
+//  Chức năng: In danh sách toàn bộ độc giả trong thư viện.
+//  Tham số: null
+//  Return: void
 void inThongTinToanBoDocGia(){
     printf("\n----------------------------------\n");
     printf("\n====== DANH SACH [DOC GIA] ======\n");
@@ -125,8 +133,11 @@ void inThongTinToanBoDocGia(){
     printf("\n----------------------------------\n");
 }
 
-// In thong tin Doc Gia theo ten
-// In 1 Doc Gia 
+// -----------------------
+// inThongTinDocGiav1
+//  Chức năng: In thông tin chi tiết của một độc giả theo hàng dọc.
+//  Tham số: i - vị trí độc giả trong danh sách
+//  Return: void
 void inThongTinDocGiav1(int i){
     printf("\tMa DG:         | %s\n", maDG[i]);
     printf("\tTen DG:        | %s\n", tenDG[i]);
@@ -142,12 +153,20 @@ void inThongTinDocGiav1(int i){
     printf("\tNgay Het Han:  | %s\n", ngayHetHanThe[i]);  
 }
 
-// In nhieu Doc Gia 
+// -----------------------
+// inThongTinDocGiav2() 
+//  Chức năng: In thông tin tóm tắt của một độc giả theo hàng ngang.
+//  Tham số: i - vị trí độc giả trong danh sách
+//  Return: void
 void inThongTinDocGiav2(int i){
     printf("%05s | %20s | %12s | %20s \n", maDG[i], tenDG[i],cmnd[i],email[i]);    
 }
 
-// In nhieu Doc Gia voi day du thong tin 
+// -----------------------
+// inThongTinDocGiav3() 
+//  Chức năng: In thông tin đầy đủ của một độc giả theo hàng ngang.
+//  Tham số: i - vị trí độc giả trong danh sách
+//  Return: void
 void inThongTinDocGiav3(int i){
     printf("\n%05s ", maDG[i]);
     printf("| %15s ", tenDG[i]);
@@ -164,7 +183,11 @@ void inThongTinDocGiav3(int i){
 }
 
 
-// IN tong so luong Doc Gia
+// -----------------------
+// inTongSoLuongDocGia() 
+//  Chức năng: In số lượng đọc giả đang có trong Thư viện.
+//  Tham số: null
+//  Return: void
 void inTongSoLuongDocGia(){
     printf("\n--------- THONG KE SO LUONG DOC GIA ---------\n");
     if(tongSoDG < 1){
@@ -174,7 +197,11 @@ void inTongSoLuongDocGia(){
     printf("Tong so Doc Gia hien dang co la: %d\n", tongSoDG);
 }
 
-// IN tong so luong Doc Gia theo gioi tinh
+// -----------------------
+// inTongSoLuongDocGiaTheoGioiTinh() 
+//  Chức năng: In số lượng đọc giả theo giới tính đang có trong Thư viện.
+//  Tham số: null
+//  Return: void
 void inTongSoLuongDocGiaTheoGioiTinh(){
     printf("\n--------- THONG KE SO LUONG DOC GIA ---------\n");
     if(tongSoDG < 1){
@@ -199,10 +226,11 @@ void inTongSoLuongDocGiaTheoGioiTinh(){
     printf("------------------------------\n");
 }
 
-
-// =======[TIM KIEM]=======
-// --------------------------
-// Tim Doc Gia theo CMND  return vi tri 
+// -----------------------
+// timDocGiaTheoCMND()
+//  Chức năng: Tìm độc giả theo CMND.
+//  Tham số: timCMND - số CMND cần tìm
+//  Return: vị trí độc giả (int) hoặc -1 nếu không tìm thấy
 int timDocGiaTheoCMND(char timCMND[]){
     int vitriDocGia = -1;
     for(int i=0; i<tongSoDG; i++){
@@ -214,7 +242,11 @@ int timDocGiaTheoCMND(char timCMND[]){
     return vitriDocGia;
 }
 
-// Tim Doc gia theo ten  return vi tri
+// -----------------------
+// timDocGiaTheoTen()
+//  Chức năng: In thông tin độc giả cần tìm theo tên đọc giả.
+//  Tham số: timTenDG - tên đọc giả (có thể dùng ký tự) cần tìm
+//  Return: void
 void timDocGiaTheoTen(char timTenDG[]){
     for(int i=0; i < tongSoDG; i++){
         if(strstr(tenDG[i],timTenDG) != NULL){
@@ -223,7 +255,13 @@ void timDocGiaTheoTen(char timTenDG[]){
     }
 }
 
-// Tim Ma doc Gia theo CMND  return vi tri 
+// -----------------------
+// timMaDocGiaTheoCMND()
+//  Chức năng: Tìm mã đọc giả theo CMND cần tìm.
+//  Tham số: 
+//      timCMND - số CMND cần tìm
+//      ketqua  - kết quả trả về khi tìm thấy đọc giả theo cmnd
+//  Return: maDG
 void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]){
     int vitri = timDocGiaTheoCMND(timCMND);
     if(vitri != -1){
@@ -233,7 +271,11 @@ void timMaDocGiaTheoCMND(char timCMND[], char ketqua[]){
     }
 }
 
-// Tim Doc Gia theo ten   return vi tri 
+// -----------------------
+// timDocGiaTheoMaDG()
+//  Chức năng: Tìm đọc giả theo mã đọc giả.
+//  Tham số: maDGtim - mã đọc giả cần tìm
+//  Return: vị trí đọc giả
 int timDocGiaTheoMaDG(char maDGtim[]){
     int vitriDocGia = -1;
     for(int i=0; i<tongSoDG; i++){
@@ -244,7 +286,13 @@ int timDocGiaTheoMaDG(char maDGtim[]){
     return vitriDocGia;
 }
 
-// Tim CMND theo maDG   return CMND
+// -----------------------
+// timCMNDDocGiaTheoMaDG()
+//  Chức năng: Tìm CMND của đọc giả theo mã đọc giả.
+//  Tham số: 
+//      maDGtim - mã đọc giả cần tìm
+//      ketqua  - kết quả trả về khi chạy xong hàm là cmnd của đọc giả
+//  Return: cmnd đọc giả
 void timCMNDDocGiaTheoMaDG(char maDGtim[], char ketqua[]){
     int vitriDocGia = -1;
     for(int i=0; i < tongSoDG; i++){
@@ -262,7 +310,11 @@ void timCMNDDocGiaTheoMaDG(char maDGtim[], char ketqua[]){
 }
 
 
-// IN Thong tin Doc Gia sau khi tim theo CMND (theo hang doc)
+// -----------------------
+// inThongTinDocGiaSauKhiTimTheoCMND()
+//  Chức năng: In ra thông tin của Đọc giả sau khi tìm thấy CMND cần tìm chi tiết theo hàng dọc.
+//  Tham số: timCMND - cmnd cần tìm
+//  Return: void
 void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
     int vitriDocGia = timDocGiaTheoCMND(timCMND);
     if(vitriDocGia >= 0){
@@ -275,7 +327,11 @@ void inThongTinDocGiaSauKhiTimTheoCMND(char timCMND[]){
         printf("\n>> Khong tim thay doc gia <<\n");
 }
 
-// IN Thong tin Doc Gia sau khi tim theo CMND (theo hang ngang)
+// -----------------------
+// inThongTinDocGiaSauKhiTimTheoCMNDv2()
+//  Chức năng: In ra thông tin của Đọc giả sau khi tìm thấy CMND cần tìm chi tiết theo hàng ngang
+//  Tham số: timCMND - cmnd cần tìm
+//  Return: void
 void inThongTinDocGiaSauKhiTimTheoCMNDv2(char timCMND[]){
     int vitriDocGia = timDocGiaTheoCMND(timCMND);
     if(vitriDocGia >= 0){
@@ -285,8 +341,13 @@ void inThongTinDocGiaSauKhiTimTheoCMNDv2(char timCMND[]){
     if(vitriDocGia < 0) 
         printf("\n>> Khong tim thay doc gia <<\n");
 }
-// IN Thong tin Doc Gia sau khi tim theo ten
-void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
+
+// -----------------------
+// inThongTinDocGiaSauKhiTimTheoMaDG()
+//  Chức năng: In ra thông tin của Đọc giả sau khi tìm thấy mã đọc giả cần tìm chi tiết theo hàng ngang
+//  Tham số: maDGtim - cmnd cần tìm
+//  Return: void
+void inThongTinDocGiaSauKhiTimTheoMaDG(char maDGtim[]){
     int vitriDocGia = timDocGiaTheoMaDG(maDGtim);
     if(vitriDocGia >= 0){
         printf("\n>> Tim Thay Doc Gia <<\n");
@@ -298,9 +359,11 @@ void inThongTinDocGiaSauKhiTimTheoTen(char maDGtim[]){
         printf("\n>> Khong tim thay doc gia <<\n");
 }
 
-// ========[CHINH SUA]========
 // --------------------------
-// Chinh sua thong tin Doc Gia
+// suaThongTinDocGia()
+//  Chức năng: Chỉnh sửa thông tin độc giả theo CMND.
+//  Tham số: timCMND - chuỗi CMND cần sửa
+//  Return: void
 void suaThongTinDocGia(char timCMND[]){
     // Tìm Đọc Giả
     int vitriDG = timDocGiaTheoCMND(timCMND);
@@ -438,7 +501,11 @@ void suaThongTinDocGia(char timCMND[]){
     }
 }
 
-// Xoa Thong tin Doc Gia
+// --------------------------
+// xoaDGTheoCMND()
+//  Chức năng: Xóa độc giả khỏi danh sách theo CMND.
+//  Tham số: timCMND - số CMND cần xóa
+//  Return: void
 void xoaDGTheoCMND(char timCMND[]){
     int vitriDG = timDocGiaTheoCMND(timCMND);
     printf("\n >>>> Ban co muon xoa Doc Gia  [%s - %s] khong <<<<\n",maDG[vitriDG],tenDG[vitriDG]);
@@ -468,10 +535,11 @@ void xoaDGTheoCMND(char timCMND[]){
     }
 }
 
-
-// =======[VALIDATION]=======
 // --------------------------
-// Kiem tra CMND Doc Gia
+// kiemTraCMNDDocGia()
+//  Chức năng: Kiểm tra trùng CMND khi thêm mới độc giả.
+//  Tham số: null
+//  Return: void
 void kiemTraCMNDDocGia(){
     char cmndNew[20]; // cmnd[kí tự]
     bool hopLe = false;
@@ -495,7 +563,11 @@ void kiemTraCMNDDocGia(){
     }while(!hopLe);
 }
 
-// Kiem tra Email
+// --------------------------
+// kiemTraEmail()
+//  Chức năng: Kiểm tra trùng Email khi thêm mới độc giả.
+//  Tham số: null
+//  Return: void
 void kiemTraEmail(){
     char emailNew[20];
     bool hopLe = false;
@@ -521,7 +593,11 @@ void kiemTraEmail(){
 
 }
 
-// Kiem tra Ngay Them va Tra
+// --------------------------
+// timSoNgayTrongThang()
+//  Chức năng: Tìm tháng 2 của năm đó có phải là nhuận không.
+//  Tham số:  y - năm
+//  Return: số ngày trong tháng 2 nhuận thì 29, không nhuận là 28
 int timNamNhuan(int y){
     if((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0)){
         return 29;
@@ -530,7 +606,11 @@ int timNamNhuan(int y){
     }
 }
 
-// Tim so ngay trong 1 thang
+// --------------------------
+// timSoNgayTrongThang()
+//  Chức năng: Tìm số ngày trong 1 tháng.
+//  Tham số:  m - tháng, y - năm
+//  Return: số ngày trong tháng đã cho
 int timSoNgayTrongThang(int m, int y){
     if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
         return 31;
@@ -542,7 +622,11 @@ int timSoNgayTrongThang(int m, int y){
     }
 }
 
-// Kiem tra ngay hop le
+// --------------------------
+// kiemTraNgayHopLe()
+//  Chức năng: Kiểm tra xem ngày, tháng, năm có hợp lệ không.
+//  Tham số: d - ngày, m - tháng, y - năm
+//  Return: true nếu hợp lệ, false nếu không
 bool kiemTraNgayHopLe(int d, int m, int y){
     if(d <=0 || m <=0 || m > 12 || y <= 2003)
         return false;
@@ -551,7 +635,11 @@ bool kiemTraNgayHopLe(int d, int m, int y){
     else return true;
 }
 
-// Hop le khi nam tu 2003 tro di
+// --------------------------
+// kiemTraNgayHopLe()
+//  Chức năng: kiểm tra ngày có hợp lệ hay không theo định dạng là (dd/mm/yyyy)
+//  Tham số: null
+//  Return: void
 void kiemTraNgayLapThe(){
     int d,m,y;
     bool hopLe = false;
@@ -573,7 +661,11 @@ void kiemTraNgayLapThe(){
 
 }
 
-// Het han sau 48 thang ke tu ngay lap the
+// --------------------------
+// kiemTraNgayHopLe()
+//  Chức năng: Tự động thêm ngày hết hạn thẻ. 48 tháng sau khi lập thẻ
+//  Tham số: d - ngày, m - tháng, y - năm
+//  Return: void
 void themNgayHetHanThe(int d, int m, int y){
     m += 48;
     y += (m-1)/12;
@@ -584,4 +676,3 @@ void themNgayHetHanThe(int d, int m, int y){
 
     sprintf(ngayHetHanThe[tongSoDG],"%01d/%02d/%04d",d,m,y);
 }
-

@@ -538,12 +538,10 @@ void themPhieuTraSach(){
         else {
             printf("\n>>> LOI: Khong hop le. Vui long thu lai <<<\n");
         }
-        
     } while(hopLe < 0);
     
     printf("\nNgay du kien tra Sach: %s | Ngay Tra Sach thuc te: %s\n",ngayTraSachDuKien[vitriPhieuMuon],ngayTraSachThucTe[vitriPhieuMuon]);
     printf("Phat: %d | Tre: %d ngay\n",phat,tre);
-
     printf("\n\t>>> Tien phat phai dong: %d VND <<<\n",phat);
 
 }
@@ -594,37 +592,33 @@ void thongKeDanhSachDocGiaTreHan(){
      do{
         printf("Them ngay hien tai (dd/mm/yyyy): ");
         scanf("%d/%d/%d",&d1,&m1,&y1);
-       
         hopLe = kiemTraNgayHopLe(d1,m1,y1);
-        
         if(!hopLe) 
             printf("\n>> Ngay ko hop le. Vui long nhap lai <<\n");
     } while(!hopLe);
 
-    // Check co so luong hay ko
+    // Check co so luong doc gia nop tre hay ko
+    // Neu ngay tra sach thuc te = NULL va ngay tre >= 1 
     for(int i=0; i < tongPhieuMuon; i++){
         tachNgay(ngayTraSachDuKien[i],d2,m2,y2);
         int tre = tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
-        if(tre >= 1){
+        if(tre >= 1 && (strcmp(ngayTraSachThucTe[i], "NULL") == 0 || strcmp(ngayTraSachThucTe[i], "") == 0)){
             dem++;
         }
     }
-
+    // In du lieu neu ngay tra sach thuc te = NULL va ngay tre >= 1 
     if(dem>0){
-        printf("------------------------------------------------\n");
+        printf("Co %d dang bi tre han",dem);
         for(int i=0; i < tongPhieuMuon; i++){
             tachNgay(ngayTraSachDuKien[i],d2,m2,y2);
             int tre = tinhKhoangNgayDuKienVaThucTe(d1,m1,y1,d2,m2,y2);
-            if(tre >= 1){
+            if(tre >= 1 && (strcmp(ngayTraSachThucTe[i], "NULL") == 0 || strcmp(ngayTraSachThucTe[i], "") == 0)){
                 timCMNDDocGiaTheoMaDG(maDGMuon[i],cmndTim);
-
                 inThongTinDocGiaSauKhiTimTheoCMNDv2(cmndTim);
                 inThongTinSachSauKhiTimThayISBNv2(maISBNMuon[i]);
                 printf("\n=====================================\n");
-            
             }
         }
-        printf("------------------------------------------------\n");
     } else {
         printf("\n Khong tim thay Doc gia tre han \n");
     }

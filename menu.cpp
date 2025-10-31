@@ -7,7 +7,12 @@
 #include "Sach/sach.h"
 #include "Phieu/lapPhieu.h"
 
-// Menu ChucNang
+
+// Menu chức năng
+//  Chức năng: Hiển thị menu chính của chương trình để người dùng chọn các nhóm chức năng:
+//  (Quản lý Độc Giả, Quản lý Sách, Lập Phiếu Mượn/Trả, Thống Kê).
+//  Tham số: null
+//  Return: void
 void menuChucNang(){
     int choice = -1;
     do{
@@ -57,6 +62,9 @@ void menuChucNang(){
 }
 
 // Nạp thông tin
+//  Chức năng: Thêm dữ liệu mẫu có sẵn của toàn bộ đồ án
+//  Tham số: null
+//  Return: void
 void napThongTin(){
     napDuLieuDGMau();
     napDuLieuSachMau();
@@ -65,6 +73,9 @@ void napThongTin(){
 }
 
 // Menu lựa chọn Đọc Giả
+//  Chức năng: Hiển thị menu chức năng của Đọc Giả
+//  Tham số: null
+//  Return: void
 void chucNangDocGia(){
     int choice = -1;
     char timCMND[20];
@@ -132,7 +143,10 @@ void chucNangDocGia(){
     } while(choice != 0);
 }
 
-// Menu lựa chọn Đọc Giả
+//  Menu lựa chọn Đọc Giả
+//  Chức năng: Hiển thị menu chức năng của Sách
+//  Tham số: null
+//  Return: void
 void chucNangSach(){
     int choice = -1;
     char timISBN[5];
@@ -219,6 +233,9 @@ void chucNangSach(){
 }
 
 // Menu Xu ly chuc nang Phieu Muon Sach
+//  Chức năng: Hiển thị menu chức năng của Phiếu Mượn
+//  Tham số: null
+//  Return: void
 void chucNangPhieuMuon(){
     int choice = -1;
     char maPhieuMuon[7];
@@ -294,6 +311,9 @@ void chucNangPhieuMuon(){
 }
 
 // Menu Xu ly chuc nang Phieu Tra Sach
+//  Chức năng: Hiển thị menu chức năng của Phiếu Trả
+//  Tham số: null
+//  Return: void
 void chucNangPhieuTra(){
     int choice = -1;
     char timCMND[20];
@@ -332,6 +352,9 @@ void chucNangPhieuTra(){
 }
 
 // Menu Xu ly chuc nang Thong Ke
+//  Chức năng: Hiển thị menu chức năng của Thống kê
+//  Tham số: null
+//  Return: void
 void chucNangThongKe(){
     int choice = -1;
     char timCMND[20];
