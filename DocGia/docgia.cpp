@@ -74,6 +74,7 @@ void themThongTinDocGia(){
     printf("\n====== THEM DOC GIA MOI ======\n");
     // Thêm tên DG
     printf("Them ho ten Doc Gia: ");
+    getchar();
     fgets(tenDG[tongSoDG],40,stdin);
     tenDG[tongSoDG][strcspn(tenDG[tongSoDG],"\n")] = '\0';
 

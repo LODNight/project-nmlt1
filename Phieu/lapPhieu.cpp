@@ -140,8 +140,8 @@ void inThongTinSachTheoDocGia(char maDGTim[]){
     printf("\n----------------------------------\n");
     for(int i=0; i<tongPhieuMuon; i++){
         if(strstr(maDGMuon[i],maDGTim) != NULL){
-            slSach++;
             inThongTinSachv3(i);
+            slSach++;
         }
     } 
     printf("\n----------------------------------\n");
@@ -255,21 +255,26 @@ void themThongTinPhieuMuon(){
     int soluongSach = timSoLuongSachTheoISBN(timISBN); 
     hopLe = false;
     do {
+        if(soluongSach == 0){
+            printf("\n>>> Sach trong kho da het. Vui long chon sach khac <<<");
+            return;
+        }
         printf("Nhap so luong sach can muon: ");
         scanf("%d", &soLuong);
         if(soLuong < 0){
-            printf(">>> So luong sach khong hop le <<<\n");
-        } 
-        else if(soLuong > soluongSach){
-            printf(">>> Khong du sach <<<\n");
-        } 
-        else {
-            if (soLuong > 0 && soLuong <= soluongSach) {
-                soluongSachMuon[tongPhieuMuon]= soLuong;
-                thayDoiSoLuongSach(timISBN, soLuong);
-                break;
+            printf("\n>>> So luong sach khong hop le <<<\n");
+            } 
+            else if(soLuong > soluongSach){
+                printf("\n>>> Khong du sach <<<\n");
+                printf(">>> Hien tai thu vien con lai [%2d] sach [%s] <<<\n\n", soluongSach, timISBN);
+            } 
+            else {
+                if (soLuong > 0 && soLuong <= soluongSach) {
+                    soluongSachMuon[tongPhieuMuon]= soLuong;
+                    thayDoiSoLuongSach(timISBN, soLuong);
+                    break;
+                }
             }
-        }
     } while (!hopLe);
 
     // Ngay muon - AUTO

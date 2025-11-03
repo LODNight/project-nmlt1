@@ -13,9 +13,9 @@ char tenTacGia[MAX][50];
 char tenNhaXuatBan[MAX][100];
 char namXuatBan[MAX][5];
 char theLoai[MAX][50];
-int giaSach[MAX][5];
+int giaSach[MAX];
 // Quản lý số lượng Sách đang có
-int soLuongSach[MAX][5];
+int soLuongSach[MAX];
 int tongSach;
 
 // -----------------------
@@ -49,13 +49,13 @@ void napDuLieuSachMau(){
     strncpy(theLoai[1], "Toan hoc", sizeof(theLoai[1]) - 1);
     strncpy(theLoai[2], "CSDL", sizeof(theLoai[2]) - 1);
 
-    giaSach[0][1] = 20000; 
-    giaSach[1][1] = 15000; 
-    giaSach[2][1] = 40000;
+    giaSach[0] = 20000; 
+    giaSach[1] = 15000; 
+    giaSach[2] = 40000;
 
-    soLuongSach[0][1] = 20; 
-    soLuongSach[1][1] = 20; 
-    soLuongSach[2][1] = 20; 
+    soLuongSach[0] = 20; 
+    soLuongSach[1] = 20; 
+    soLuongSach[2] = 20; 
 }
 
 // -----------------------
@@ -72,7 +72,7 @@ void inThongTinToanBoSach(){
     }
     for(int i=0; i < tongSach; i++){
         printf("%04s | %20s | %20s | %20s | %5s | %10s | %9d | %2d\n",
-        ISBN[i], tenSach[i], tenTacGia[i], tenNhaXuatBan[i], namXuatBan[i], theLoai[i], giaSach[i][1],soLuongSach[i][1]);
+        ISBN[i], tenSach[i], tenTacGia[i], tenNhaXuatBan[i], namXuatBan[i], theLoai[i], giaSach[i],soLuongSach[i]);
     }
     printf("\n----------------------------------\n");
 }
@@ -89,8 +89,8 @@ void inThongTinSachv1(int i){
     printf("\tNha xuat Ban: | %s\n", tenNhaXuatBan[i]);
     printf("\tNam xuat ban: | %s\n", namXuatBan[i]);
     printf("\tThe loai:     | %s\n", theLoai[i]);
-    printf("\tGia sach:     | %d\n", giaSach[i][1]);
-    printf("\tSo luong:     | %d\n", soLuongSach[i][1]);
+    printf("\tGia sach:     | %d\n", giaSach[i]);
+    printf("\tSo luong:     | %d\n", soLuongSach[i]);
 }
 
 // -----------------------
@@ -100,7 +100,7 @@ void inThongTinSachv1(int i){
 //  Return: void
 void inThongTinSachv2(int i){ 
     printf("%5s | %20s | %d | %d \n",
-    ISBN[i], tenSach[i], giaSach[i][1], soLuongSach[i][1]);    
+    ISBN[i], tenSach[i], giaSach[i], soLuongSach[i]);    
 }
 
 // -----------------------
@@ -110,7 +110,7 @@ void inThongTinSachv2(int i){
 //  Return: void
 void inThongTinSachv3(int i){ 
     printf("%5s | %20s | %d\n",
-    ISBN[i], tenSach[i], giaSach[i][1]);    
+    ISBN[i], tenSach[i], giaSach[i]);    
 }
 
 // -----------------------
@@ -124,7 +124,7 @@ void inTongSoLuongSach(){
     printf("Sach cac loai hien co:\n");
     printf("\tmaSach |        ten Sach      | So luong  | The loai\n");
     for(int i = 0; i < tongSach; i++){
-        printf("\t%6s | %20s | %9d | %s\n", ISBN[i],tenSach[i],soLuongSach[i][1], theLoai[i]);
+        printf("\t%6s | %20s | %9d | %s\n", ISBN[i],tenSach[i],soLuongSach[i], theLoai[i]);
     }
 }
 
@@ -148,7 +148,7 @@ void inTongSoLuongSachTheoTheLoai(){
     for(int i = 0; i < tongSach; i++){
         if(strstr(theLoai[i],theLoaiCanTim) != NULL){
             dem++;
-            tong += soLuongSach[i][1];
+            tong += soLuongSach[i];
         }
     }
 
@@ -161,7 +161,7 @@ void inTongSoLuongSachTheoTheLoai(){
         printf("\tmaSach |        ten Sach      | So luong Sach\n");
         for(int i = 0; i < tongSach; i++){
             if(strstr(theLoai[i],theLoaiCanTim) != NULL){
-                printf("\t%6s | %20s | %9d\n", ISBN[i],tenSach[i],soLuongSach[i][1]);
+                printf("\t%6s | %20s | %9d\n", ISBN[i],tenSach[i],soLuongSach[i]);
             }
         }
         printf("------------------------------------------------\n");
@@ -214,7 +214,7 @@ int timSachTheoTen(char timSach[]){
 int timSoLuongSachTheoISBN(char timISBN[]){
     for(int i=0; i<tongSach; i++){
         if(strcmp(ISBN[i],timISBN) == 0){
-            return soLuongSach[i][1];
+            return soLuongSach[i];
         }
     }
     return -1;
@@ -228,7 +228,7 @@ int timSoLuongSachTheoISBN(char timISBN[]){
 int timGiaSachSachTheoISBN(char timISBN[]){
     for(int i=0; i<tongSach; i++){
         if(strcmp(ISBN[i],timISBN) == 0){
-            return giaSach[i][1];
+            return giaSach[i];
         }
     }
     return -1;
@@ -311,6 +311,9 @@ void themThongTinSach(){
 
     // Giá Sách
     themGiaSach(tongSach);
+
+    // Số lượng
+    themSoLuongSach(tongSach);
     
     // Them Ma ISBN tang tu dong
     sprintf(ISBN[tongSach],"S%03d",tongSach+1);
@@ -409,7 +412,7 @@ void themGiaSach(int vitri){
         if(m < 1000 || m > 999999999){
             printf("\n>>> Gia tien khong hop le. Vui long nhap lai <<<\n");
         } else {
-            giaSach[vitri][1] = m; 
+            giaSach[vitri] = m; 
             hopLe = true;
         }
     } while(!hopLe);
@@ -433,12 +436,15 @@ void themSoLuongSach(int vitri){
         printf("Them so luong: ");
         scanf("%d",&soluong);
 
-        if(soluong <= 0){
+        if(soluong < 0){
             printf("\n>>> So luong khong hop le. Nhap lai so luong: ");
+        }
+        else{
+            hopLe = true;
         }
     } while(!hopLe);
     if(hopLe){
-        soLuongSach[vitri][1] = soluong;
+        soLuongSach[vitri] = soluong;
     }
 
 }
@@ -523,7 +529,7 @@ void chinhSuaSach(char timISBN[]){
 //  Return: void
 void thayDoiSoLuongSach(char timISBN[], int soLuong){
     int vitriSach = timSachTheoISBN(timISBN);
-    soLuongSach[vitriSach][1] -= soLuong;
+    soLuongSach[vitriSach] -= soLuong;
 }
 
 // -----------------------
@@ -548,7 +554,7 @@ void xoaSach(char timISBN[]){
             strcpy(namXuatBan[i],namXuatBan[i+1]);
             strcpy(theLoai[i],theLoai[i+1]);
             // strcpy(giaSach[i],giaSach[i+1]);
-            giaSach[i][1] = giaSach[i+1][1];
+            giaSach[i] = giaSach[i+1];
         }
         tongSach--;
         printf("\n >>> Da xoa Sach thanh cong <<<\n");
